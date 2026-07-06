@@ -1,10 +1,12 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import admin from "firebase-admin";
+import { initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-admin.initializeApp({
+initializeApp({
   projectId: process.env.VITE_FIREBASE_PROJECT_ID || process.env.FIREBASE_PROJECT_ID,
 });
 
@@ -28,7 +30,7 @@ const verifyToken = async (req, res, next) => {
   }
   const token = authHeader.split("Bearer ")[1];
   try {
-    const decodedToken = await admin.auth().verifyIdToken(token);
+    const decodedToken = await getAuth().verifyIdToken(token);
     req.user = decodedToken;
     next();
   } catch (error) {
