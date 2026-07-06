@@ -54,7 +54,7 @@ app.post("/api/generate", verifyToken, async (req, res) => {
     res.json({ result: text });
   } catch (err) {
     console.error("Gemini API error:", err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: `Internal server error: ${err.message}` });
   }
 });
 
