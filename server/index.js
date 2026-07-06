@@ -1,8 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import fetch from "node-fetch";
 import admin from "firebase-admin";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 admin.initializeApp({
   projectId: process.env.VITE_FIREBASE_PROJECT_ID || process.env.FIREBASE_PROJECT_ID,
@@ -40,34 +40,18 @@ const verifyToken = async (req, res, next) => {
 app.post("/api/generate", verifyToken, async (req, res) => {
   const { prompt } = req.body;
   if (!prompt) return res.status(400).json({ error: "Missing prompt" });
-  if (!process.env.ANTHROPIC_API_KEY) return res.status(500).json({ error: "API key not configured" });
+  if (!process.env.GEMINI_API_KEY) return res.status(500).json({ error: "API key not configured" });
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 4096,
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error("Anthropic API error:", errorBody);
-      return res.status(response.status).json({ error: "AI service error" });
-    }
+    const result = await model.generateContent(prompt);
+    const text = result.response.text();
 
-    const data = await response.json();
-    const text = data.content?.map((b) => b.text || "").join("\n") || "";
     res.json({ result: text });
   } catch (err) {
-    console.error("Server error:", err);
+    console.error("Gemini API error:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 });
