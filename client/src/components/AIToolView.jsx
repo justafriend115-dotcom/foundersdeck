@@ -6,7 +6,7 @@ import { categoryMeta } from "../styles/tokens.js";
 import FormattedOutput from "./FormattedOutput.jsx";
 import { auth } from "../firebase.js";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "http://localhost:3001");
 
 const LOADING_MESSAGES = [
   "Consulting the founder playbook…",
