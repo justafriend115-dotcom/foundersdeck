@@ -1,11 +1,25 @@
 // client/src/components/SessionHistory.jsx
 import { TOOLS } from "../tools/toolConfig.js";
 import { categoryMeta } from "../styles/tokens.js";
+import { Skeleton, SessionListSkeleton } from "./Skeleton.jsx";
 
-export default function SessionHistory({ sessions, onOpenSession, onDeleteSession }) {
+export default function SessionHistory({ sessions, loading, onOpenSession, onDeleteSession }) {
   const sorted = [...sessions].sort(
     (a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)
   );
+
+  if (loading) {
+    return (
+      <div style={{ maxWidth: 900, margin: "0 auto", padding: "32px 0 60px" }}>
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ fontSize: 12, color: "var(--text-muted)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px", marginBottom: 6 }}>Session History</div>
+          <h2 style={{ fontSize: 28, fontWeight: 800, color: "var(--text-primary)", margin: 0 }}>Saved Sessions</h2>
+          <Skeleton width={110} height={13} style={{ marginTop: 10 }} />
+        </div>
+        <SessionListSkeleton rows={5} />
+      </div>
+    );
+  }
 
   if (sorted.length === 0) {
     return (

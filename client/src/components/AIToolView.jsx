@@ -4,6 +4,7 @@ import { FIELDS_BASE, FIELDS_EXTRA } from "../tools/toolConfig.js";
 import { PROMPTS } from "../tools/prompts.js";
 import { categoryMeta } from "../styles/tokens.js";
 import FormattedOutput from "./FormattedOutput.jsx";
+import { OutputSkeleton } from "./Skeleton.jsx";
 import { auth } from "../firebase.js";
 
 const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "http://localhost:3001");
@@ -51,11 +52,14 @@ export default function AIToolView({ user, tool, activeProject, onSave, onBack }
     setLoading(true);
     setError("");
     setOutput("");
+    setLoadMsg(LOADING_MESSAGES[0]);
     let msgIndex = 0;
     loadInterval.current = setInterval(() => {
       msgIndex = (msgIndex + 1) % LOADING_MESSAGES.length;
       setLoadMsg(LOADING_MESSAGES[msgIndex]);
     }, 2500);
+    // Scroll to the skeleton so the user sees progress immediately
+    setTimeout(() => outputRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
 
     try {
       const promptFn = PROMPTS[tool.id];
@@ -187,16 +191,17 @@ export default function AIToolView({ user, tool, activeProject, onSave, onBack }
           )}
         </div>
 
-        {loading && (
-          <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ width: 18, height: 18, border: `2px solid ${accent}33`, borderTopColor: accent, borderRadius: "50%", animation: "spin 0.8s linear infinite", flexShrink: 0 }} />
-            <span style={{ fontSize: 13, color: "var(--text-secondary)", fontStyle: "italic" }}>{loadMsg}</span>
-          </div>
-        )}
       </div>
 
+      {/* Output skeleton while generating */}
+      {loading && (
+        <div ref={outputRef}>
+          <OutputSkeleton accent={accent} message={loadMsg} />
+        </div>
+      )}
+
       {/* Output */}
-      {output && (
+      {!loading && output && (
         <div ref={outputRef}>
           <div style={{ marginBottom: 16 }}>
             <h3 style={{ fontSize: 16, fontWeight: 700, margin: 0, color: "var(--text-primary)" }}>Generated Output</h3>

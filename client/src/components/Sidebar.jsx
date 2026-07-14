@@ -1,8 +1,9 @@
 // client/src/components/Sidebar.jsx
 import { categoryMeta } from "../styles/tokens.js";
+import { SidebarProjectsSkeleton } from "./Skeleton.jsx";
 
 export default function Sidebar({
-  projects, activeProject, onSelectProject, onNewProject,
+  projects, loadingProjects, activeProject, onSelectProject, onNewProject,
   currentView, onSetView, user, onSignOut,
 }) {
   const activeColor = activeProject
@@ -64,6 +65,7 @@ export default function Sidebar({
           Projects
         </div>
         <div style={{ flex: 1, overflowY: "auto", padding: "0 12px" }}>
+          {loadingProjects && projects.length === 0 && <SidebarProjectsSkeleton />}
           {projects.map((p) => (
             <button key={p.id} onClick={() => onSelectProject(p)}
               style={{

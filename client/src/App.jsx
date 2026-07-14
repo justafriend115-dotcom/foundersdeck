@@ -1,5 +1,5 @@
 // client/src/App.jsx — FounderKit v3 (The Founder OS)
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import "./index.css";
 
 // Firebase
@@ -20,19 +20,22 @@ import { categoryMeta } from "./styles/tokens.js";
 // Tool config
 import { TOOLS } from "./tools/toolConfig.js";
 
-// Layout components
+// Layout components (Dashboard stays eager — it's the first view users see)
 import Sidebar        from "./components/Sidebar.jsx";
 import Dashboard      from "./components/Dashboard.jsx";
-import ToolGrid       from "./components/ToolGrid.jsx";
-import AIToolView     from "./components/AIToolView.jsx";
-import SessionHistory from "./components/SessionHistory.jsx";
+import { DashboardSkeleton, ViewLoader } from "./components/Skeleton.jsx";
 
-// Calculators
-import EquitySplitCalc    from "./calculators/EquitySplitCalc.jsx";
-import CapTableCalc       from "./calculators/CapTableCalc.jsx";
-import SAFECalc           from "./calculators/SAFECalc.jsx";
-import UnitEconomicsCalc  from "./calculators/UnitEconomicsCalc.jsx";
-import FundraisingTracker from "./calculators/FundraisingTracker.jsx";
+// Lazy-loaded views — code-split so the initial bundle stays small
+const ToolGrid       = lazy(() => import("./components/ToolGrid.jsx"));
+const AIToolView     = lazy(() => import("./components/AIToolView.jsx"));
+const SessionHistory = lazy(() => import("./components/SessionHistory.jsx"));
+
+// Calculators (lazy — only loaded when opened)
+const EquitySplitCalc    = lazy(() => import("./calculators/EquitySplitCalc.jsx"));
+const CapTableCalc       = lazy(() => import("./calculators/CapTableCalc.jsx"));
+const SAFECalc           = lazy(() => import("./calculators/SAFECalc.jsx"));
+const UnitEconomicsCalc  = lazy(() => import("./calculators/UnitEconomicsCalc.jsx"));
+const FundraisingTracker = lazy(() => import("./calculators/FundraisingTracker.jsx"));
 
 // Modals
 import NewProjectModal from "./components/modals/NewProjectModal.jsx";
@@ -251,6 +254,7 @@ export default function App() {
 
   const [showNewProject, setShowNewProject] = useState(false);
   const [loadingProjects, setLoadingProjects] = useState(false);
+  const [loadingSessions, setLoadingSessions] = useState(false);
 
   // ── Auth listener ──────────────────────────────────────────────────────────
   useEffect(() => {
@@ -291,10 +295,12 @@ export default function App() {
   }, [activeProject, user]);
 
   const loadFirestoreSessions = async (projectId) => {
+    setLoadingSessions(true);
     try {
       const snap = await getDocs(query(collection(db, "users", user.uid, "projects", projectId, "sessions"), orderBy("createdAt", "desc")));
       setSessions(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     } catch (e) { console.error(e); }
+    finally { setLoadingSessions(false); }
   };
 
   const loadDemoSessions = (projectId) => {
@@ -438,12 +444,14 @@ export default function App() {
       return (
         <SessionHistory
           sessions={sessions}
+          loading={loadingSessions}
           onOpenSession={(s) => setViewingSession(s)}
           onDeleteSession={deleteSession}
         />
       );
     }
     // Dashboard (default)
+    if (loadingSessions) return <DashboardSkeleton />;
     return (
       <Dashboard
         activeProject={activeProject}
@@ -458,6 +466,7 @@ export default function App() {
     <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
       <Sidebar
         projects={projects}
+        loadingProjects={loadingProjects}
         activeProject={activeProject}
         onSelectProject={(p) => { setActiveProject(p); setCurrentView("dashboard"); setActiveTool(null); }}
         onNewProject={() => setShowNewProject(true)}
@@ -468,11 +477,9 @@ export default function App() {
       />
 
       <main style={{ flex: 1, overflowY: "auto", padding: "0 40px" }}>
-        {loadingProjects ? (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--text-muted)", fontSize: 13 }}>Loading projects…</div>
-        ) : (
-          renderContent()
-        )}
+        <Suspense fallback={<ViewLoader />}>
+          {loadingProjects ? <DashboardSkeleton /> : renderContent()}
+        </Suspense>
       </main>
 
       {showNewProject && (
