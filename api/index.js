@@ -13,9 +13,12 @@ initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// The frontend (Vercel) calls this API (Render) cross-origin. Auth is enforced
+// per-request via Firebase Bearer tokens; set ALLOWED_ORIGIN (comma-separated)
+// to additionally lock CORS down to your frontend domain(s).
 app.use(cors({
-  origin: process.env.NODE_ENV === "production"
-    ? process.env.ALLOWED_ORIGIN || "https://foundersdeck.web.app"
+  origin: process.env.ALLOWED_ORIGIN
+    ? process.env.ALLOWED_ORIGIN.split(",").map((o) => o.trim())
     : "*",
 }));
 app.use(express.json());
@@ -50,12 +53,15 @@ app.post("/api/generate", verifyToken, async (req, res) => {
     });
 
     const msg = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022",
-      max_tokens: 2048,
+      model: "claude-opus-4-8",
+      max_tokens: 8192,
       messages: [{ role: "user", content: prompt }],
     });
 
-    const text = msg.content[0].text;
+    const text = msg.content
+      .filter((block) => block.type === "text")
+      .map((block) => block.text)
+      .join("");
 
     res.json({ result: text });
   } catch (err) {
@@ -64,7 +70,9 @@ app.post("/api/generate", verifyToken, async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => console.log(`FounderKit server running on port ${PORT}`));
-}
+// Render runs this as a long-lived web service — it must always bind a port.
+// (Render injects PORT; the NODE_ENV guard here previously prevented the server
+// from listening in production, which fails Render's port detection.)
+app.listen(PORT, () => console.log(`FounderKit server running on port ${PORT}`));
+
 export default app;

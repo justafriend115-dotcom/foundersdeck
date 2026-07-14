@@ -1,6 +1,6 @@
 # FounderKit — AI Startup Toolkit
 
-An AI-powered startup toolkit built with React + Firebase + Anthropic Claude. Users sign in with Google or Apple, create Projects (one per company/venture), and run four AI tools per project. All inputs, outputs, and history are saved to their account automatically.
+An AI-powered startup toolkit built with React + Firebase + Anthropic Claude. Users sign in with Google or Apple, create Projects (one per company/venture), and run AI tools per project. All inputs, outputs, and history are saved to their account automatically.
 
 ## Tools
 
@@ -11,6 +11,8 @@ An AI-powered startup toolkit built with React + Firebase + Anthropic Claude. Us
 | 💰 Financial Tracker | CFO-style financial overview, KPIs, investor readiness checklist |
 | 📈 Revenue Projections | 3-scenario (Conservative/Base/Optimistic) 3-year financial table |
 
+Plus interactive calculators: Equity Split, Cap Table, SAFE Note, Unit Economics, and Fundraising Tracker.
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -19,10 +21,10 @@ An AI-powered startup toolkit built with React + Firebase + Anthropic Claude. Us
 | Backend | Node.js + Express (API proxy) |
 | Auth | Firebase Authentication (Google + Apple OAuth) |
 | Database | Firebase Firestore |
-| AI | Anthropic Claude API (claude-sonnet-4-6) |
+| AI | Anthropic Claude API (`claude-opus-4-8`) |
 | Styling | Inline React styles |
 | Fonts | Inter (Google Fonts) |
-| Deployment | Firebase Hosting (frontend) + Cloud Run (backend) |
+| Deployment | Vercel (frontend) + Render (backend) |
 
 ## Project Structure
 
@@ -38,15 +40,14 @@ founderkit/
 │       ├── firebase.js
 │       └── App.jsx
 │
-├── server/                        # Node.js API proxy
+├── api/                           # Node.js API proxy (Render web service)
 │   ├── index.js
 │   ├── package.json
 │   ├── Dockerfile
 │   └── .env
 │
 ├── firestore.rules
-├── firebase.json
-├── .firebaserc
+├── vercel.json
 ├── .gitignore
 └── README.md
 ```
@@ -56,13 +57,13 @@ founderkit/
 ### Prerequisites
 
 - Node.js 18+
-- A Firebase project (https://console.firebase.google.com)
+- A Firebase project (https://console.firebase.google.com) — used for Auth + Firestore only
 - An Anthropic API key (https://console.anthropic.com)
 - For Apple Sign-In: an Apple Developer account ($99/yr)
 
 ### Step 1 — Configure Environment Variables
 
-**`server/.env`**
+**`api/.env`**
 ```
 ANTHROPIC_API_KEY=sk-ant-your-key-here
 PORT=3001
@@ -83,38 +84,46 @@ VITE_FIREBASE_APP_ID=...
 ### Step 2 — Install Dependencies & Run Locally
 
 ```bash
-# Server
-cd server
+# API
+cd api
 npm install
-node index.js        # runs on :3001
+npm run dev          # runs on :3001
 
 # Client (in a new terminal)
 cd client
 npm install
-npm run dev          # runs on :5173
+npm run dev          # runs on :5173 (proxies /api to :3001)
 ```
 
 ## Deployment
 
-### Frontend → Firebase Hosting
+### Frontend → Vercel
+
+`vercel.json` builds the client and serves it as an SPA.
 
 ```bash
-cd client && npm run build && cd ..
-firebase deploy --only hosting
+vercel --prod
 ```
 
-### Backend → Cloud Run
+Environment variables in the Vercel project settings (used at build time):
 
-```bash
-cd server
-gcloud run deploy founderkit-api \
-  --source . \
-  --region us-central1 \
-  --allow-unauthenticated \
-  --set-env-vars ANTHROPIC_API_KEY=sk-ant-...,NODE_ENV=production,ALLOWED_ORIGIN=https://your-project.web.app
-```
+| Variable | Value |
+|----------|-------|
+| `VITE_API_URL` | Your Render backend URL, e.g. `https://foundersdeck.onrender.com` |
+| `VITE_FIREBASE_*` | Your Firebase config values (same as `client/.env`) |
 
-After deploying, update `VITE_API_URL` in `client/.env` to the Cloud Run URL, then rebuild and redeploy hosting.
+### Backend → Render
+
+Deploy `api/` as a **Web Service** (Root Directory: `api`). Render can build it either natively (Build: `npm install`, Start: `npm start`) or via the included `Dockerfile`. The server binds to the `PORT` Render injects.
+
+Environment variables in the Render service settings:
+
+| Variable | Value |
+|----------|-------|
+| `ANTHROPIC_API_KEY` | Your Anthropic API key |
+| `NODE_ENV` | `production` |
+| `FIREBASE_PROJECT_ID` | Your Firebase project ID (used to verify auth tokens) |
+| `ALLOWED_ORIGIN` | (Optional) your Vercel domain(s), comma-separated, to lock down CORS |
 
 ### Firestore Rules
 
@@ -132,23 +141,23 @@ firebase deploy --only firestore:rules
   - name, industry, createdAt, updatedAt
 
 /users/{userId}/projects/{projectId}/sessions/{sessionId}
-  - tool, toolLabel, formData, output, createdAt
+  - tool, toolLabel, formData, output, calcData, type, createdAt
 ```
 
 ## Quick Reference
 
 | Command | What it does |
 |---------|-------------|
-| `cd server && node index.js` | Start backend locally |
+| `cd api && npm run dev` | Start backend locally |
 | `cd client && npm run dev` | Start frontend locally |
 | `cd client && npm run build` | Build for production |
-| `firebase deploy --only hosting` | Deploy frontend |
+| `vercel --prod` | Deploy frontend |
+| `git push` | Deploy backend (Render auto-deploys from the repo) |
 | `firebase deploy --only firestore:rules` | Deploy security rules |
-| `gcloud run deploy founderkit-api --source .` | Deploy backend |
 
 ## Adding a New Tool
 
-1. Add entry to `TOOLS` array in `App.jsx`
-2. Add prompt function to `PROMPTS` object
+1. Add entry to `TOOLS` array in `client/src/tools/toolConfig.js`
+2. Add prompt function to `PROMPTS` object in `client/src/tools/prompts.js`
 3. Optionally add fields to `FIELDS_EXTRA`
 4. Done — all UI renders from config
