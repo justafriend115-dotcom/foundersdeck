@@ -36,9 +36,11 @@ const CapTableCalc       = lazy(() => import("./calculators/CapTableCalc.jsx"));
 const SAFECalc           = lazy(() => import("./calculators/SAFECalc.jsx"));
 const UnitEconomicsCalc  = lazy(() => import("./calculators/UnitEconomicsCalc.jsx"));
 const FundraisingTracker = lazy(() => import("./calculators/FundraisingTracker.jsx"));
+const PitchDeckBuilder   = lazy(() => import("./calculators/PitchDeckBuilder.jsx"));
 
 // Modals
 import NewProjectModal from "./components/modals/NewProjectModal.jsx";
+import EmailAuthForm from "./components/EmailAuthForm.jsx";
 
 // ─── DEMO MODE (localStorage) ────────────────────────────────────────────────
 
@@ -59,11 +61,14 @@ const CALC_COMPONENTS = {
   "safe-calculator":     SAFECalc,
   "unit-economics":      UnitEconomicsCalc,
   "fundraising-tracker": FundraisingTracker,
+  "pitch-deck-builder":  PitchDeckBuilder,
 };
 
 // ─── AUTH SCREEN ─────────────────────────────────────────────────────────────
 
-function AuthScreen({ onGoogle, onApple, onDemo, authError }) {
+function AuthScreen({ onGoogle, onApple, onDemo, authError, onEmailSuccess, onEmailError }) {
+  const [showEmailForm, setShowEmailForm] = useState(false);
+
   return (
     <div className="auth-container">
       <div style={{ width: 420, maxWidth: "95vw" }}>
@@ -97,34 +102,71 @@ function AuthScreen({ onGoogle, onApple, onDemo, authError }) {
           <p style={{ fontSize: 13, color: "var(--text-secondary)", textAlign: "center", marginBottom: 20 }}>
             Sign in to save your work across devices
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <button className="btn-secondary" style={{ padding: "13px 20px", justifyContent: "flex-start", gap: 12, fontSize: 15, color: "var(--text-primary)", border: "1px solid var(--border-hover)" }} onClick={onGoogle}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M19.6 10.23c0-.68-.06-1.36-.18-2H10v3.79h5.41a4.62 4.62 0 01-2 3.04v2.52h3.23c1.89-1.74 2.98-4.3 2.98-7.35z" fill="#4285F4"/>
-                <path d="M10 20c2.7 0 4.96-.9 6.62-2.42l-3.23-2.52c-.9.6-2.05.96-3.39.96-2.6 0-4.8-1.76-5.59-4.12H1.08v2.6A10 10 0 0010 20z" fill="#34A853"/>
-                <path d="M4.41 11.9A5.97 5.97 0 014.1 10c0-.66.11-1.3.31-1.9V5.5H1.08A10 10 0 000 10c0 1.61.39 3.14 1.08 4.5l3.33-2.6z" fill="#FBBC05"/>
-                <path d="M10 3.98c1.47 0 2.79.5 3.83 1.5L16.68 2.4C14.95.74 12.7-.01 10-.01A10 10 0 001.08 5.5l3.33 2.6C5.2 5.74 7.4 3.98 10 3.98z" fill="#EA4335"/>
-              </svg>
-              Continue with Google
-            </button>
 
-            <button className="btn-secondary" style={{ padding: "13px 20px", justifyContent: "flex-start", gap: 12, fontSize: 15, color: "var(--text-primary)" }} onClick={onApple}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M14.05 10.83c-.02-2.17 1.77-3.22 1.85-3.27-1.01-1.48-2.59-1.68-3.14-1.7-1.33-.14-2.6.78-3.27.78-.67 0-1.7-.76-2.8-.74C5.14 5.92 3.6 6.9 2.75 8.4c-1.74 3.01-.45 7.47 1.25 9.91.83 1.2 1.82 2.54 3.12 2.49 1.26-.05 1.73-.81 3.25-.81 1.52 0 1.95.81 3.28.79 1.35-.02 2.2-1.22 3.02-2.42.96-1.38 1.35-2.72 1.37-2.79-.03-.01-2.62-1-2.65-3.97l.21.23zm-2.44-7.25c.68-.82 1.14-1.97 1.01-3.11-.98.04-2.16.65-2.87 1.47-.63.73-1.18 1.9-1.03 3.02 1.09.08 2.21-.56 2.89-1.38z"/>
-              </svg>
-              Continue with Apple
-            </button>
-          </div>
+          {showEmailForm ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <EmailAuthForm onSuccess={onEmailSuccess} onError={onEmailError} />
+              <button
+                type="button"
+                onClick={() => setShowEmailForm(false)}
+                style={{
+                  padding: "8px 12px",
+                  fontSize: 13,
+                  border: "none",
+                  borderRadius: 6,
+                  background: "transparent",
+                  color: "var(--text-secondary)",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                }}
+              >
+                ← Back to other options
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <button className="btn-secondary" style={{ padding: "13px 20px", justifyContent: "flex-start", gap: 12, fontSize: 15, color: "var(--text-primary)", border: "1px solid var(--border-hover)" }} onClick={onGoogle}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M19.6 10.23c0-.68-.06-1.36-.18-2H10v3.79h5.41a4.62 4.62 0 01-2 3.04v2.52h3.23c1.89-1.74 2.98-4.3 2.98-7.35z" fill="#4285F4"/>
+                  <path d="M10 20c2.7 0 4.96-.9 6.62-2.42l-3.23-2.52c-.9.6-2.05.96-3.39.96-2.6 0-4.8-1.76-5.59-4.12H1.08v2.6A10 10 0 0010 20z" fill="#34A853"/>
+                  <path d="M4.41 11.9A5.97 5.97 0 014.1 10c0-.66.11-1.3.31-1.9V5.5H1.08A10 10 0 000 10c0 1.61.39 3.14 1.08 4.5l3.33-2.6z" fill="#FBBC05"/>
+                  <path d="M10 3.98c1.47 0 2.79.5 3.83 1.5L16.68 2.4C14.95.74 12.7-.01 10-.01A10 10 0 001.08 5.5l3.33 2.6C5.2 5.74 7.4 3.98 10 3.98z" fill="#EA4335"/>
+                </svg>
+                Continue with Google
+              </button>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "20px 0" }}>
-            <div style={{ flex: 1, height: 1, background: "var(--border-color)" }} />
-            <span style={{ fontSize: 12, color: "var(--text-muted)" }}>or</span>
-            <div style={{ flex: 1, height: 1, background: "var(--border-color)" }} />
-          </div>
+              <button className="btn-secondary" style={{ padding: "13px 20px", justifyContent: "flex-start", gap: 12, fontSize: 15, color: "var(--text-primary)" }} onClick={onApple}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M14.05 10.83c-.02-2.17 1.77-3.22 1.85-3.27-1.01-1.48-2.59-1.68-3.14-1.7-1.33-.14-2.6.78-3.27.78-.67 0-1.7-.76-2.8-.74C5.14 5.92 3.6 6.9 2.75 8.4c-1.74 3.01-.45 7.47 1.25 9.91.83 1.2 1.82 2.54 3.12 2.49 1.26-.05 1.73-.81 3.25-.81 1.52 0 1.95.81 3.28.79 1.35-.02 2.2-1.22 3.02-2.42.96-1.38 1.35-2.72 1.37-2.79-.03-.01-2.62-1-2.65-3.97l.21.23zm-2.44-7.25c.68-.82 1.14-1.97 1.01-3.11-.98.04-2.16.65-2.87 1.47-.63.73-1.18 1.9-1.03 3.02 1.09.08 2.21-.56 2.89-1.38z"/>
+                </svg>
+                Continue with Apple
+              </button>
 
-          <button className="btn-secondary" style={{ width: "100%", padding: "12px", color: "var(--text-secondary)" }} onClick={onDemo}>
-            Try Demo Mode (no sign-in)
-          </button>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "12px 0" }}>
+                <div style={{ flex: 1, height: 1, background: "var(--border-color)" }} />
+                <span style={{ fontSize: 12, color: "var(--text-muted)" }}>or</span>
+                <div style={{ flex: 1, height: 1, background: "var(--border-color)" }} />
+              </div>
+
+              <button className="btn-secondary" style={{ padding: "13px 20px", justifyContent: "flex-start", gap: 12, fontSize: 15, color: "var(--text-primary)" }} onClick={() => setShowEmailForm(true)}>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2 4a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2H2z"/>
+                  <path d="M2 6l8 5 8-5" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
+                Continue with Email
+              </button>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "12px 0" }}>
+                <div style={{ flex: 1, height: 1, background: "var(--border-color)" }} />
+                <span style={{ fontSize: 12, color: "var(--text-muted)" }}>or</span>
+                <div style={{ flex: 1, height: 1, background: "var(--border-color)" }} />
+              </div>
+
+              <button className="btn-secondary" style={{ width: "100%", padding: "12px", color: "var(--text-secondary)" }} onClick={onDemo}>
+                Try Demo Mode (no sign-in)
+              </button>
+            </div>
+          )}
 
           {authError && (
             <p style={{ fontSize: 12, color: "#F43F5E", marginTop: 12, textAlign: "center" }}>⚠️ {authError}</p>
@@ -319,6 +361,12 @@ export default function App() {
     try { await signInWithPopup(auth, appleProvider); }
     catch (e) { setAuthError(e.message); }
   };
+  const handleEmailAuthSuccess = () => {
+    setAuthError("");
+  };
+  const handleEmailAuthError = (error) => {
+    setAuthError(error);
+  };
   const handleSignOut = async () => {
     await signOut(auth);
     setUser(null); setIsDemo(false);
@@ -411,7 +459,7 @@ export default function App() {
 
   // ── Auth screen ────────────────────────────────────────────────────────────
   if (!user && !isDemo) {
-    return <AuthScreen onGoogle={signInGoogle} onApple={signInApple} onDemo={enterDemo} authError={authError} />;
+    return <AuthScreen onGoogle={signInGoogle} onApple={signInApple} onDemo={enterDemo} authError={authError} onEmailSuccess={handleEmailAuthSuccess} onEmailError={handleEmailAuthError} />;
   }
 
   // ── Main App ───────────────────────────────────────────────────────────────

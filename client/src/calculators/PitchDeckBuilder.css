@@ -1,0 +1,32 @@
+/* Pitch Deck Builder Styles */
+input[type="text"],
+input[type="color"],
+textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: white;
+  transition: border-color 0.15s;
+}
+
+input[type="text"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+input[type="file"] {
+  padding: 0.5rem;
+  border: 1px solid #d1d9e6;
+  border-radius: 10px;
+  background: white;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #334155;
+  margin-bottom: 0.25rem;
+}

@@ -3,6 +3,7 @@
 export const TOOLS = [
   // ── Pitch & Fundraising ──────────────────────────────────────────
   { id: "pitch-deck",          category: "pitch",     type: "ai",         icon: "📊", label: "Pitch Deck Generator",    description: "10-slide investor deck outline with speaker notes" },
+  { id: "pitch-deck-builder",  category: "pitch",     type: "calculator", icon: "🎨", label: "Pitch Deck Builder",      description: "Create and customize a professional pitch deck (no API)" },
   { id: "pitch-video",         category: "pitch",     type: "ai",         icon: "🎬", label: "Pitch Video Script",      description: "2-minute pitch video script with visual cues" },
   { id: "investor-email",      category: "pitch",     type: "ai",         icon: "✉️", label: "Investor Cold Email",     description: "Personalized cold outreach email to investors" },
   { id: "term-sheet-explainer",category: "pitch",     type: "ai",         icon: "📋", label: "Term Sheet Explainer",    description: "Plain-English breakdown of any term sheet clause" },
