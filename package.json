@@ -1,0 +1,22 @@
+{
+  "name": "founderdeck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5"
+  }
+}
