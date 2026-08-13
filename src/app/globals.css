@@ -33,7 +33,7 @@ body {
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-zinc-700 via-zinc-500 to-brand-500 bg-clip-text text-transparent;
+    @apply text-brand-600;
   }
   .bg-grid {
     background-image:

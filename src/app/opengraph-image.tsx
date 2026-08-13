@@ -60,8 +60,8 @@ export default function OpengraphImage() {
             width: "92px",
             height: "92px",
             borderRadius: "24px",
-            background: "linear-gradient(135deg, #0a0a0a, #3f3f46 50%, #c9a227)",
-            boxShadow: "0 24px 48px rgba(0,0,0,0.5)",
+            background: "#0a0a0a",
+            border: "1px solid rgba(201,162,39,0.5)",
             fontSize: "48px",
             color: "#e3c87e",
           }}

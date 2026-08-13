@@ -65,7 +65,7 @@ export default function Features() {
               className="transition-all duration-300 hover:-translate-y-1 hover:shadow-soft"
             >
               <CardHeader>
-                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-100 to-brand-100 ring-1 ring-zinc-200">
+                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 ring-1 ring-brand-100">
                   <feature.icon className="size-5 text-brand-600" />
                 </div>
                 <CardTitle>{feature.title}</CardTitle>

@@ -37,10 +37,10 @@ export default function HowItWorks() {
         </div>
 
         <div className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
-          <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-brand-300 to-transparent md:block" />
+          <div className="absolute left-0 right-0 top-7 hidden h-px bg-brand-200 md:block" />
           {steps.map((step, i) => (
             <div key={step.title} className="relative flex flex-col items-center text-center">
-              <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-zinc-950 via-zinc-800 to-brand-600 text-brand-300 shadow-lg shadow-zinc-950/30">
+              <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl bg-zinc-950 text-brand-300 shadow-lg shadow-zinc-950/30">
                 <step.icon className="size-6" />
                 <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-background text-xs font-bold text-brand-700 shadow-sm ring-1 ring-border">
                   {i + 1}

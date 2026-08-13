@@ -107,7 +107,7 @@ export function Overview({ name, plan }: { name: string; plan: string }) {
                   href={action.href}
                   className="group flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 transition-all hover:border-brand-300 hover:shadow-soft"
                 >
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-50 to-brand-100 ring-1 ring-brand-100">
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-brand-50 ring-1 ring-brand-100">
                     <action.icon className="size-4 text-brand-600" />
                   </span>
                   <span className="flex-1 text-sm font-medium text-foreground">{action.label}</span>

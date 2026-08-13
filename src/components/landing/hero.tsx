@@ -1,23 +1,13 @@
-import { ArrowRight, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-
-const avatarStyles = [
-  "from-zinc-300 to-zinc-500",
-  "from-zinc-500 to-zinc-700",
-  "from-zinc-700 to-zinc-950",
-  "from-zinc-600 to-brand-700",
-  "from-brand-500 to-brand-700",
-];
-
-const avatarInitials = ["MC", "DO", "SR", "JL", "AK"];
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
-      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-r from-zinc-500/15 via-zinc-400/10 to-brand-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-brand-500/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="mx-auto max-w-3xl text-center">
@@ -54,37 +44,12 @@ export default function Hero() {
             </Link>
           </div>
 
-          <div
-            className="mt-8 flex animate-fade-up flex-col items-center justify-center gap-3 sm:flex-row sm:gap-6"
+          <p
+            className="mt-8 animate-fade-up text-sm text-muted-foreground"
             style={{ animationDelay: "400ms" }}
           >
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-2.5">
-                {avatarInitials.map((initials, i) => (
-                  <span
-                    key={initials}
-                    className={`flex size-9 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br ${avatarStyles[i]} text-xs font-bold text-white`}
-                  >
-                    {initials}
-                  </span>
-                ))}
-              </div>
-              <div className="text-left text-sm">
-                <div className="flex items-center gap-0.5">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <p className="mt-0.5 text-muted-foreground">
-                  Trusted by <span className="font-semibold text-foreground">2,400+ founders</span>
-                </p>
-              </div>
-            </div>
-            <div className="hidden text-sm text-muted-foreground sm:block">·</div>
-            <p className="text-sm text-muted-foreground">
-              No credit card required · Free forever tier
-            </p>
-          </div>
+            No credit card required · Free forever tier
+          </p>
         </div>
 
         <div
@@ -122,7 +87,7 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
-                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-800 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-zinc-700">
+                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-zinc-950 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-zinc-700">
                   Generate my deck
                 </div>
               </div>
@@ -132,7 +97,7 @@ export default function Hero() {
                   <span className="text-xs font-medium text-muted-foreground">92% ready</span>
                 </div>
                 <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-zinc-400 via-zinc-500 to-brand-500" />
+                  <div className="h-full w-[92%] rounded-full bg-brand-500" />
                 </div>
                 <div className="mt-5 space-y-3">
                   {[
@@ -147,9 +112,7 @@ export default function Hero() {
                       className="bg-muted/30 flex items-center justify-between rounded-lg border border-border px-3 py-2.5"
                     >
                       <span className="text-sm font-medium text-foreground">{slide.title}</span>
-                      <div
-                        className={`h-2 rounded-full bg-gradient-to-r from-zinc-300 to-brand-400 ${slide.w}`}
-                      />
+                      <div className={`h-2 rounded-full bg-brand-400 ${slide.w}`} />
                     </div>
                   ))}
                 </div>

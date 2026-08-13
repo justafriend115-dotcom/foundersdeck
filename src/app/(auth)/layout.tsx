@@ -1,5 +1,3 @@
-import { Star } from "lucide-react";
-
 import { Logo } from "@/components/logo";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
@@ -20,14 +18,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             Pitch decks, business plans, financials and investor CRM — everything founders need
             before they walk into the room.
           </p>
-        </div>
-        <div className="relative flex items-center gap-3">
-          <div className="flex items-center gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="size-4 fill-amber-400 text-amber-400" />
-            ))}
-          </div>
-          <p className="text-sm text-brand-100/70">Joined by 2,400+ founders</p>
         </div>
       </aside>
       <main className="flex items-center justify-center px-4 py-12 sm:px-8">{children}</main>

@@ -283,7 +283,7 @@ export function PitchGenerator() {
                     className="rounded-xl border border-border bg-card p-6 shadow-sm"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex size-7 items-center justify-center rounded-full bg-gradient-to-br from-zinc-950 to-zinc-800 text-xs font-bold text-brand-300">
+                      <span className="flex size-7 items-center justify-center rounded-full bg-zinc-950 text-xs font-bold text-brand-300">
                         {index + 1}
                       </span>
                       <h3 className="text-lg font-bold text-foreground">{slide.title}</h3>

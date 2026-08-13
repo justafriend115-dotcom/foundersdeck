@@ -64,7 +64,7 @@ export function LegalHub() {
                   className={cn(
                     "flex size-9 shrink-0 items-center justify-center rounded-lg",
                     d.id === activeId
-                      ? "bg-gradient-to-br from-zinc-950 to-zinc-800 text-brand-300"
+                      ? "bg-zinc-950 text-brand-300"
                       : "bg-brand-50 text-brand-600 ring-1 ring-brand-100",
                   )}
                 >
