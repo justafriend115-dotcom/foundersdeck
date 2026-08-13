@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy, Loader2, Printer, Sparkles } from "lucide-react";
+import { Check, Copy, ImageIcon, Loader2, Printer, Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { ToolHeader } from "@/components/tools/tool-header";
@@ -34,6 +34,7 @@ export function PitchGenerator() {
   const [error, setError] = useState<string | null>(null);
   const [planLimited, setPlanLimited] = useState(false);
   const [suggestingField, setSuggestingField] = useState<keyof PitchInput | null>(null);
+  const [imageBusy, setImageBusy] = useState<number | null>(null);
 
   useEffect(() => {
     fetch("/api/tools/pitch")
@@ -118,6 +119,39 @@ export function PitchGenerator() {
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  }
+
+  async function runImageAction(slideIndex: number, action: "generate" | "edit" | "remove") {
+    if (!current || imageBusy !== null) return;
+    setImageBusy(slideIndex);
+    setError(null);
+    try {
+      const response = await fetch("/api/ai/image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ deckId: current.id, slideIndex, action }),
+      });
+      const json = await response.json();
+      if (!json?.ok) {
+        setError(json?.error ?? "Image generation failed. Please try again.");
+        return;
+      }
+      setDecks((prev) =>
+        (prev ?? []).map((deck) => {
+          if (deck.id !== current.id) return deck;
+          const slides = deck.slides.map((slide, i) =>
+            i === slideIndex
+              ? { ...slide, image: action === "remove" ? undefined : json.image }
+              : slide,
+          );
+          return { ...deck, slides };
+        }),
+      );
+    } catch {
+      setError("Couldn't reach the image service. Please try again.");
+    } finally {
+      setImageBusy(null);
+    }
   }
 
   return (
@@ -302,6 +336,66 @@ export function PitchGenerator() {
                         </li>
                       ))}
                     </ul>
+
+                    {slide.image && (
+                      <div className="mt-4 overflow-hidden rounded-lg border border-border">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={slide.image}
+                          alt={`Visual for ${slide.title}`}
+                          className="max-h-72 w-full object-cover"
+                        />
+                      </div>
+                    )}
+
+                    <div className="no-print mt-4 flex flex-wrap items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => runImageAction(index, "generate")}
+                        disabled={imageBusy !== null}
+                      >
+                        {imageBusy === index ? (
+                          <Loader2 className="animate-spin" />
+                        ) : slide.image ? (
+                          <Sparkles />
+                        ) : (
+                          <ImageIcon />
+                        )}
+                        {imageBusy === index
+                          ? "Painting…"
+                          : slide.image
+                            ? "Generate new"
+                            : "Generate visual"}
+                      </Button>
+                      {slide.image && (
+                        <>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => runImageAction(index, "edit")}
+                            disabled={imageBusy !== null}
+                          >
+                            {imageBusy === index ? (
+                              <Loader2 className="animate-spin" />
+                            ) : (
+                              <Sparkles />
+                            )}
+                            Refine
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => runImageAction(index, "remove")}
+                            disabled={imageBusy !== null}
+                            className="text-muted-foreground hover:text-red-600"
+                          >
+                            <Trash2 />
+                            Remove
+                          </Button>
+                        </>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

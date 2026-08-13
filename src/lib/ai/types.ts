@@ -10,6 +10,7 @@ export interface DeckSlide {
   title: string;
   bullets: string[];
   narrative: string;
+  image?: string;
 }
 
 export type SuggestionKind = "business-plan" | "pitch";

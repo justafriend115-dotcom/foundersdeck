@@ -32,33 +32,35 @@ Open http://localhost:3000 — sign in with the demo account or sign up.
 
 ## Scripts
 
-| Command              | Description                            |
-| -------------------- | -------------------------------------- |
-| `npm run dev`        | Start dev server                       |
-| `npm run build`      | Production build                       |
-| `npm run start`      | Serve production build                 |
-| `npm run lint`       | ESLint                                 |
-| `npm run db:migrate` | Apply Prisma migrations                |
-| `npm run db:seed`    | Seed demo user + sample data           |
-| `npm run db:rls`     | Apply Postgres row-level security policies (prod only) |
-| `npx prettier --write .` | Format code                        |
+| Command                  | Description                                            |
+| ------------------------ | ------------------------------------------------------ |
+| `npm run dev`            | Start dev server                                       |
+| `npm run build`          | Production build                                       |
+| `npm run start`          | Serve production build                                 |
+| `npm run lint`           | ESLint                                                 |
+| `npm run db:migrate`     | Apply Prisma migrations                                |
+| `npm run db:seed`        | Seed demo user + sample data                           |
+| `npm run db:rls`         | Apply Postgres row-level security policies (prod only) |
+| `npx prettier --write .` | Format code                                            |
 
 ## Environment variables
 
-| Variable                    | Purpose                                                       |
-| --------------------------- | ------------------------------------------------------------- |
-| `DATABASE_URL`              | Prisma connection string (SQLite `file:./dev.db` in dev)      |
-| `OPENAI_API_KEY`            | AI decks/suggestions via OpenAI (falls back to Anthropic, then mock) |
-| `ANTHROPIC_API_KEY`         | AI decks/suggestions via Anthropic                            |
-| `AI_MODEL_OPENAI` / `AI_MODEL_ANTHROPIC` | Optional model overrides                     |
-| `STRIPE_SECRET_KEY`         | Live Stripe billing (empty = stub mode with instant demo checkout) |
-| `STRIPE_WEBHOOK_SECRET`     | Stripe webhook signature verification                         |
-| `STRIPE_PRICE_PRO_MONTHLY`  | Price ID for the Pro monthly subscription                     |
-| `FD_AUTH_SECRET`            | Session signing secret (dev fallback used when empty)         |
-| `FD_ENCRYPTION_KEY`         | AES-256-GCM at-rest encryption for tool content + CRM notes (dev fallback used when empty) |
-| `DIRECT_URL`                | Postgres owner role — used only by `prisma migrate`/studio; runtime uses `DATABASE_URL` |
-| `NEXT_PUBLIC_GA_ID`         | GA4 measurement id for analytics (empty = none)               |
-| `NEXT_PUBLIC_APP_URL`       | Public URL for SEO metadata, sitemap and OG image             |
+| Variable                                 | Purpose                                                                                                                    |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`                           | Prisma connection string (SQLite `file:./dev.db` in dev)                                                                   |
+| `OPENAI_API_KEY`                         | AI decks/suggestions via OpenAI (falls back to Anthropic, then mock)                                                       |
+| `ANTHROPIC_API_KEY`                      | AI decks/suggestions via Anthropic                                                                                         |
+| `QWEN_IMAGE_API_KEY`                     | NVIDIA NIM image generation for pitch deck slide visuals (defaults to flux.1-dev; set `QWEN_IMAGE_API_URL` for qwen-image) |
+| `QWEN_IMAGE_EDIT_API_KEY`                | NVIDIA NIM image edit for slide refinement (defaults to flux.1-kontext-dev; falls back to a fresh generation)              |
+| `AI_MODEL_OPENAI` / `AI_MODEL_ANTHROPIC` | Optional model overrides                                                                                                   |
+| `STRIPE_SECRET_KEY`                      | Live Stripe billing (empty = stub mode with instant demo checkout)                                                         |
+| `STRIPE_WEBHOOK_SECRET`                  | Stripe webhook signature verification                                                                                      |
+| `STRIPE_PRICE_PRO_MONTHLY`               | Price ID for the Pro monthly subscription                                                                                  |
+| `FD_AUTH_SECRET`                         | Session signing secret (dev fallback used when empty)                                                                      |
+| `FD_ENCRYPTION_KEY`                      | AES-256-GCM at-rest encryption for tool content + CRM notes (dev fallback used when empty)                                 |
+| `DIRECT_URL`                             | Postgres owner role — used only by `prisma migrate`/studio; runtime uses `DATABASE_URL`                                    |
+| `NEXT_PUBLIC_GA_ID`                      | GA4 measurement id for analytics (empty = none)                                                                            |
+| `NEXT_PUBLIC_APP_URL`                    | Public URL for SEO metadata, sitemap and OG image                                                                          |
 
 **Stub-first philosophy:** every paid integration runs without keys. Add keys to `.env` and restart — the app switches to the real provider (AI, Stripe) with no code changes. `npm run dev` prints nothing until you hit an API; errors surface in the browser.
 
