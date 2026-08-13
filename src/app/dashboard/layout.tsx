@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+
+import { DashboardShell } from "@/components/dashboard/shell";
+import { getCurrentUser } from "@/lib/auth";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Dashboard",
+    template: "%s | FoundersDeck",
+  },
+};
+
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect("/login");
+  }
+
+  return <DashboardShell user={user}>{children}</DashboardShell>;
+}
