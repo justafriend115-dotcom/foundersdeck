@@ -36,7 +36,7 @@ function CompleteContent() {
         <CardContent className="p-10 text-center">
           {state === "verifying" && (
             <>
-              <Loader2 className="mx-auto size-10 animate-spin text-indigo-600" />
+              <Loader2 className="mx-auto size-10 animate-spin text-brand-600" />
               <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-foreground">
                 Confirming your subscription…
               </h1>

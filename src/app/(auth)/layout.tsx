@@ -5,8 +5,10 @@ import { Logo } from "@/components/logo";
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid min-h-screen bg-background lg:grid-cols-2">
-      <aside className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-12 lg:flex">
+      <aside className="relative hidden flex-col justify-between overflow-hidden bg-zinc-950 p-12 lg:flex">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
+        <div className="pointer-events-none absolute -left-24 -top-24 size-96 rounded-full bg-brand-500/15 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 -right-24 size-96 rounded-full bg-zinc-600/20 blur-3xl" />
         <div className="relative">
           <Logo dark />
         </div>
@@ -14,7 +16,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-white">
             Raise your first round with confidence.
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-indigo-100">
+          <p className="mt-4 text-lg leading-relaxed text-brand-100/80">
             Pitch decks, business plans, financials and investor CRM — everything founders need
             before they walk into the room.
           </p>
@@ -25,7 +27,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               <Star key={i} className="size-4 fill-amber-400 text-amber-400" />
             ))}
           </div>
-          <p className="text-sm text-indigo-100">Joined by 2,400+ founders</p>
+          <p className="text-sm text-brand-100/70">Joined by 2,400+ founders</p>
         </div>
       </aside>
       <main className="flex items-center justify-center px-4 py-12 sm:px-8">{children}</main>

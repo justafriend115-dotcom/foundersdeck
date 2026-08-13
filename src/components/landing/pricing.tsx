@@ -57,7 +57,7 @@ export default function Pricing() {
     <section id="pricing" className="bg-muted/60 scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">Pricing</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">Pricing</p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Simple pricing. <span className="text-gradient">Serious leverage.</span>
           </h2>
@@ -73,12 +73,12 @@ export default function Pricing() {
               className={cn(
                 "relative flex flex-col rounded-2xl border bg-card p-8",
                 tier.highlighted
-                  ? "border-transparent shadow-glow ring-2 ring-indigo-500"
+                  ? "border-transparent shadow-glow ring-2 ring-brand-500"
                   : "border-border shadow-sm",
               )}
             >
               {tier.highlighted && (
-                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-blue-600 via-indigo-600 to-purple-600 opacity-10" />
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-brand-400 to-brand-600 opacity-10" />
               )}
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold text-foreground">{tier.name}</h3>
@@ -101,14 +101,14 @@ export default function Pricing() {
                       className={cn(
                         "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full",
                         tier.highlighted
-                          ? "bg-gradient-to-br from-blue-600 to-purple-600"
+                          ? "bg-gradient-to-br from-zinc-950 to-zinc-800"
                           : "bg-brand-50",
                       )}
                     >
                       <Check
                         className={cn(
                           "size-3",
-                          tier.highlighted ? "text-white" : "text-indigo-600",
+                          tier.highlighted ? "text-brand-400" : "text-brand-700",
                         )}
                       />
                     </span>

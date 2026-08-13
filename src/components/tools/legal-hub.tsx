@@ -56,16 +56,16 @@ export function LegalHub() {
                 className={cn(
                   "flex w-full items-start gap-3 rounded-xl border p-4 text-left transition-all",
                   d.id === activeId
-                    ? "border-indigo-400 bg-brand-50 shadow-soft"
-                    : "border-border bg-card hover:border-indigo-200",
+                    ? "border-brand-400 bg-brand-50 shadow-soft"
+                    : "border-border bg-card hover:border-brand-200",
                 )}
               >
                 <span
                   className={cn(
                     "flex size-9 shrink-0 items-center justify-center rounded-lg",
                     d.id === activeId
-                      ? "bg-gradient-to-br from-blue-600 to-purple-600 text-white"
-                      : "bg-brand-50 text-indigo-600 ring-1 ring-brand-100",
+                      ? "bg-gradient-to-br from-zinc-950 to-zinc-800 text-brand-300"
+                      : "bg-brand-50 text-brand-600 ring-1 ring-brand-100",
                   )}
                 >
                   <Icon className="size-4.5" />

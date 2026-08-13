@@ -9,7 +9,7 @@ const testimonials = [
     name: "Maya Chen",
     title: "Founder, Loopify",
     initials: "MC",
-    gradient: "from-blue-500 to-indigo-600",
+    gradient: "from-zinc-300 to-zinc-500",
   },
   {
     quote:
@@ -17,7 +17,7 @@ const testimonials = [
     name: "Daniel Okafor",
     title: "CEO, Karbon",
     initials: "DO",
-    gradient: "from-purple-500 to-fuchsia-600",
+    gradient: "from-zinc-700 to-zinc-950",
   },
   {
     quote:
@@ -25,7 +25,7 @@ const testimonials = [
     name: "Sofia Reyes",
     title: "Co-founder, Northbeam",
     initials: "SR",
-    gradient: "from-cyan-500 to-blue-600",
+    gradient: "from-brand-500 to-brand-700",
   },
 ];
 
@@ -34,7 +34,7 @@ export default function Testimonials() {
     <section id="testimonials" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">
             Wall of love
           </p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">

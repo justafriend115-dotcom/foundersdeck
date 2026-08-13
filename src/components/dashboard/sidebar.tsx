@@ -44,8 +44,8 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
               active
-                ? "bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90 text-white shadow-lg shadow-indigo-900/40"
-                : "text-slate-400 hover:bg-slate-800 hover:text-white",
+                ? "bg-zinc-800/90 text-brand-300 shadow-sm"
+                : "text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-100",
             )}
           >
             <item.icon className="size-4.5 shrink-0" />
@@ -64,20 +64,20 @@ function UserFooter({ user }: { user: User }) {
   }
 
   return (
-    <div className="border-t border-slate-800 p-3">
+    <div className="border-t border-zinc-800 p-3">
       <div className="flex items-center gap-3 rounded-lg px-2 py-2">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-xs font-bold text-white">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-zinc-700 to-brand-600 text-xs font-bold text-white">
           {initials(user.name)}
         </span>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-white">{user.name}</p>
-          <p className="truncate text-xs text-slate-500">{user.email}</p>
+          <p className="truncate text-xs text-zinc-500">{user.email}</p>
         </div>
         <button
           type="button"
           onClick={handleLogout}
           aria-label="Log out"
-          className="flex size-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+          className="flex size-8 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
         >
           <LogOut className="size-4" />
         </button>
@@ -97,8 +97,8 @@ export function Sidebar({
 }) {
   return (
     <>
-      <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col bg-slate-950 lg:flex">
-        <div className="flex h-16 items-center border-b border-slate-800 px-6">
+      <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col bg-zinc-950 lg:flex">
+        <div className="flex h-16 items-center border-b border-zinc-800 px-6">
           <Logo dark />
         </div>
         <div className="mt-4 flex flex-1 flex-col">
@@ -110,18 +110,18 @@ export function Sidebar({
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-zinc-950/60 backdrop-blur-sm"
             onClick={onClose}
             aria-hidden="true"
           />
-          <aside className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col bg-slate-950 shadow-2xl">
-            <div className="flex h-16 items-center justify-between border-b border-slate-800 px-6">
+          <aside className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col bg-zinc-950 shadow-2xl">
+            <div className="flex h-16 items-center justify-between border-b border-zinc-800 px-6">
               <Logo dark />
               <button
                 type="button"
                 onClick={onClose}
                 aria-label="Close navigation"
-                className="flex size-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white"
+                className="flex size-8 items-center justify-center rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white"
               >
                 <X className="size-5" />
               </button>

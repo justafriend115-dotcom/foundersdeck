@@ -83,7 +83,7 @@ export function ContingencyPlanner() {
                         scenario.id === "best"
                           ? "bg-emerald-500"
                           : scenario.id === "realistic"
-                            ? "bg-indigo-500"
+                            ? "bg-brand-500"
                             : "bg-red-500",
                       )}
                     />

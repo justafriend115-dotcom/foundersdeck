@@ -64,7 +64,7 @@ export function ResetPasswordForm() {
         </div>
         <Link
           href="/login"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-800"
         >
           <ArrowLeft className="size-4" />
           Back to log in
@@ -133,7 +133,7 @@ export function ResetPasswordForm() {
 
       <p className="text-center text-sm text-muted-foreground">
         Remembered it?{" "}
-        <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-700">
+        <Link href="/login" className="font-medium text-brand-700 hover:text-brand-800">
           Back to log in
         </Link>
       </p>

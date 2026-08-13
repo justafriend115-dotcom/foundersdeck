@@ -4,11 +4,11 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 const avatarStyles = [
-  "from-blue-500 to-indigo-600",
-  "from-purple-500 to-fuchsia-600",
-  "from-cyan-500 to-blue-600",
-  "from-indigo-500 to-purple-600",
-  "from-pink-500 to-rose-600",
+  "from-zinc-300 to-zinc-500",
+  "from-zinc-500 to-zinc-700",
+  "from-zinc-700 to-zinc-950",
+  "from-zinc-600 to-brand-700",
+  "from-brand-500 to-brand-700",
 ];
 
 const avatarInitials = ["MC", "DO", "SR", "JL", "AK"];
@@ -17,12 +17,12 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
-      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-r from-zinc-500/15 via-zinc-400/10 to-brand-500/20 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <div className="bg-background/60 inline-flex animate-fade-up items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-sm">
-            <Sparkles className="size-4 text-indigo-500" />
+            <Sparkles className="size-4 text-brand-600" />
             AI-powered tools for pre-seed founders
           </div>
 
@@ -91,7 +91,7 @@ export default function Hero() {
           className="mx-auto mt-16 max-w-4xl animate-fade-up"
           style={{ animationDelay: "500ms" }}
         >
-          <div className="animate-float rounded-2xl border border-border bg-card shadow-2xl shadow-indigo-500/10">
+          <div className="animate-float rounded-2xl border border-border bg-card shadow-2xl shadow-zinc-900/10">
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="size-2.5 rounded-full bg-red-400" />
               <span className="size-2.5 rounded-full bg-amber-400" />
@@ -122,7 +122,7 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
-                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25">
+                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-800 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-zinc-700">
                   Generate my deck
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function Hero() {
                   <span className="text-xs font-medium text-muted-foreground">92% ready</span>
                 </div>
                 <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
+                  <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-zinc-400 via-zinc-500 to-brand-500" />
                 </div>
                 <div className="mt-5 space-y-3">
                   {[
@@ -148,7 +148,7 @@ export default function Hero() {
                     >
                       <span className="text-sm font-medium text-foreground">{slide.title}</span>
                       <div
-                        className={`h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 ${slide.w}`}
+                        className={`h-2 rounded-full bg-gradient-to-r from-zinc-300 to-brand-400 ${slide.w}`}
                       />
                     </div>
                   ))}

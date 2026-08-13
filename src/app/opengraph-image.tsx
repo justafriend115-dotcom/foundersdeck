@@ -29,7 +29,7 @@ export default function OpengraphImage() {
           width: "560px",
           height: "560px",
           borderRadius: "9999px",
-          background: "radial-gradient(circle, rgba(37,99,235,0.45), transparent 65%)",
+          background: "radial-gradient(circle, rgba(201,162,39,0.35), transparent 65%)",
         }}
       />
       <div
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
           width: "600px",
           height: "600px",
           borderRadius: "9999px",
-          background: "radial-gradient(circle, rgba(147,51,234,0.4), transparent 65%)",
+          background: "radial-gradient(circle, rgba(113,113,122,0.4), transparent 65%)",
         }}
       />
 
@@ -60,9 +60,10 @@ export default function OpengraphImage() {
             width: "92px",
             height: "92px",
             borderRadius: "24px",
-            background: "linear-gradient(135deg, #2563eb, #4f46e5 50%, #9333ea)",
-            boxShadow: "0 24px 48px rgba(79,70,229,0.45)",
+            background: "linear-gradient(135deg, #0a0a0a, #3f3f46 50%, #c9a227)",
+            boxShadow: "0 24px 48px rgba(0,0,0,0.5)",
             fontSize: "48px",
+            color: "#e3c87e",
           }}
         >
           ✦
@@ -83,7 +84,7 @@ export default function OpengraphImage() {
               lineHeight: 1,
             }}
           >
-            Founders<span style={{ color: "#a5b4fc" }}>Deck</span>
+            Founders<span style={{ color: "#d6b354" }}>Deck</span>
           </div>
           <div
             style={{
