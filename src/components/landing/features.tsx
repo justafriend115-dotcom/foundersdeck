@@ -1,4 +1,7 @@
+"use client";
+
 import { FileText, Handshake, ShieldCheck, Sparkles, TrendingUp, Workflow } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -41,7 +44,87 @@ const features = [
   },
 ];
 
+const ENTRANCES = [
+  "perspective(900px) rotateY(-42deg) translateX(-25px)",
+  "perspective(900px) rotateX(45deg) translateY(35px)",
+  "perspective(900px) rotateY(42deg) translateX(25px)",
+];
+
+const TILT_DEG = 8;
+
 export default function Features() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>(".fd-feature-card"));
+    if (cards.length === 0) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      cards.forEach((card) => card.classList.add("in"));
+      return;
+    }
+
+    const entered = new Set<HTMLElement>();
+
+    cards.forEach((card, i) => {
+      const wave = ENTRANCES[i % ENTRANCES.length];
+      card.style.transform = wave;
+      card.style.transitionDelay = `${(i % 3) * 0.1 + Math.floor(i / 3) * 0.15}s`;
+    });
+
+    const markEntered = (card: HTMLElement) => entered.add(card);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const card = entry.target as HTMLElement;
+          card.classList.add("in");
+          card.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
+          card.style.transitionDelay = "0s";
+          card.addEventListener("transitionend", () => markEntered(card), { once: true });
+          setTimeout(() => markEntered(card), 1600);
+          observer.unobserve(card);
+        }
+      },
+      { threshold: 0.18 },
+    );
+    cards.forEach((card) => observer.observe(card));
+
+    const handleMove = (event: MouseEvent) => {
+      const card = (event.target as HTMLElement).closest<HTMLElement>(".fd-feature-card");
+      if (!card || !card.classList.contains("in")) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${((event.clientX - rect.left) / rect.width) * 100}%`);
+      card.style.setProperty("--my", `${((event.clientY - rect.top) / rect.height) * 100}%`);
+      if (!entered.has(card)) return;
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (event.clientX - cx) / (rect.width / 2);
+      const dy = (event.clientY - cy) / (rect.height / 2);
+      card.style.transform = `perspective(900px) rotateY(${dx * TILT_DEG}deg) rotateX(${-dy * TILT_DEG}deg) scale(1.02)`;
+      card.style.transition = "transform 0.1s ease, opacity 0.85s ease";
+    };
+
+    const handleLeave = (event: MouseEvent) => {
+      const card = (event.target as HTMLElement).closest<HTMLElement>(".fd-feature-card");
+      if (!card || !card.classList.contains("in")) return;
+      card.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)";
+      card.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease";
+    };
+
+    grid.addEventListener("mousemove", handleMove);
+    grid.addEventListener("mouseleave", handleLeave);
+    return () => {
+      observer.disconnect();
+      grid.removeEventListener("mousemove", handleMove);
+      grid.removeEventListener("mouseleave", handleLeave);
+    };
+  }, []);
+
   return (
     <section id="features" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -58,11 +141,11 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div ref={gridRef} className="fd-card-grid mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <Card
               key={feature.title}
-              className="transition-all duration-300 hover:-translate-y-1 hover:shadow-soft"
+              className="fd-feature-card relative transition-shadow duration-300 hover:shadow-soft"
             >
               <CardHeader>
                 <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 ring-1 ring-brand-100">

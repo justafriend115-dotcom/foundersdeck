@@ -68,3 +68,48 @@ body {
     display: none !important;
   }
 }
+
+.fd-card-grid {
+  perspective: 1200px;
+}
+
+.fd-feature-card {
+  opacity: 0;
+  transition:
+    opacity 0.85s ease,
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.fd-feature-card.in {
+  opacity: 1;
+}
+
+.fd-feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(201, 162, 39, 0.1),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.fd-feature-card:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fd-feature-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
