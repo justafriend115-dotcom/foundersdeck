@@ -11,11 +11,6 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="bg-background/60 inline-flex animate-fade-up items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-sm">
-            <Sparkles className="size-4 text-brand-600" />
-            AI-powered tools for pre-seed founders
-          </div>
-
           <h1
             className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "100ms" }}
