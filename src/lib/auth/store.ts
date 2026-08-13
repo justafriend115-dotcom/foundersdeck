@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db";
 
-import { hashPassword } from "./password";
+import { hashPassword, verifyPassword } from "./password";
 import type { User } from "./types";
 
 type StoredUser = {
@@ -63,7 +63,7 @@ export const store = {
   },
 
   verifyPassword(user: StoredUser, password: string): boolean {
-    return user.passwordHash === hashPassword(password);
+    return verifyPassword(password, user.passwordHash);
   },
 
   async updatePassword(email: string, password: string): Promise<boolean> {

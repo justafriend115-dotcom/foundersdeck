@@ -1,3 +1,4 @@
+import { decryptText, encryptText } from "@/lib/crypto";
 import { prisma } from "@/lib/db";
 
 type ToolModel = "businessPlan" | "contingency" | "financials";
@@ -19,11 +20,12 @@ const delegates: Record<ToolModel, UpsertDelegate> = {
 export async function getToolValue<T>(model: ToolModel, userId: string, fallback: T): Promise<T> {
   const record = await delegates[model].upsert({
     where: { userId },
-    create: { userId, content: JSON.stringify(fallback) },
+    create: { userId, content: encryptText(JSON.stringify(fallback)) },
     update: { content: undefined },
   });
+  const content = decryptText(record.content) ?? record.content;
   try {
-    return JSON.parse(record.content) as T;
+    return JSON.parse(content) as T;
   } catch {
     return fallback;
   }
@@ -34,7 +36,7 @@ export async function setToolValue(
   userId: string,
   value: unknown,
 ): Promise<void> {
-  const content = JSON.stringify(value);
+  const content = encryptText(JSON.stringify(value));
   await delegates[model].upsert({
     where: { userId },
     create: { userId, content },

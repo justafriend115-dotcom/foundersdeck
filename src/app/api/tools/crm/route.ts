@@ -1,10 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { requireUser } from "@/lib/auth/server";
+import { decryptText, encryptText } from "@/lib/crypto";
 import { prisma } from "@/lib/db";
+import { readJsonBody } from "@/lib/request";
 import type { Investor, Stage } from "@/lib/tool-types";
 
 const STAGES: Stage[] = ["cold", "warm", "pitching", "closed"];
+
+const MAX_LEN = {
+  name: 160,
+  firm: 160,
+  notes: 4000,
+  outcome: 2000,
+  followUp: 2000,
+};
+
+function cap(value: unknown, max: number): string {
+  return String(value ?? "").slice(0, max);
+}
 
 function normalizeStage(stage: unknown): Stage {
   return STAGES.includes(stage as Stage) ? (stage as Stage) : "cold";
@@ -25,7 +39,7 @@ export async function GET() {
     name: investor.name,
     firm: investor.firm,
     stage: normalizeStage(investor.stage),
-    notes: investor.notes,
+    notes: decryptText(investor.notes) ?? investor.notes,
     meetings: investor.meetings.map((meeting) => ({
       id: meeting.id,
       date: meeting.date,
@@ -41,7 +55,7 @@ export async function PUT(request: NextRequest) {
   if (!user) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json().catch(() => null);
+  const body = (await readJsonBody(request)) as Record<string, unknown> | null;
   const value = body?.value;
   if (!Array.isArray(value) || value.length > 500) {
     return NextResponse.json({ ok: false, error: "Invalid payload." }, { status: 400 });
@@ -70,10 +84,10 @@ export async function PUT(request: NextRequest) {
     for (const investor of incoming) {
       const data = {
         userId: user.id,
-        name: investor.name,
-        firm: investor.firm,
+        name: cap(investor.name, MAX_LEN.name),
+        firm: cap(investor.firm, MAX_LEN.firm),
         stage: normalizeStage(investor.stage),
-        notes: investor.notes,
+        notes: encryptText(cap(investor.notes, MAX_LEN.notes)),
       };
       await tx.investor.upsert({
         where: { id: investor.id },
@@ -95,8 +109,8 @@ export async function PUT(request: NextRequest) {
             id: meeting.id,
             investorId: investor.id,
             date: meeting.date,
-            outcome: meeting.outcome,
-            followUp: meeting.followUp,
+            outcome: cap(meeting.outcome, MAX_LEN.outcome),
+            followUp: cap(meeting.followUp, MAX_LEN.followUp),
           })),
         });
       }

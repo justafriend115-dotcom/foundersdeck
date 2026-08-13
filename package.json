@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "postinstall": "node scripts/patch-og.cjs && prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:seed": "prisma db seed"
+    "db:seed": "prisma db seed",
+    "db:rls": "psql \"%DIRECT_URL%\" -f prisma/rls-postgres.sql"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

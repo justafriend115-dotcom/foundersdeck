@@ -1,23 +1,23 @@
-import { createHash } from "crypto";
-
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { hashPassword } from "../src/lib/auth/password";
 
-export function hashPassword(password: string): string {
-  return createHash("sha256").update(password).digest("hex");
-}
+const prisma = new PrismaClient();
 
 async function main() {
   const email = "demo@foundersdeck.com";
   const existing = await prisma.user.findUnique({ where: { email } });
-  if (!existing) {
+  if (existing) {
+    await prisma.user.update({
+      where: { id: existing.id },
+      data: { passwordHash: hashPassword("demo1234") },
+    });
+    console.log("Re-hashed demo user password:", email);
+  } else {
     await prisma.user.create({
       data: { name: "Demo Founder", email, passwordHash: hashPassword("demo1234") },
     });
     console.log("Seeded demo user:", email);
-  } else {
-    console.log("Demo user already exists:", email);
   }
 }
 

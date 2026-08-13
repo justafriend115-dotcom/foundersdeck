@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { requireUser } from "@/lib/auth/server";
 import { getToolValue, setToolValue } from "@/lib/tool-store";
+import { readJsonBody } from "@/lib/request";
 
 export async function GET() {
   const user = await requireUser();
@@ -17,7 +18,7 @@ export async function PUT(request: NextRequest) {
   if (!user) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json().catch(() => null);
+  const body = (await readJsonBody(request)) as Record<string, unknown> | null;
   const value = body?.value;
   if (typeof value !== "object" || value === null || Array.isArray(value)) {
     return NextResponse.json({ ok: false, error: "Invalid payload." }, { status: 400 });

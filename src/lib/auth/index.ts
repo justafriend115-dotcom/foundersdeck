@@ -1,11 +1,11 @@
 import { cookies } from "next/headers";
 
-import { SESSION_COOKIE } from "./constants";
+import { SESSION_COOKIE, SESSION_COOKIE_OPTIONS } from "./constants";
 import { store, toPublicUser } from "./store";
 import { createSessionToken, readSessionToken } from "./token";
 import type { User } from "./types";
 
-export { SESSION_COOKIE, type User };
+export { SESSION_COOKIE, SESSION_COOKIE_OPTIONS, type User };
 
 export async function signIn(
   email: string,

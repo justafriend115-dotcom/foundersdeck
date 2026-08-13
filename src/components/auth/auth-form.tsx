@@ -30,6 +30,14 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     setError(null);
 
     const data = new FormData(event.currentTarget);
+    if (String(data.get("company_website") ?? "").length > 0) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        router.push("/dashboard");
+      }, 800);
+      return;
+    }
     const email = String(data.get("email") ?? "").trim();
     const password = String(data.get("password") ?? "");
 
@@ -71,6 +79,16 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="company_website">Company website</label>
+        <input
+          id="company_website"
+          name="company_website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       {!isLogin && (
         <div>
           <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-foreground">

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { requireUser } from "@/lib/auth/server";
 import { appOrigin, getStripe, isStripeConfigured, resolvePriceId } from "@/lib/billing/stripe";
+import { readJsonBody } from "@/lib/request";
 
 export async function POST(request: NextRequest) {
   const user = await requireUser();
@@ -9,7 +10,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = await request.json().catch(() => null);
+  const body = (await readJsonBody(request, 16 * 1024)) as Record<string, unknown> | null;
   const plan = body?.plan === "pro" ? "pro" : body?.plan === "enterprise" ? "enterprise" : null;
   if (!plan) {
     return NextResponse.json({ ok: false, error: "Invalid plan." }, { status: 400 });

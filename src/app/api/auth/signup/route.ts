@@ -1,17 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { SESSION_COOKIE, signUp } from "@/lib/auth";
+import { SESSION_COOKIE, SESSION_COOKIE_OPTIONS, signUp } from "@/lib/auth";
+import { isRateLimited, rateLimitKey, rateLimitRemaining } from "@/lib/rate-limit";
+import { readJsonBody } from "@/lib/request";
 
-const SESSION_MAX_AGE = 60 * 60 * 24 * 7;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const HONEYPOT_FIELD = "company_website";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json().catch(() => null);
+  const body = (await readJsonBody(request, 16 * 1024)) as Record<string, unknown> | null;
   const name = String(body?.name ?? "").trim();
   const email = String(body?.email ?? "")
     .trim()
     .toLowerCase();
   const password = String(body?.password ?? "");
+
+  if (typeof body === "object" && body !== null && body[HONEYPOT_FIELD]) {
+    return NextResponse.json({ ok: true });
+  }
 
   if (name.length < 2) {
     return NextResponse.json({ ok: false, error: "Please enter your full name." }, { status: 400 });
@@ -29,18 +35,26 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const key = rateLimitKey(request, `signup:${email}`);
+  if (isRateLimited(key)) {
+    return NextResponse.json(
+      { ok: false, error: "Too many attempts. Try again in 15 minutes." },
+      { status: 429 },
+    );
+  }
+
   const result = await signUp(name, email, password);
   if (!result.ok) {
-    return NextResponse.json({ ok: false, error: result.error }, { status: 409 });
+    return NextResponse.json(
+      { ok: false, error: result.error },
+      {
+        status: 409,
+        headers: { "X-RateLimit-Remaining": String(rateLimitRemaining(key)) },
+      },
+    );
   }
 
   const response = NextResponse.json({ ok: true });
-  response.cookies.set(SESSION_COOKIE, result.token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: SESSION_MAX_AGE,
-  });
+  response.cookies.set(SESSION_COOKIE, result.token, SESSION_COOKIE_OPTIONS);
   return response;
 }

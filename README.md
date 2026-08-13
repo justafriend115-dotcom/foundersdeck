@@ -40,6 +40,7 @@ Open http://localhost:3000 — sign in with the demo account or sign up.
 | `npm run lint`       | ESLint                                 |
 | `npm run db:migrate` | Apply Prisma migrations                |
 | `npm run db:seed`    | Seed demo user + sample data           |
+| `npm run db:rls`     | Apply Postgres row-level security policies (prod only) |
 | `npx prettier --write .` | Format code                        |
 
 ## Environment variables
@@ -54,6 +55,8 @@ Open http://localhost:3000 — sign in with the demo account or sign up.
 | `STRIPE_WEBHOOK_SECRET`     | Stripe webhook signature verification                         |
 | `STRIPE_PRICE_PRO_MONTHLY`  | Price ID for the Pro monthly subscription                     |
 | `FD_AUTH_SECRET`            | Session signing secret (dev fallback used when empty)         |
+| `FD_ENCRYPTION_KEY`         | AES-256-GCM at-rest encryption for tool content + CRM notes (dev fallback used when empty) |
+| `DIRECT_URL`                | Postgres owner role — used only by `prisma migrate`/studio; runtime uses `DATABASE_URL` |
 | `NEXT_PUBLIC_GA_ID`         | GA4 measurement id for analytics (empty = none)               |
 | `NEXT_PUBLIC_APP_URL`       | Public URL for SEO metadata, sitemap and OG image             |
 
@@ -70,8 +73,10 @@ Data is stored per-user via tool routes with safe default fallbacks (`src/lib/to
 
 ## Production notes
 
-- **Database:** switch `DATABASE_URL` to Postgres for production (Vercel/Neon etc.); no schema or code changes required.
+- **Database:** switch `DATABASE_URL` to Postgres for production (Vercel/Neon etc.); no schema or code changes required. Set `DIRECT_URL` to an owner role so `prisma migrate` can alter schema while the app runs on a least-privilege role.
+- **Row-level security:** run `npm run db:rls` against the production DB to enable RLS on all user-data tables (scoped to the session GUC `app.current_user_id` — see `src/lib/rls.ts`). With RLS active, every request must run inside `withUserId`/`inUserContext`, so wire those into the auth helpers before enabling.
+- **At-rest encryption:** set `FD_ENCRYPTION_KEY` (base64, 32+ bytes). Tool content and CRM notes are AES-256-GCM encrypted; existing plaintext rows decrypt gracefully, but once encrypted with a key, that key is required.
 - **Stripe webhooks:** point Stripe → `https://your-domain.com/api/billing/webhook` and select `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`.
 - **AI:** set `OPENAI_API_KEY` or `ANTHROPIC_API_KEY`. Without keys the app serves mock decks so the product stays usable.
-- **Auth:** set `FD_AUTH_SECRET` to a long random value.
+- **Auth:** set `FD_AUTH_SECRET` to a long random value. Passwords are stored as salted scrypt hashes; login/signup/reset are rate-limited (10 attempts / 15 min per IP+email) and the signup form includes a honeypot for bot filtering.
 - **Uptime:** `GET /api/health` returns `{ ok, db }` (503 when the DB is unreachable).

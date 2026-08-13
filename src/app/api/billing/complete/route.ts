@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireUser } from "@/lib/auth/server";
 import { isStripeConfigured } from "@/lib/billing/stripe";
 import { prisma } from "@/lib/db";
+import { readJsonBody } from "@/lib/request";
 
 export async function POST(request: NextRequest) {
   const user = await requireUser();
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = await request.json().catch(() => null);
+  const body = (await readJsonBody(request, 16 * 1024)) as Record<string, unknown> | null;
   const sessionId = String(body?.sessionId ?? "");
   const plan = body?.plan === "enterprise" ? "enterprise" : "pro";
   const expected = `stub_${user.id}`;
