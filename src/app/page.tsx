@@ -1,3 +1,4 @@
+import AcademySection from "@/components/landing/academy-section";
 import Features from "@/components/landing/features";
 import FinalCta from "@/components/landing/final-cta";
 import Footer from "@/components/landing/footer";
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Features />
+        <AcademySection />
         <HowItWorks />
         <Pricing />
         <FinalCta />
