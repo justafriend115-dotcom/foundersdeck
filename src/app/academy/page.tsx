@@ -4,7 +4,9 @@ import {
   GraduationCap,
   Lock,
   Megaphone,
+  Mic,
   Scale,
+  Settings,
   Target,
   Users,
 } from "lucide-react";
@@ -25,6 +27,8 @@ const ICONS = {
   calculator: Calculator,
   target: Target,
   megaphone: Megaphone,
+  mic: Mic,
+  settings: Settings,
 } as const;
 
 export default async function AcademyPage() {
@@ -45,8 +49,9 @@ export default async function AcademyPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground">Founders Academy</h1>
           <p className="mt-1 max-w-xl text-sm text-muted-foreground">
-            Learn the fundamentals of building a startup — then prove it. Pass each track&apos;s
-            quiz with {PASS_SCORE}%+ to earn a certificate.
+            Self-teach everything it takes to build and raise for a startup. {ACADEMY_TRACKS.length}{" "}
+            tracks, each with deep lessons, worked examples, action plans, and a quiz — pass with{" "}
+            {PASS_SCORE}%+ to earn a certificate.
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5">

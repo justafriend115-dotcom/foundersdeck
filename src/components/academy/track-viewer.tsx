@@ -6,6 +6,8 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
+  Lightbulb,
+  ListChecks,
   Loader2,
   XCircle,
 } from "lucide-react";
@@ -133,6 +135,41 @@ export function TrackViewer({
                 </section>
               ))}
             </div>
+
+            {lesson.examples && lesson.examples.length > 0 && (
+              <div className="mt-8 rounded-xl border border-amber-500/25 bg-amber-50/50 p-5">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-amber-700">
+                  <Lightbulb className="size-4" />
+                  Worked examples
+                </p>
+                <ul className="mt-3 space-y-3">
+                  {lesson.examples.map((example, i) => (
+                    <li key={i} className="text-sm leading-relaxed text-foreground/80">
+                      <span className="mr-1.5 font-semibold text-amber-700">
+                        {String.fromCharCode(97 + i)}.
+                      </span>
+                      {example}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="mt-6 rounded-xl border border-brand-500/25 bg-brand-50/60 p-5">
+              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-700">
+                <ListChecks className="size-4" />
+                Your action plan
+              </p>
+              <ul className="mt-3 space-y-2">
+                {lesson.actionItems.map((item) => (
+                  <li key={item} className="text-foreground/80 flex gap-2 text-sm">
+                    <span className="mt-0.5 font-semibold text-brand-600">›</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div className="mt-8 rounded-xl border border-brand-500/25 bg-brand-50/60 p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">
                 Key points

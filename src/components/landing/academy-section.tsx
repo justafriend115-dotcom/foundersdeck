@@ -6,13 +6,15 @@ import {
   Calculator,
   GraduationCap,
   Megaphone,
+  Mic,
   Scale,
+  Settings,
   Target,
   Users,
 } from "lucide-react";
 import Link from "next/link";
 
-import { ACADEMY_TRACKS } from "@/lib/academy/curriculum";
+import { ACADEMY_STATS, ACADEMY_TRACKS } from "@/lib/academy/curriculum";
 
 const TRACK_ICONS = {
   scale: Scale,
@@ -21,6 +23,8 @@ const TRACK_ICONS = {
   calculator: Calculator,
   target: Target,
   megaphone: Megaphone,
+  mic: Mic,
+  settings: Settings,
 } as const;
 
 export default function AcademySection() {
@@ -35,11 +39,13 @@ export default function AcademySection() {
             Founders Academy
           </span>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Learn how to build a startup — then prove it
+            Self-teach every skill a startup demands
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            {ACADEMY_TRACKS.length} tracks on legal, team, fundraising, finance, product and
-            go-to-market. Pass each quiz with 80%+ and earn a certificate you can print.
+            {ACADEMY_STATS.lessons} lessons and {ACADEMY_STATS.quizzes} quiz questions across{" "}
+            {ACADEMY_STATS.tracks} tracks — legal, team, fundraising, finance, product, sales,
+            pitching and operations. Every lesson ends with an action plan. Pass each quiz with 80%+
+            and earn a certificate you can print.
           </p>
         </div>
 
@@ -87,9 +93,9 @@ export default function AcademySection() {
             </span>
             <p className="text-foreground/80 text-sm">
               <span className="font-semibold text-foreground">
-                {ACADEMY_TRACKS.length - 1} more tracks
+                {ACADEMY_TRACKS.length - 2} more tracks
               </span>{" "}
-              await — Team &amp; Hiring, Fundraising, Finance, Product and Go-to-Market.
+              await — Fundraising, Finance, Product, Go-to-Market, Pitching and Operations.
             </p>
           </div>
           <Link
