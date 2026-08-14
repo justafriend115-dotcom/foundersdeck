@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 import { SESSION_COOKIE } from "@/lib/auth/constants";
 
-const protectedRoutes = ["/dashboard"];
+const protectedRoutes = ["/dashboard", "/academy"];
 const authRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
 
 const publicApiPaths = [
@@ -42,6 +42,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/academy/:path*",
     "/api/:path*",
     "/login",
     "/signup",

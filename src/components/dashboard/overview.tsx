@@ -3,6 +3,7 @@
 import {
   ArrowRight,
   FileText,
+  GraduationCap,
   Handshake,
   Plus,
   Sparkles,
@@ -19,7 +20,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const quickActions = [
   { href: "/dashboard/pitch", label: "Generate a pitch deck", icon: Sparkles },
   { href: "/dashboard/business-plan", label: "Build a business plan", icon: FileText },
-  { href: "/dashboard/financials", label: "Model your financials", icon: TrendingUp },
+  { href: "/academy", label: "Take the Founders Academy", icon: GraduationCap },
   { href: "/dashboard/crm", label: "Add an investor", icon: Plus },
 ];
 

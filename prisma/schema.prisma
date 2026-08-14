@@ -22,6 +22,19 @@ model User {
   contingency  ContingencyPlan?
   financials   FinancialProjection?
   investors    Investor[]
+  academy      AcademyProgress[]
+}
+
+model AcademyProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackId   String
+  score     Int      @default(0)
+  passed    Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, trackId])
 }
 
 model PitchDeck {
