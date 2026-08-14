@@ -19,7 +19,6 @@ import {
   Settings,
   Sparkles,
   Target,
-  TrendingUp,
   Trophy,
   Users,
 } from "lucide-react";
