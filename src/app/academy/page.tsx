@@ -91,26 +91,19 @@ export default async function AcademyPage() {
 
   return (
     <main>
-      <style>{`
-        .academy-ticker-track { animation: academyTickerRun 30s linear infinite; }
-        @keyframes academyTickerRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-      `}</style>
-
       {/* ─── TICKER ─────────────────────────────────────────────────── */}
       <div className="flex items-center gap-4 overflow-hidden bg-[#0f2460] px-4 py-2.5">
         <span className="flex shrink-0 items-center gap-1.5 rounded bg-amber-400 px-2.5 py-1 text-[11px] font-extrabold tracking-wider text-[#111827]">
           <Bell className="size-3" />
           FOUNDER NOTES
         </span>
-        <div className="flex-1 overflow-hidden">
-          <div className="academy-ticker-track flex w-max gap-14">
-            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className="flex items-center gap-2 whitespace-nowrap text-xs text-white/80">
-                <item.icon className="size-3.5 shrink-0 text-amber-300" />
-                <strong className="font-semibold text-amber-200">{item.strong}</strong>
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-1">
+          {TICKER_ITEMS.map((item, i) => (
+            <span key={i} className="flex items-center gap-2 whitespace-nowrap text-xs text-white/80">
+              <item.icon className="size-3.5 shrink-0 text-amber-300" />
+              <strong className="font-semibold text-amber-200">{item.strong}</strong>
+            </span>
+          ))}
         </div>
       </div>
 
