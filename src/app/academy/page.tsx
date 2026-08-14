@@ -9,7 +9,6 @@ import {
   ClipboardList,
   Crown,
   GraduationCap,
-  Lightbulb,
   ListChecks,
   Lock,
   Medal,
@@ -44,15 +43,6 @@ const ICONS = {
   mic: Mic,
   settings: Settings,
 } as const;
-
-const TICKER_ITEMS = [
-  { icon: Lightbulb, text: "Lesson tip", strong: "File your 83(b) within 30 days of receiving founder shares — one stamp now saves a six-figure tax bill later." },
-  { icon: Target, text: "Lesson tip", strong: "Validate the problem, never pitch the solution — money changing hands is the only real signal." },
-  { icon: TrendingUp, text: "Lesson tip", strong: "Runway = cash ÷ net burn. Recompute it weekly — most crises were visible six months earlier." },
-  { icon: ListChecks, text: "Lesson tip", strong: "Three priorities a week. The inbox serves the plan, never the reverse." },
-  { icon: Bell, text: "Lesson tip", strong: "In a crisis: team first, investors before the world, one honest message — no dressing." },
-  { icon: Award, text: "Lesson tip", strong: "Pass each quiz with 80%+ to earn a printable certificate per track." },
-];
 
 const MILESTONES = [
   { count: 1, title: "Junior Founder", icon: Medal, desc: "Pass any one track" },
@@ -91,22 +81,6 @@ export default async function AcademyPage() {
 
   return (
     <main>
-      {/* ─── TICKER ─────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-4 overflow-hidden bg-[#0f2460] px-4 py-2.5">
-        <span className="flex shrink-0 items-center gap-1.5 rounded bg-amber-400 px-2.5 py-1 text-[11px] font-extrabold tracking-wider text-[#111827]">
-          <Bell className="size-3" />
-          FOUNDER NOTES
-        </span>
-        <div className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-1">
-          {TICKER_ITEMS.map((item, i) => (
-            <span key={i} className="flex items-center gap-2 whitespace-nowrap text-xs text-white/80">
-              <item.icon className="size-3.5 shrink-0 text-amber-300" />
-              <strong className="font-semibold text-amber-200">{item.strong}</strong>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ─── HERO ───────────────────────────────────────────────────── */}
       <section className="bg-[linear-gradient(135deg,#0f2460_0%,#1e3a8a_55%,#1d4ed8_100%)] text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-20">
