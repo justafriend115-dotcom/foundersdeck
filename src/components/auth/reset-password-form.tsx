@@ -6,11 +6,14 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordField } from "@/components/auth/password-field";
+import { validatePassword } from "@/lib/password-rules";
 
 export function ResetPasswordForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const [password, setPassword] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,11 +21,11 @@ export function ResetPasswordForm() {
 
     const data = new FormData(event.currentTarget);
     const currentPassword = String(data.get("currentPassword") ?? "");
-    const password = String(data.get("password") ?? "");
     const confirm = String(data.get("confirmPassword") ?? "");
 
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
       return;
     }
     if (password !== confirm) {
@@ -93,13 +96,13 @@ export function ResetPasswordForm() {
         <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-foreground">
           New password
         </label>
-        <Input
+        <PasswordField
           id="password"
           name="password"
-          type="password"
-          required
+          value={password}
+          onChange={setPassword}
           autoComplete="new-password"
-          placeholder="At least 8 characters"
+          placeholder="8–72 characters"
         />
       </div>
 

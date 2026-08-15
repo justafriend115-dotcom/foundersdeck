@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import { store } from "@/lib/auth/store";
+import { validatePassword } from "@/lib/password-rules";
 import { isRateLimited, rateLimitKey } from "@/lib/rate-limit";
 import { readJsonBody } from "@/lib/request";
 
@@ -18,11 +19,9 @@ export async function POST(request: NextRequest) {
   const currentPassword = String(body?.currentPassword ?? "");
   const password = String(body?.password ?? "");
 
-  if (password.length < 8) {
-    return NextResponse.json(
-      { ok: false, error: "Password must be at least 8 characters." },
-      { status: 400 },
-    );
+  const passwordError = validatePassword(password);
+  if (passwordError) {
+    return NextResponse.json({ ok: false, error: passwordError }, { status: 400 });
   }
 
   const key = rateLimitKey(request, `reset:${user.id}`);

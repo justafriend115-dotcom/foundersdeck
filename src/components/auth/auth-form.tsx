@@ -1,20 +1,22 @@
 "use client";
 
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordField } from "@/components/auth/password-field";
 import { trackEvent } from "@/lib/analytics";
+import { validatePassword } from "@/lib/password-rules";
 
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const isLogin = mode === "login";
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const nextRef = useRef<string | null>(null);
@@ -39,19 +41,25 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
       return;
     }
     const email = String(data.get("email") ?? "").trim();
-    const password = String(data.get("password") ?? "");
 
     if (!isEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
-    if (password.length < 8) {
+    if (isLogin && password.length < 8) {
       setError("Password must be at least 8 characters.");
       return;
     }
-    if (!isLogin && password !== String(data.get("confirmPassword") ?? "")) {
-      setError("Passwords do not match.");
-      return;
+    if (!isLogin) {
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        setError(passwordError);
+        return;
+      }
+      if (password !== String(data.get("confirmPassword") ?? "")) {
+        setError("Passwords do not match.");
+        return;
+      }
     }
 
     setLoading(true);
@@ -133,25 +141,15 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             </Link>
           )}
         </div>
-        <div className="relative">
-          <Input
-            id="password"
-            name="password"
-            type={showPassword ? "text" : "password"}
-            required
-            autoComplete={isLogin ? "current-password" : "new-password"}
-            placeholder="At least 8 characters"
-            className="pr-10"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword((v) => !v)}
-            aria-label={showPassword ? "Hide password" : "Show password"}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-          </button>
-        </div>
+        <PasswordField
+          id="password"
+          name="password"
+          value={password}
+          onChange={setPassword}
+          autoComplete={isLogin ? "current-password" : "new-password"}
+          placeholder={isLogin ? "Your password" : "8–72 characters"}
+          showRules={!isLogin}
+        />
       </div>
 
       {!isLogin && (
@@ -166,7 +164,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             <Input
               id="confirmPassword"
               name="confirmPassword"
-              type={showPassword ? "text" : "password"}
+              type="password"
               required
               autoComplete="new-password"
               placeholder="Repeat your password"

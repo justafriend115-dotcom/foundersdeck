@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { SESSION_COOKIE, SESSION_COOKIE_OPTIONS, signUp } from "@/lib/auth";
+import { validatePassword } from "@/lib/password-rules";
 import { isRateLimited, rateLimitKey, rateLimitRemaining } from "@/lib/rate-limit";
 import { readJsonBody } from "@/lib/request";
 
@@ -28,11 +29,9 @@ export async function POST(request: NextRequest) {
       { status: 400 },
     );
   }
-  if (password.length < 8) {
-    return NextResponse.json(
-      { ok: false, error: "Password must be at least 8 characters." },
-      { status: 400 },
-    );
+  const passwordError = validatePassword(password);
+  if (passwordError) {
+    return NextResponse.json({ ok: false, error: passwordError }, { status: 400 });
   }
 
   const key = rateLimitKey(request, `signup:${email}`);
