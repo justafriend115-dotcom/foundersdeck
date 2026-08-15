@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Check, CreditCard, Loader2, Sparkles } from "lucide-react";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const PRO_FEATURES = [
-  "Unlimited AI generations",
+  "AI assistant (coming soon)",
   "All 6 tools with full access",
   "White-label PDF exports",
   "Unlimited investor CRM",
@@ -95,7 +95,7 @@ export function BillingCard({ plan, name }: { plan: string; name: string }) {
             <div>
               <p className="text-sm text-muted-foreground">Current plan</p>
               <p className="text-lg font-bold capitalize text-foreground">
-                {plan} · ${isPro ? "29" : "0"}/mo
+                {plan} · ${isPro ? "19" : "0"}/mo
               </p>
             </div>
           </div>
@@ -121,7 +121,7 @@ export function BillingCard({ plan, name }: { plan: string; name: string }) {
             ) : (
               <Button variant="gradient" onClick={startCheckout} disabled={loading !== null}>
                 {loading === "upgrade" ? <Loader2 className="animate-spin" /> : <Sparkles />}
-                Upgrade to Pro
+                Upgrade to Pro — $19/mo
               </Button>
             )}
           </div>
@@ -130,8 +130,8 @@ export function BillingCard({ plan, name }: { plan: string; name: string }) {
         {error && <p className="mt-4 text-xs font-medium text-red-600">{error}</p>}
         {!isPro && (
           <p className="mt-4 text-xs text-muted-foreground">
-            {name}, you&apos;re on the free plan — 3 AI pitch decks included. Upgrade for unlimited
-            generations, white-label exports and priority support.
+            {name}, you&apos;re on the free plan. Upgrade for white-label exports and priority
+            support.
           </p>
         )}
         {isPro && (

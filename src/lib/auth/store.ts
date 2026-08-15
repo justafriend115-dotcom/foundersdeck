@@ -9,6 +9,7 @@ type StoredUser = {
   email: string;
   passwordHash: string;
   plan: string;
+  deckademyPlan: string;
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
   createdAt: Date;
@@ -18,12 +19,17 @@ export function normalizePlan(plan: string): User["plan"] {
   return plan === "pro" || plan === "enterprise" ? plan : "free";
 }
 
+export function normalizeDeckademyPlan(plan: string): User["deckademyPlan"] {
+  return plan === "member" ? "member" : "free";
+}
+
 export function toPublicUser(user: StoredUser): User {
   return {
     id: user.id,
     name: user.name,
     email: user.email,
     plan: normalizePlan(user.plan),
+    deckademyPlan: normalizeDeckademyPlan(user.deckademyPlan),
     stripeCustomerId: user.stripeCustomerId,
     stripeSubscriptionId: user.stripeSubscriptionId,
     createdAt: user.createdAt.getTime(),

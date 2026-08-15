@@ -34,9 +34,9 @@ export default function AcademySection() {
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="bg-muted/40 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-600/25 bg-violet-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-violet-700">
             <GraduationCap className="size-3.5" />
-            Founders Academy
+            DECKADEMY · by FoundersDeck
           </span>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
             Self-teach every skill a startup demands
@@ -58,8 +58,8 @@ export default function AcademySection() {
                 className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-lg hover:shadow-black/5"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-zinc-950">
-                    <Icon className="size-5 text-brand-300" />
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#2e1065,#6d28d9)]">
+                    <Icon className="size-5 text-lime-300" />
                   </span>
                   <div>
                     <h3 className="font-semibold text-foreground">{track.title}</h3>
@@ -86,21 +86,23 @@ export default function AcademySection() {
           })}
         </div>
 
-        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-brand-500/25 bg-brand-50/50 p-6 sm:flex-row">
+        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-violet-600/25 bg-violet-50/60 p-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-xl bg-zinc-950">
-              <Award className="size-5 text-brand-300" />
+            <span className="flex size-11 items-center justify-center rounded-xl bg-[#2e1065]">
+              <Award className="size-5 text-lime-300" />
             </span>
             <p className="text-foreground/80 text-sm">
               <span className="font-semibold text-foreground">
                 {ACADEMY_TRACKS.length - 2} more tracks
               </span>{" "}
               await — Fundraising, Finance, Product, Go-to-Market, Pitching and Operations.
+              Membership unlocks everything at{" "}
+              <span className="font-semibold text-foreground">$49.99/mo</span>.
             </p>
           </div>
           <Link
-            href="/academy"
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-zinc-950 px-6 text-sm font-semibold text-white shadow-lg shadow-black/25 transition-colors hover:bg-zinc-800"
+            href="/deckademy"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#2e1065,#6d28d9)] px-6 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-colors hover:brightness-110"
           >
             Start learning
             <ArrowRight className="size-4" />

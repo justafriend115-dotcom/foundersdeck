@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
   if (!track) {
     return NextResponse.json({ ok: false, error: "Unknown track." }, { status: 400 });
   }
-  if (!track.free && user.plan === "free") {
+  if (!track.free && user.deckademyPlan === "free") {
     return NextResponse.json(
-      { ok: false, error: "This track is part of Pro." },
+      { ok: false, error: "This track is part of DECKADEMY." },
       { status: 403 },
     );
   }

@@ -3,6 +3,14 @@ import { NextResponse } from "next/server";
 import { getStripe, isStripeConfigured } from "@/lib/billing/stripe";
 import { prisma } from "@/lib/db";
 
+function isDeckademySubscription(subscription: {
+  items?: { data?: Array<{ price?: { id?: string | null } | null }> };
+}): boolean {
+  const deckademyPriceId = process.env.STRIPE_PRICE_DECKADEMY_MONTHLY;
+  if (!deckademyPriceId) return false;
+  return subscription.items?.data?.some((item) => item.price?.id === deckademyPriceId) ?? false;
+}
+
 export async function POST(request: Request) {
   if (!isStripeConfigured()) {
     return NextResponse.json({ ok: true, ignored: "stub mode" });
@@ -34,13 +42,13 @@ export async function POST(request: Request) {
       const customerId = typeof session.customer === "string" ? session.customer : null;
       const subscriptionId = typeof session.subscription === "string" ? session.subscription : null;
       if (userId) {
+        const data =
+          session.metadata?.plan === "deckademy"
+            ? { deckademyPlan: "member" }
+            : { plan: "pro" };
         await prisma.user.update({
           where: { id: userId },
-          data: {
-            plan: "pro",
-            stripeCustomerId: customerId,
-            stripeSubscriptionId: subscriptionId,
-          },
+          data: { ...data, stripeCustomerId: customerId, stripeSubscriptionId: subscriptionId },
         });
       }
       break;
@@ -49,9 +57,12 @@ export async function POST(request: Request) {
       const subscription = event.data.object;
       const customerId = typeof subscription.customer === "string" ? subscription.customer : null;
       if (customerId) {
+        const deckademy = isDeckademySubscription(subscription);
         await prisma.user.updateMany({
           where: { stripeCustomerId: customerId },
-          data: { plan: "free", stripeSubscriptionId: null },
+          data: deckademy
+            ? { deckademyPlan: "free", stripeSubscriptionId: null }
+            : { plan: "free", stripeSubscriptionId: null },
         });
       }
       break;
@@ -60,10 +71,13 @@ export async function POST(request: Request) {
       const subscription = event.data.object;
       const customerId = typeof subscription.customer === "string" ? subscription.customer : null;
       if (customerId) {
+        const deckademy = isDeckademySubscription(subscription);
         const active = ["active", "trialing"].includes(subscription.status);
         await prisma.user.updateMany({
           where: { stripeCustomerId: customerId },
-          data: { plan: active ? "pro" : "free", stripeSubscriptionId: subscription.id },
+          data: deckademy
+            ? { deckademyPlan: active ? "member" : "free", stripeSubscriptionId: subscription.id }
+            : { plan: active ? "pro" : "free", stripeSubscriptionId: subscription.id },
         });
       }
       break;

@@ -11,7 +11,6 @@ const tiers = [
     period: "/mo",
     description: "For validating your idea",
     features: [
-      "2 AI pitch generations per day",
       "Business plan builder (PDF export)",
       "1 investor pipeline",
       "Legal Hub templates",
@@ -22,11 +21,11 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$29",
+    price: "$19",
     period: "/mo",
     description: "For founders ready to raise",
     features: [
-      "Unlimited AI generations",
+      "AI pitch deck builder (coming soon)",
       "All 6 tools with full access",
       "White-label PDF exports",
       "Unlimited investor CRM",

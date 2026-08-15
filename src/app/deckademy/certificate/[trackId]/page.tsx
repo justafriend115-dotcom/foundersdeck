@@ -14,12 +14,12 @@ export default async function CertificatePage({ params }: { params: { trackId: s
   if (!user) redirect("/login");
 
   const track = getTrack(params.trackId);
-  if (!track) redirect("/academy");
+  if (!track) redirect("/deckademy");
 
   const progress = await prisma.academyProgress.findUnique({
     where: { userId_trackId: { userId: user.id, trackId: track.id } },
   });
-  if (!progress?.passed) redirect(`/academy/${track.id}`);
+  if (!progress?.passed) redirect(`/deckademy/${track.id}`);
 
   const date = progress.updatedAt.toLocaleDateString("en-US", {
     year: "numeric",
@@ -31,7 +31,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
     <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <div className="flex items-center justify-between">
         <Link
-          href={`/academy/${track.id}`}
+          href={`/deckademy/${track.id}`}
           className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
         >
           <ChevronLeft className="size-4" /> Back to track
@@ -70,7 +70,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
           </div>
 
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-brand-700">
-            FoundersDeck Academy
+            DECKADEMY · FoundersDeck
           </p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground">
             Certificate of Completion

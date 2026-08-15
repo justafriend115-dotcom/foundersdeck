@@ -20,16 +20,23 @@ export async function POST(request: NextRequest) {
 
   const body = (await readJsonBody(request, 16 * 1024)) as Record<string, unknown> | null;
   const sessionId = String(body?.sessionId ?? "");
-  const plan = body?.plan === "enterprise" ? "enterprise" : "pro";
+  const plan = body?.plan === "enterprise" ? "enterprise" : body?.plan === "deckademy" ? "deckademy" : "pro";
   const expected = `stub_${user.id}`;
   if (!sessionId.startsWith(expected)) {
     return NextResponse.json({ ok: false, error: "Invalid session." }, { status: 400 });
   }
 
-  await prisma.user.update({
-    where: { id: user.id },
-    data: { plan },
-  });
+  if (plan === "deckademy") {
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { deckademyPlan: "member" },
+    });
+  } else {
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { plan },
+    });
+  }
 
   return NextResponse.json({ ok: true, plan });
 }

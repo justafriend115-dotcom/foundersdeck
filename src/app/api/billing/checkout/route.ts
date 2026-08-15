@@ -11,7 +11,8 @@ export async function POST(request: NextRequest) {
   }
 
   const body = (await readJsonBody(request, 16 * 1024)) as Record<string, unknown> | null;
-  const plan = body?.plan === "pro" ? "pro" : body?.plan === "enterprise" ? "enterprise" : null;
+  const plan =
+    body?.plan === "pro" ? "pro" : body?.plan === "enterprise" ? "enterprise" : body?.plan === "deckademy" ? "deckademy" : null;
   if (!plan) {
     return NextResponse.json({ ok: false, error: "Invalid plan." }, { status: 400 });
   }

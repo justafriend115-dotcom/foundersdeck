@@ -28,7 +28,7 @@ export const navItems = [
   { href: "/dashboard/financials", label: "Financial Projections", icon: TrendingUp },
   { href: "/dashboard/legal", label: "Legal Hub", icon: ShieldCheck },
   { href: "/dashboard/crm", label: "Investor CRM", icon: Handshake },
-  { href: "/academy", label: "Founders Academy", icon: GraduationCap },
+  { href: "/deckademy", label: "DECKADEMY", icon: GraduationCap },
 ];
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {

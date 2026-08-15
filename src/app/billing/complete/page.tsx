@@ -12,7 +12,13 @@ import { cn } from "@/lib/utils";
 function CompleteContent() {
   const params = useSearchParams();
   const sessionId = params.get("session_id") ?? "";
-  const plan = params.get("plan") === "enterprise" ? "Enterprise" : "Pro";
+  const rawPlan = params.get("plan");
+  const isDeckademy = rawPlan === "deckademy";
+  const plan = isDeckademy
+    ? "DECKADEMY"
+    : rawPlan === "enterprise"
+      ? "Enterprise"
+      : "Pro";
   const [state, setState] = useState<"verifying" | "done" | "error">("verifying");
 
   useEffect(() => {
@@ -47,16 +53,20 @@ function CompleteContent() {
             <>
               <CheckCircle2 className="mx-auto size-12 text-emerald-500" />
               <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-foreground">
-                You&apos;re on the {plan} plan!
+                {isDeckademy
+                  ? "You're now a DECKADEMY member!"
+                  : `You're on the ${plan} plan!`}
               </h1>
               <p className="mt-2 text-sm text-muted-foreground">
-                Your account has been upgraded. Head back to the dashboard to keep building.
+                {isDeckademy
+                  ? "All 8 tracks and certificates are unlocked. Happy learning!"
+                  : "Your account has been upgraded. Head back to the dashboard to keep building."}
               </p>
               <Link
-                href="/dashboard"
+                href={isDeckademy ? "/deckademy" : "/dashboard"}
                 className={cn(buttonVariants({ variant: "gradient" }), "mt-8 w-full")}
               >
-                Go to dashboard
+                {isDeckademy ? "Start learning" : "Go to dashboard"}
               </Link>
             </>
           )}

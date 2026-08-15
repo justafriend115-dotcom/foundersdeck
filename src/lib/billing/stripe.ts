@@ -16,9 +16,10 @@ export function getStripe(): Stripe | null {
   return cached;
 }
 
-export function resolvePriceId(plan: "pro" | "enterprise"): string | null {
-  const priceId = process.env.STRIPE_PRICE_PRO_MONTHLY;
-  return plan === "pro" ? (priceId ?? null) : null;
+export function resolvePriceId(plan: "pro" | "enterprise" | "deckademy"): string | null {
+  if (plan === "pro") return process.env.STRIPE_PRICE_PRO_MONTHLY ?? null;
+  if (plan === "deckademy") return process.env.STRIPE_PRICE_DECKADEMY_MONTHLY ?? null;
+  return null;
 }
 
 export function appOrigin(request: Request): string {

@@ -14,7 +14,7 @@ const steps = [
   {
     icon: Wand2,
     title: "Generate & refine",
-    description: "Our AI drafts the first version. You refine it with inline guidance.",
+    description: "Our AI drafts the first version (arriving soon). You refine it with inline guidance.",
   },
   {
     icon: Rocket,

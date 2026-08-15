@@ -59,8 +59,8 @@ export default function Hero() {
               <span className="ml-3 text-xs font-medium text-muted-foreground">
                 FoundersDeck — AI Pitch Generator
               </span>
-              <span className="ml-auto rounded-full bg-brand-50 px-2.5 py-0.5 text-[10px] font-semibold text-brand-700">
-                PRO
+              <span className="ml-auto rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700">
+                SOON
               </span>
             </div>
             <div className="grid sm:grid-cols-2">

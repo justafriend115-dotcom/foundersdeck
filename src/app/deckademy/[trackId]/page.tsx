@@ -6,36 +6,36 @@ import { getCurrentUser } from "@/lib/auth";
 import { getTrack } from "@/lib/academy/curriculum";
 import { prisma } from "@/lib/db";
 
-export const metadata = { title: "Academy Track" };
+export const metadata = { title: "DECKADEMY Track" };
 
-export default async function AcademyTrackPage({ params }: { params: { trackId: string } }) {
+export default async function DeckademyTrackPage({ params }: { params: { trackId: string } }) {
   const user = await getCurrentUser();
-  if (!user) redirect("/login?next=/academy");
+  if (!user) redirect("/login?next=/deckademy");
 
   const track = getTrack(params.trackId);
-  if (!track) redirect("/academy");
+  if (!track) redirect("/deckademy");
 
-  const isPro = user.plan !== "free";
-  if (!track.free && !isPro) {
+  const isMember = user.deckademyPlan === "member";
+  if (!track.free && !isMember) {
     return (
       <main className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
-        <h1 className="text-2xl font-bold text-foreground">This track is Pro</h1>
+        <h1 className="text-2xl font-bold text-foreground">This track is part of DECKADEMY</h1>
         <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
-          Upgrade to unlock all Academy tracks and certificates — your first track (Legal &amp;
+          Join DECKADEMY to unlock all 8 tracks and certificates — your first track (Legal &amp;
           Entity Setup) is always free.
         </p>
         <div className="mt-6 flex justify-center gap-3">
           <Link
-            href="/dashboard/billing"
+            href="/deckademy/billing"
             className="rounded-lg bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25"
           >
-            Upgrade to Pro
+            Become a member — $49.99/mo
           </Link>
           <Link
-            href="/academy"
+            href="/deckademy"
             className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground"
           >
-            Back to Academy
+            Back to DECKADEMY
           </Link>
         </div>
       </main>

@@ -66,7 +66,7 @@ export function TrackViewer({
     <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex items-center gap-3">
         <Link
-          href="/academy"
+          href="/deckademy"
           className="flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:text-foreground"
         >
           <ChevronLeft className="size-4" />
@@ -137,15 +137,15 @@ export function TrackViewer({
             </div>
 
             {lesson.examples && lesson.examples.length > 0 && (
-              <div className="mt-8 rounded-xl border border-amber-500/25 bg-amber-50/50 p-5">
-                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-amber-700">
+              <div className="mt-8 rounded-xl border border-lime-500/25 bg-lime-50/50 p-5">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-lime-700">
                   <Lightbulb className="size-4" />
                   Worked examples
                 </p>
                 <ul className="mt-3 space-y-3">
                   {lesson.examples.map((example, i) => (
                     <li key={i} className="text-sm leading-relaxed text-foreground/80">
-                      <span className="mr-1.5 font-semibold text-amber-700">
+                      <span className="mr-1.5 font-semibold text-lime-700">
                         {String.fromCharCode(97 + i)}.
                       </span>
                       {example}
@@ -324,7 +324,7 @@ export function TrackViewer({
           {result.passed && (
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
-                href={`/academy/certificate/${track.id}`}
+                href={`/deckademy/certificate/${track.id}`}
                 className="flex items-center justify-center gap-2 rounded-lg bg-zinc-950 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/25"
               >
                 <Award /> View certificate

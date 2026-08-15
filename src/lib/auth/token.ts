@@ -52,6 +52,7 @@ export function readSessionToken(token: string | undefined | null): User | null 
       name: String(data.name ?? ""),
       email: String(data.email ?? ""),
       plan: data.plan === "pro" || data.plan === "enterprise" ? data.plan : "free",
+      deckademyPlan: "free",
       stripeCustomerId: null,
       stripeSubscriptionId: null,
       createdAt: 0,

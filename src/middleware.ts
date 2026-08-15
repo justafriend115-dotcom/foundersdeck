@@ -3,8 +3,10 @@ import type { NextRequest } from "next/server";
 
 import { SESSION_COOKIE } from "@/lib/auth/constants";
 
-const protectedRoutes = ["/dashboard", "/academy", "/reset-password"];
+const protectedRoutes = ["/dashboard", "/deckademy", "/reset-password"];
 const authRoutes = ["/login", "/signup", "/forgot-password"];
+
+const comingSoonRoutes = ["/dashboard/pitch", "/dashboard/business-plan"];
 
 const publicApiPaths = [
   "/api/auth/login",
@@ -18,6 +20,16 @@ const publicApiPaths = [
 export function middleware(request: NextRequest) {
   const hasSession = Boolean(request.cookies.get(SESSION_COOKIE)?.value);
   const { pathname } = request.nextUrl;
+
+  if (pathname === "/academy" || pathname.startsWith("/academy/")) {
+    const url = new URL(pathname.replace(/^\/academy/, "/deckademy"), request.url);
+    url.search = request.nextUrl.search;
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (comingSoonRoutes.some((route) => pathname.startsWith(route))) {
+    return NextResponse.redirect(new URL("/coming-soon", request.url));
+  }
 
   if (pathname.startsWith("/api")) {
     if (publicApiPaths.includes(pathname) || hasSession) {
@@ -42,6 +54,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/deckademy/:path*",
     "/academy/:path*",
     "/api/:path*",
     "/login",
