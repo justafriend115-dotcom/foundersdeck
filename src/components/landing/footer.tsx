@@ -31,8 +31,8 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="fixed inset-x-0 bottom-0 z-50 bg-navy-950 border-t border-steel-800 text-navy-300">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <footer className="border-t border-navy-800 bg-navy-950 text-navy-300">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="sm:col-span-2 lg:col-span-2">
             <Logo dark />
@@ -66,7 +66,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-steel-800 pt-6 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-navy-800 pt-6 sm:flex-row">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} FoundersDeck. All rights reserved.
           </p>
