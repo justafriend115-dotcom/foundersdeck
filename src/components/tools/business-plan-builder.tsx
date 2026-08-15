@@ -83,7 +83,7 @@ export function BusinessPlanBuilder() {
             className={cn(
               "rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors",
               i === currentStep
-                ? "bg-brand-500 text-white shadow-md shadow-black/25 ring-1 ring-zinc-700"
+                ? "bg-brand-500 text-navy-950 shadow-md shadow-black/25 ring-1 ring-navy-700"
                 : "border border-border bg-card text-muted-foreground hover:border-brand-300 hover:text-foreground",
             )}
           >

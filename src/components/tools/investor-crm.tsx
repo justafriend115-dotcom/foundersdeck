@@ -21,7 +21,7 @@ import type { Investor, Meeting, Stage } from "@/lib/tool-types";
 import { cn } from "@/lib/utils";
 
 const STAGES: { id: Stage; label: string; dot: string }[] = [
-  { id: "cold", label: "Cold", dot: "bg-zinc-400" },
+  { id: "cold", label: "Cold", dot: "bg-navy-400" },
   { id: "warm", label: "Warm", dot: "bg-amber-400" },
   { id: "pitching", label: "Pitching", dot: "bg-brand-500" },
   { id: "closed", label: "Closed", dot: "bg-emerald-500" },

@@ -49,7 +49,7 @@ export default function ComingSoonPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-7 py-3.5 text-sm font-bold text-[#f4f4f5] shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-400"
+              className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-7 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-400"
             >
               <ArrowLeft className="size-4" />
               Back to dashboard

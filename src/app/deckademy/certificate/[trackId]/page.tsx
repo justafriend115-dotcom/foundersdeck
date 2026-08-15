@@ -42,7 +42,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
       <div className="mt-8 overflow-hidden rounded-2xl border-2 border-brand-500/40 bg-card print:border-brand-500/60">
         <div className="h-2 bg-gradient-to-r from-brand-600 via-brand-400 to-brand-600" />
         <div className="p-8 text-center sm:p-12">
-          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#0d0d14]">
+          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-navy-950">
             <svg
               width="28"
               height="28"
@@ -52,8 +52,8 @@ export default async function CertificatePage({ params }: { params: { trackId: s
             >
               <defs>
                 <linearGradient id="cert-gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#FF9AA5" />
-                  <stop offset="100%" stopColor="#FF4D5E" />
+                  <stop offset="0%" stopColor="#F5EDDB" />
+                  <stop offset="100%" stopColor="#C4A978" />
                 </linearGradient>
               </defs>
               <polygon

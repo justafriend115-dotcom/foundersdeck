@@ -81,7 +81,7 @@ export function DeckademyBillingCard({
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(160deg,#0d0d14_0%,#ff4d5e_50%,#ff4d5e_100%)]">
+    <main className="min-h-screen bg-[linear-gradient(160deg,#0a1120_0%,#5e83ae_50%,#7fa3c6_100%)]">
       <div className="mx-auto max-w-5xl px-6 py-14">
         <Link
           href="/deckademy"
@@ -126,7 +126,7 @@ export function DeckademyBillingCard({
               </p>
               {isMember ? (
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-bold text-[#f4f4f5]">
+                  <span className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-bold text-navy-950">
                     <GraduationCap className="size-4" />
                     Membership active
                   </span>
@@ -144,7 +144,7 @@ export function DeckademyBillingCard({
                   type="button"
                   onClick={startCheckout}
                   disabled={loading !== null}
-                  className="mt-5 w-full bg-brand-500 text-[#f4f4f5] shadow-lg shadow-brand-500/25 hover:bg-brand-400"
+                  className="mt-5 w-full bg-brand-500 text-navy-950 shadow-lg shadow-brand-500/25 hover:bg-brand-400"
                 >
                   {loading === "join" ? <Loader2 className="animate-spin" /> : <Crown className="size-4" />}
                   {loading === "join" ? "Starting checkout…" : "Become a member  $49.99/mo"}
@@ -162,34 +162,34 @@ export function DeckademyBillingCard({
           </div>
 
           <div className="hidden lg:block">
-            <div className="rotate-2 rounded-2xl border border-brand-500/30 bg-card p-7 text-[#f4f4f5] shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
-              <div className="absolute -right-4 -top-4 rounded-xl bg-[#0d0d14] px-3 py-2 text-[11px] font-extrabold tracking-wide text-brand-300">
+            <div className="rotate-2 rounded-2xl border border-brand-500/30 bg-card p-7 text-foreground shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
+              <div className="absolute -right-4 -top-4 rounded-xl bg-navy-950 px-3 py-2 text-[11px] font-extrabold tracking-wide text-brand-300">
                 CERTIFY YOUR SKILL
               </div>
-              <div className="flex items-center justify-between border-b border-dashed border-zinc-800 pb-4">
+              <div className="flex items-center justify-between border-b border-dashed border-navy-800 pb-4">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-[#0d0d14]">
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-navy-950">
                     <GraduationCap className="size-5 text-brand-300" />
                   </span>
                   <div>
                     <div className="text-sm font-black tracking-wide">DECKADEMY</div>
-                    <div className="text-[10px] font-semibold text-zinc-400">
+                    <div className="text-[10px] font-semibold text-navy-400">
                       FOUNDED BY FOUNDERSDECK
                     </div>
                   </div>
                 </div>
-                <Award className="size-6 text-[#ff4d5e]" />
+                <Award className="size-6 text-brand-400" />
               </div>
-              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-navy-400">
                 Certificate of completion
               </p>
               <h2 className="mt-1.5 text-xl font-black">Fundraising Mastery</h2>
               <div className="mt-4 flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-full bg-[#2a1014] text-sm font-extrabold text-[#ff4d5e]">
+                <span className="flex size-10 items-center justify-center rounded-full bg-steel-900 text-sm font-extrabold text-brand-400">
                   JD
                 </span>
-                <div className="text-xs text-zinc-500">
-                  <span className="font-bold text-[#f4f4f5]">The Founder</span>
+                <div className="text-xs text-navy-500">
+                  <span className="font-bold text-foreground">The Founder</span>
                   <br />
                   scored 88% · passed the final quiz
                 </div>
@@ -200,21 +200,21 @@ export function DeckademyBillingCard({
                   { label: "Tracks", value: "8" },
                   { label: "Quizzes", value: "8" },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-lg bg-[#2a1014] px-2 py-2.5 text-center">
-                    <div className="text-lg font-black text-[#ff4d5e]">{s.value}</div>
-                    <div className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
+                  <div key={s.label} className="rounded-lg bg-steel-900 px-2 py-2.5 text-center">
+                    <div className="text-lg font-black text-brand-400">{s.value}</div>
+                    <div className="text-[9px] font-bold uppercase tracking-wider text-navy-400">
                       {s.label}
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-dashed border-zinc-800 pt-4">
-                <span className="flex items-center gap-1.5 text-[10px] font-bold text-zinc-400">
+              <div className="mt-5 flex items-center justify-between border-t border-dashed border-navy-800 pt-4">
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-navy-400">
                   <Check className="size-3.5 text-emerald-500" />
                   VERIFIED · DECKADEMY
                 </span>
-                <span className="flex size-10 items-center justify-center rounded-full border-2 border-[#ff4d5e]">
-                  <Award className="size-5 text-[#ff4d5e]" />
+                <span className="flex size-10 items-center justify-center rounded-full border-2 border-steel-400">
+                  <Award className="size-5 text-brand-400" />
                 </span>
               </div>
             </div>

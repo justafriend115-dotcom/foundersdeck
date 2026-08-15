@@ -29,7 +29,7 @@ export default function ForgotPasswordPage() {
 
         <Link
           href="/login"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/25 transition-colors hover:bg-zinc-800"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold text-navy-950 shadow-lg shadow-black/25 transition-colors hover:bg-navy-800"
         >
           Log in to change your password
         </Link>

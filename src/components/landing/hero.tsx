@@ -51,7 +51,7 @@ export default function Hero() {
           className="mx-auto mt-16 max-w-4xl animate-fade-up"
           style={{ animationDelay: "500ms" }}
         >
-          <div className="animate-float rounded-2xl border border-border bg-card shadow-2xl shadow-zinc-900/10">
+          <div className="animate-float rounded-2xl border border-border bg-card shadow-2xl shadow-navy-900/10">
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="size-2.5 rounded-full bg-red-400" />
               <span className="size-2.5 rounded-full bg-amber-400" />
@@ -82,7 +82,7 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
-                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-brand-500 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-zinc-700">
+                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-brand-500 text-sm font-semibold text-navy-950 shadow-lg shadow-black/25 ring-1 ring-navy-700">
                   Generate my deck
                 </div>
               </div>

@@ -26,7 +26,7 @@ function SocialIcon({ label, path }: { label: string; path: string }) {
     <a
       href="#"
       aria-label={label}
-      className="flex size-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 transition-colors hover:border-brand-500/50 hover:text-white"
+      className="flex size-9 items-center justify-center rounded-lg border border-navy-800 bg-navy-900 text-navy-400 transition-colors hover:border-brand-500/50 hover:text-white"
     >
       <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden="true">
         <path d={path} />
@@ -52,7 +52,7 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-800 bg-brand-500 text-zinc-400">
+    <footer className="border-t border-navy-800 bg-brand-500 text-navy-400">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">
@@ -86,7 +86,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-8 sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-navy-800 pt-8 sm:flex-row">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} FoundersDeck. All rights reserved.
           </p>

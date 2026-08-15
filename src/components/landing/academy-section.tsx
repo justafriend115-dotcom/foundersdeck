@@ -58,7 +58,7 @@ export default function AcademySection() {
                 className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-lg hover:shadow-black/5"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#0d0d14,#ff4d5e)]">
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#0a1120,#5e83ae)]">
                     <Icon className="size-5 text-brand-300" />
                   </span>
                   <div>
@@ -88,7 +88,7 @@ export default function AcademySection() {
 
         <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-brand-500/30 bg-brand-500/10/60 p-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-xl bg-[#0d0d14]">
+            <span className="flex size-11 items-center justify-center rounded-xl bg-navy-950">
               <Award className="size-5 text-brand-300" />
             </span>
             <p className="text-foreground/80 text-sm">
@@ -102,7 +102,7 @@ export default function AcademySection() {
           </div>
           <Link
             href="/deckademy"
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#0d0d14,#ff4d5e)] px-6 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:brightness-110"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#0a1120,#5e83ae)] px-6 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:brightness-110"
           >
             Start learning
             <ArrowRight className="size-4" />

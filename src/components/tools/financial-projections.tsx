@@ -197,7 +197,7 @@ export function FinancialProjections() {
                       title={`M${row.month}: ${formatCurrency(row.revenue)} rev / ${formatCurrency(row.expenses)} exp`}
                     >
                       <div
-                        className="w-1/3 rounded-t bg-zinc-300 transition-colors group-hover:bg-zinc-400"
+                        className="w-1/3 rounded-t bg-navy-300 transition-colors group-hover:bg-navy-400"
                         style={{ height: `${Math.max((row.expenses / maxValue) * 100, 2)}%` }}
                       />
                       <div
@@ -223,7 +223,7 @@ export function FinancialProjections() {
                     Revenue
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="size-2.5 rounded-sm bg-zinc-300" />
+                    <span className="size-2.5 rounded-sm bg-navy-300" />
                     Expenses
                   </span>
                 </div>

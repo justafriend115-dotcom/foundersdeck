@@ -1,0 +1,23 @@
+
+> foundersdeck@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 6.8s
+ ○ Compiling / ...
+ ✓ Compiled / in 10.9s (685 modules)
+ GET / 200 in 11676ms
+ ✓ Compiled in 1052ms (300 modules)
+ ○ Compiling /coming-soon ...
+ ✓ Compiled /coming-soon in 9.6s (678 modules)
+ GET /coming-soon 200 in 9959ms
+ ✓ Compiled /src/middleware in 502ms (73 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 809ms (706 modules)
+ GET /login 200 in 1071ms
+ ✓ Compiled /signup in 568ms (708 modules)
+ GET /signup 200 in 837ms
