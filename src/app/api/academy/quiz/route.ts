@@ -22,6 +22,12 @@ export async function POST(request: NextRequest) {
   if (!track) {
     return NextResponse.json({ ok: false, error: "Unknown track." }, { status: 400 });
   }
+  if (!track.free && user.plan === "free") {
+    return NextResponse.json(
+      { ok: false, error: "This track is part of Pro." },
+      { status: 403 },
+    );
+  }
   if (answers.length !== track.quiz.length) {
     return NextResponse.json({ ok: false, error: "Answer every question." }, { status: 400 });
   }

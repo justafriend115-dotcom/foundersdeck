@@ -3,9 +3,12 @@ import { createHmac, timingSafeEqual } from "crypto";
 import type { User } from "./types";
 
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-const SECRET = process.env.FD_AUTH_SECRET ?? "fd-dev-secret-change-me";
+const isProduction = process.env.NODE_ENV === "production";
+const SECRET =
+  process.env.FD_AUTH_SECRET ?? (isProduction ? null : "fd-dev-secret-change-me");
 
 function sign(payload: string): string {
+  if (!SECRET) throw new Error("FD_AUTH_SECRET is not set in production.");
   return createHmac("sha256", SECRET).update(payload).digest("base64url");
 }
 
@@ -24,6 +27,7 @@ export function createSessionToken(user: User): string {
 
 export function readSessionToken(token: string | undefined | null): User | null {
   if (!token) return null;
+  if (!SECRET) return null;
   const [payload, signature] = token.split(".");
   if (!payload || !signature) return null;
 

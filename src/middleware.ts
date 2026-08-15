@@ -3,8 +3,8 @@ import type { NextRequest } from "next/server";
 
 import { SESSION_COOKIE } from "@/lib/auth/constants";
 
-const protectedRoutes = ["/dashboard", "/academy"];
-const authRoutes = ["/login", "/signup", "/forgot-password", "/reset-password"];
+const protectedRoutes = ["/dashboard", "/academy", "/reset-password"];
+const authRoutes = ["/login", "/signup", "/forgot-password"];
 
 const publicApiPaths = [
   "/api/auth/login",

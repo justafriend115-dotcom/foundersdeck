@@ -17,7 +17,7 @@ export function ResetPasswordForm() {
     setError(null);
 
     const data = new FormData(event.currentTarget);
-    const email = String(data.get("email") ?? "").trim();
+    const currentPassword = String(data.get("currentPassword") ?? "");
     const password = String(data.get("password") ?? "");
     const confirm = String(data.get("confirmPassword") ?? "");
 
@@ -35,7 +35,7 @@ export function ResetPasswordForm() {
       const res = await fetch("/api/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ currentPassword, password }),
       });
       const json = await res.json();
       if (!json.ok) {
@@ -59,15 +59,15 @@ export function ResetPasswordForm() {
         <div>
           <h2 className="text-lg font-bold text-foreground">Password updated</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Your password has been reset. You can now log in with your new credentials.
+            Your password has been changed. You can now log in with your new credentials.
           </p>
         </div>
         <Link
-          href="/login"
+          href="/dashboard"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-800"
         >
           <ArrowLeft className="size-4" />
-          Back to log in
+          Back to dashboard
         </Link>
       </div>
     );
@@ -76,16 +76,16 @@ export function ResetPasswordForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-foreground">
-          Email
+        <label htmlFor="currentPassword" className="mb-1.5 block text-sm font-medium text-foreground">
+          Current password
         </label>
         <Input
-          id="email"
-          name="email"
-          type="email"
+          id="currentPassword"
+          name="currentPassword"
+          type="password"
           required
-          autoComplete="email"
-          placeholder="you@startup.com"
+          autoComplete="current-password"
+          placeholder="Your current password"
         />
       </div>
 
@@ -128,13 +128,13 @@ export function ResetPasswordForm() {
 
       <Button type="submit" variant="gradient" className="w-full" disabled={loading}>
         {loading && <Loader2 className="animate-spin" />}
-        Reset password
+        Update password
       </Button>
 
       <p className="text-center text-sm text-muted-foreground">
         Remembered it?{" "}
-        <Link href="/login" className="font-medium text-brand-700 hover:text-brand-800">
-          Back to log in
+        <Link href="/dashboard" className="font-medium text-brand-700 hover:text-brand-800">
+          Back to dashboard
         </Link>
       </p>
     </form>
