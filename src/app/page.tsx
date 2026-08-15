@@ -9,9 +9,9 @@ import Pricing from "@/components/landing/pricing";
 
 export default function Home() {
   return (
-    <div className="relative z-10 flex min-h-screen flex-col bg-background pb-[600px] sm:pb-[460px] lg:pb-[400px]">
+    <div className="relative z-10 flex min-h-screen flex-col bg-background">
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 mb-[600px] sm:mb-[460px] lg:mb-[400px]">
         <Hero />
         <Features />
         <AcademySection />
