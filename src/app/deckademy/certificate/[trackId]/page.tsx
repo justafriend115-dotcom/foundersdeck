@@ -19,7 +19,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
   const progress = await prisma.academyProgress.findUnique({
     where: { userId_trackId: { userId: user.id, trackId: track.id } },
   });
-  if (!progress?.passed) redirect(`/deckademy/${track.id}`);
+  if (!progress?.passed || !progress.examPassed) redirect(`/deckademy/${track.id}`);
 
   const date = progress.updatedAt.toLocaleDateString("en-US", {
     year: "numeric",
@@ -42,7 +42,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
       <div className="mt-8 overflow-hidden rounded-2xl border-2 border-brand-500/40 bg-card print:border-brand-500/60">
         <div className="h-2 bg-gradient-to-r from-brand-600 via-brand-400 to-brand-600" />
         <div className="p-8 text-center sm:p-12">
-          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#14130F]">
+          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#0d0d14]">
             <svg
               width="28"
               height="28"
@@ -52,8 +52,8 @@ export default async function CertificatePage({ params }: { params: { trackId: s
             >
               <defs>
                 <linearGradient id="cert-gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#FAC775" />
-                  <stop offset="100%" stopColor="#BA7517" />
+                  <stop offset="0%" stopColor="#FF9AA5" />
+                  <stop offset="100%" stopColor="#FF4D5E" />
                 </linearGradient>
               </defs>
               <polygon
@@ -83,7 +83,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
           </p>
           <p className="text-gradient mt-2 text-xl font-bold">{track.title}</p>
           <p className="mt-2 text-xs text-muted-foreground">
-            Scoring {progress.score}% on the final assessment · {date}
+            Scoring {progress.examScore}% on the final exam · {date}
           </p>
 
           <div className="mx-auto mt-8 flex max-w-sm items-center justify-between border-t border-border pt-6 text-xs text-muted-foreground">

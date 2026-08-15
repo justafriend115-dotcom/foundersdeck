@@ -99,7 +99,7 @@ export default function Pricing() {
                     <span
                       className={cn(
                         "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full",
-                        tier.highlighted ? "bg-zinc-950" : "bg-brand-50",
+                        tier.highlighted ? "bg-brand-500" : "bg-brand-50",
                       )}
                     >
                       <Check

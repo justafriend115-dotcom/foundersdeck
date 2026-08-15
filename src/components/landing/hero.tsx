@@ -59,7 +59,7 @@ export default function Hero() {
               <span className="ml-3 text-xs font-medium text-muted-foreground">
                 FoundersDeck  AI Pitch Generator
               </span>
-              <span className="ml-auto rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700">
+              <span className="ml-auto rounded-full bg-brand-500/15 px-2.5 py-0.5 text-[10px] font-semibold text-brand-300 ring-1 ring-brand-500/30">
                 SOON
               </span>
             </div>
@@ -82,7 +82,7 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
-                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-zinc-950 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-zinc-700">
+                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-brand-500 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-zinc-700">
                   Generate my deck
                 </div>
               </div>

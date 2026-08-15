@@ -15,9 +15,9 @@ import { cn } from "@/lib/utils";
 const YEAR_LABELS = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5"];
 
 function riskColor(score: number): string {
-  if (score >= 15) return "bg-red-50 text-red-700 ring-red-200";
-  if (score >= 9) return "bg-amber-50 text-amber-700 ring-amber-200";
-  return "bg-emerald-50 text-emerald-700 ring-emerald-200";
+  if (score >= 15) return "bg-red-500/15 text-red-400 ring-red-500/40";
+  if (score >= 9) return "bg-brand-500/15 text-brand-300 ring-brand-500/40";
+  return "bg-emerald-500/15 text-emerald-400 ring-emerald-500/40";
 }
 
 export function ContingencyPlanner() {

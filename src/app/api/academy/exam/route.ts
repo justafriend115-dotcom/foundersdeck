@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import {
-  PASS_SCORE,
-  QUIZ_COOLDOWN_MS,
+  EXAM_COOLDOWN_MS,
+  EXAM_PASS_SCORE,
   getTrack,
 } from "@/lib/academy/curriculum";
 import { prisma } from "@/lib/db";
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = (await readJsonBody(request, 64 * 1024)) as {
+  const body = (await readJsonBody(request, 128 * 1024)) as {
     trackId?: string;
     answers?: number[];
   } | null;
@@ -41,37 +41,42 @@ export async function POST(request: NextRequest) {
       { status: 403 },
     );
   }
-  if (answers.length !== track.quiz.length) {
+  if (answers.length !== track.exam.length) {
     return NextResponse.json({ ok: false, error: "Answer every question." }, { status: 400 });
   }
 
   const progress = await prisma.academyProgress.findUnique({
     where: { userId_trackId: { userId: user.id, trackId } },
   });
-
-  const completed = parseCompleted(progress?.completedLessons ?? "[]");
-  const allLessonsDone = track.lessons.every((l) => completed.includes(l.id));
-  const legacyPassed = progress?.passed ?? false;
-  if (!allLessonsDone && !legacyPassed) {
-    const done = track.lessons.filter((l) => completed.includes(l.id)).length;
+  if (!progress) {
     return NextResponse.json(
-      {
-        ok: false,
-        error: `Complete all ${track.lessons.length} lessons before taking the quiz (${done}/${track.lessons.length} done).`,
-        lessonsDone: done,
-        lessonsTotal: track.lessons.length,
-      },
+      { ok: false, error: "Complete the lessons and pass the quiz first." },
+      { status: 403 },
+    );
+  }
+
+  const completed = parseCompleted(progress.completedLessons);
+  const allLessonsDone = track.lessons.every((l) => completed.includes(l.id));
+  if (!allLessonsDone && !progress.passed) {
+    return NextResponse.json(
+      { ok: false, error: "Complete all lessons and pass the quiz before the final exam." },
+      { status: 403 },
+    );
+  }
+  if (!progress.passed) {
+    return NextResponse.json(
+      { ok: false, error: "Pass the track quiz before taking the final exam." },
       { status: 403 },
     );
   }
 
   const now = new Date();
-  const lockedUntil = progress?.quizLockedUntil ? new Date(progress.quizLockedUntil) : null;
+  const lockedUntil = progress.examLockedUntil ? new Date(progress.examLockedUntil) : null;
   if (lockedUntil && lockedUntil.getTime() > now.getTime()) {
     return NextResponse.json(
       {
         ok: false,
-        error: "You failed the quiz recently. Try again after the cooldown.",
+        error: "You failed the exam recently. Try again after the cooldown.",
         lockedUntil: lockedUntil.toISOString(),
       },
       { status: 429 },
@@ -79,32 +84,30 @@ export async function POST(request: NextRequest) {
   }
 
   const correct = answers.reduce(
-    (sum, answer, i) => sum + (answer === track.quiz[i].correctIndex ? 1 : 0),
+    (sum, answer, i) => sum + (answer === track.exam[i].correctIndex ? 1 : 0),
     0,
   );
-  const score = Math.round((correct / track.quiz.length) * 100);
-  const passed = score >= PASS_SCORE;
+  const score = Math.round((correct / track.exam.length) * 100);
+  const passed = score >= EXAM_PASS_SCORE;
 
-  const bestScore = Math.max(progress?.score ?? 0, score);
-  const wasPassed = progress?.passed ?? false;
+  const bestExamScore = Math.max(progress.examScore, score);
 
-  const updated = await prisma.academyProgress.upsert({
-    where: { userId_trackId: { userId: user.id, trackId } },
-    update: {
-      score: bestScore,
-      passed: wasPassed || passed,
-      quizLockedUntil: passed ? null : new Date(now.getTime() + QUIZ_COOLDOWN_MS),
+  const updated = await prisma.academyProgress.update({
+    where: { id: progress.id },
+    data: {
+      examScore: bestExamScore,
+      examPassed: progress.examPassed || passed,
+      examLockedUntil: passed ? null : new Date(now.getTime() + EXAM_COOLDOWN_MS),
     },
-    create: { userId: user.id, trackId, score, passed },
   });
 
   return NextResponse.json({
     ok: true,
     score,
     passed,
-    bestScore: updated.score,
+    bestScore: updated.examScore,
     correct,
-    total: track.quiz.length,
-    lockedUntil: passed ? null : new Date(now.getTime() + QUIZ_COOLDOWN_MS).toISOString(),
+    total: track.exam.length,
+    lockedUntil: passed ? null : new Date(now.getTime() + EXAM_COOLDOWN_MS).toISOString(),
   });
 }

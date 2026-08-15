@@ -7,7 +7,7 @@ export default function FinalCta() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-zinc-950 px-6 py-20 text-center shadow-2xl shadow-zinc-950/40 sm:px-16">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-500 px-6 py-20 text-center shadow-2xl shadow-zinc-950/40 sm:px-16">
           <div className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-brand-500/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 -right-24 size-96 rounded-full bg-brand-400/10 blur-3xl" />
 

@@ -8,7 +8,7 @@ import { gtmTrack } from "./tracks/gtm";
 import { pitchingTrack } from "./tracks/pitching";
 import { operationsTrack } from "./tracks/operations";
 
-export { PASS_SCORE } from "./types";
+export { PASS_SCORE, EXAM_PASS_SCORE, QUIZ_COOLDOWN_MS, EXAM_COOLDOWN_MS } from "./types";
 export type { AcademyTrack, Lesson, LessonSection, QuizQuestion } from "./types";
 
 export const ACADEMY_TRACKS: AcademyTrack[] = [

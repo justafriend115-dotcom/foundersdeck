@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 export function Logo({ className, dark = false }: { className?: string; dark?: boolean }) {
   return (
     <Link href="/" className={cn("flex items-center gap-2.5", className)}>
-      <span className="flex size-9 items-center justify-center rounded-xl bg-[#14130F] shadow-lg shadow-[#14130F]/30 ring-1 ring-[#14130F]/20">
+      <span className="flex size-9 items-center justify-center rounded-xl bg-[#0d0d14] shadow-lg shadow-brand-500/20 ring-1 ring-brand-500/30">
         <svg
           width="20"
           height="20"
@@ -15,8 +15,8 @@ export function Logo({ className, dark = false }: { className?: string; dark?: b
         >
           <defs>
             <linearGradient id="logo-gold" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#FAC775" />
-              <stop offset="100%" stopColor="#BA7517" />
+              <stop offset="0%" stopColor="#FF9AA5" />
+              <stop offset="100%" stopColor="#FF4D5E" />
             </linearGradient>
           </defs>
           <polygon

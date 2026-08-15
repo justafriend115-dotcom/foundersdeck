@@ -27,7 +27,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
         <div className="mt-6 flex justify-center gap-3">
           <Link
             href="/deckademy/billing"
-            className="rounded-lg bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25"
+            className="rounded-lg bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25"
           >
             Become a member  $49.99/mo
           </Link>
@@ -46,11 +46,25 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
     where: { userId_trackId: { userId: user.id, trackId: track.id } },
   });
 
+  let completedLessons: string[] = [];
+  try {
+    completedLessons = progress
+      ? (JSON.parse(progress.completedLessons) as string[])
+      : [];
+  } catch {
+    completedLessons = [];
+  }
+
   return (
     <TrackViewer
       track={track}
       initialScore={progress?.score ?? null}
       passed={progress?.passed ?? false}
+      initialCompletedLessons={completedLessons}
+      initialQuizLockedUntil={progress?.quizLockedUntil?.toISOString() ?? null}
+      initialExamLockedUntil={progress?.examLockedUntil?.toISOString() ?? null}
+      examPassed={progress?.examPassed ?? false}
+      examScore={progress?.examScore ?? null}
     />
   );
 }

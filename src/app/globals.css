@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --background: #f5f5f6;
-  --foreground: #111113;
-  --primary: #0a0a0a;
+  --background: #050508;
+  --foreground: #f4f4f5;
+  --primary: #ff4d5e;
   --primary-foreground: #ffffff;
-  --secondary: #e6e6e8;
-  --secondary-foreground: #26262a;
-  --muted: #fafafa;
-  --muted-foreground: #71717a;
-  --accent: #ededee;
-  --accent-foreground: #1c1c1f;
+  --secondary: #131318;
+  --secondary-foreground: #e4e4e7;
+  --muted: #0c0c12;
+  --muted-foreground: #a1a1aa;
+  --accent: #14141b;
+  --accent-foreground: #f4f4f5;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --card: #ffffff;
-  --card-foreground: #1a1a1d;
-  --border: #e4e4e7;
-  --ring: #c9a227;
+  --card: #0c0c12;
+  --card-foreground: #f4f4f5;
+  --border: #1e1e28;
+  --ring: #ff4d5e;
   --radius: 0.75rem;
 }
 
@@ -47,6 +47,17 @@ body {
 }
 
 @media print {
+  :root {
+    --background: #ffffff;
+    --foreground: #111113;
+    --muted: #fafafa;
+    --muted-foreground: #71717a;
+    --card: #ffffff;
+    --card-foreground: #1a1a1d;
+    --border: #e4e4e7;
+    --accent: #ededee;
+    --accent-foreground: #1c1c1f;
+  }
   body {
     background: white;
   }
@@ -94,7 +105,7 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     circle at var(--mx, 50%) var(--my, 50%),
-    rgba(201, 162, 39, 0.1),
+    rgba(255, 77, 94, 0.12),
     transparent 60%
   );
   opacity: 0;

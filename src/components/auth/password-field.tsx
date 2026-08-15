@@ -12,8 +12,8 @@ import {
 } from "@/lib/password-rules";
 import { cn } from "@/lib/utils";
 
-const STRENGTH_BAR = ["", "bg-red-500", "bg-orange-500", "bg-amber-400", "bg-emerald-500"];
-const STRENGTH_TEXT = ["", "text-red-500", "text-orange-500", "text-amber-500", "text-emerald-500"];
+const STRENGTH_BAR = ["", "bg-red-500", "bg-orange-500", "bg-brand-400", "bg-brand-500"];
+const STRENGTH_TEXT = ["", "text-red-500", "text-orange-500", "text-brand-400", "text-brand-300"];
 
 export function PasswordField({
   value,
@@ -78,7 +78,7 @@ export function PasswordField({
                   key={i}
                   className={cn(
                     "h-1.5 flex-1 rounded-full transition-all duration-500 ease-out",
-                    i <= strength.score ? STRENGTH_BAR[strength.score] : "bg-zinc-200",
+                    i <= strength.score ? STRENGTH_BAR[strength.score] : "bg-zinc-800",
                   )}
                   style={{ transitionDelay: `${i * 70}ms` }}
                 />
@@ -109,7 +109,7 @@ export function PasswordField({
                   <span
                     className={cn(
                       "flex size-4 shrink-0 items-center justify-center rounded-full transition-colors duration-300",
-                      met ? "rule-pop bg-emerald-500" : "bg-zinc-200",
+                      met ? "rule-pop bg-emerald-500" : "bg-zinc-800",
                     )}
                   >
                     {met ? (

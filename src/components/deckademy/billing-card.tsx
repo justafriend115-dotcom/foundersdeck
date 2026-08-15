@@ -81,7 +81,7 @@ export function DeckademyBillingCard({
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(160deg,#2e1065_0%,#4c1d95_50%,#6d28d9_100%)]">
+    <main className="min-h-screen bg-[linear-gradient(160deg,#0d0d14_0%,#ff4d5e_50%,#ff4d5e_100%)]">
       <div className="mx-auto max-w-5xl px-6 py-14">
         <Link
           href="/deckademy"
@@ -93,7 +93,7 @@ export function DeckademyBillingCard({
 
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-2">
           <div className="text-white">
-            <span className="inline-flex items-center gap-2 rounded-full border border-lime-300/40 bg-lime-300/10 px-4 py-1.5 text-xs font-bold text-lime-200">
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-400/10 px-4 py-1.5 text-xs font-bold text-brand-200">
               <Sparkles className="size-3.5" />
               {isMember ? "Active membership" : "Affiliated with FoundersDeck"}
             </span>
@@ -108,17 +108,17 @@ export function DeckademyBillingCard({
             <ul className="mt-8 space-y-3.5">
               {MEMBER_FEATURES.map((feature) => (
                 <li key={feature} className="flex items-start gap-3 text-sm text-white/90">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-lime-300/20">
-                    <Check className="size-3 text-lime-300" />
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-400/20">
+                    <Check className="size-3 text-brand-300" />
                   </span>
                   {feature}
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
+            <div className="mt-10 rounded-2xl border border-white/15 bg-card/5 p-6 backdrop-blur">
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-black tracking-tight text-lime-300">$49.99</span>
+                <span className="text-5xl font-black tracking-tight text-brand-300">$49.99</span>
                 <span className="text-sm font-semibold text-white/60">/month</span>
               </div>
               <p className="mt-2 text-sm text-white/60">
@@ -126,7 +126,7 @@ export function DeckademyBillingCard({
               </p>
               {isMember ? (
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-lg bg-lime-400 px-6 py-3 text-sm font-bold text-[#111827]">
+                  <span className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-bold text-[#f4f4f5]">
                     <GraduationCap className="size-4" />
                     Membership active
                   </span>
@@ -134,7 +134,7 @@ export function DeckademyBillingCard({
                     type="button"
                     onClick={cancelDemoMembership}
                     disabled={loading !== null}
-                    className="rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 disabled:opacity-60"
+                    className="rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-card/10 disabled:opacity-60"
                   >
                     {loading === "cancel" ? <Loader2 className="animate-spin" /> : "Demo mode: cancel membership"}
                   </button>
@@ -144,7 +144,7 @@ export function DeckademyBillingCard({
                   type="button"
                   onClick={startCheckout}
                   disabled={loading !== null}
-                  className="mt-5 w-full bg-lime-400 text-[#111827] shadow-lg shadow-lime-500/25 hover:bg-lime-300"
+                  className="mt-5 w-full bg-brand-500 text-[#f4f4f5] shadow-lg shadow-brand-500/25 hover:bg-brand-400"
                 >
                   {loading === "join" ? <Loader2 className="animate-spin" /> : <Crown className="size-4" />}
                   {loading === "join" ? "Starting checkout…" : "Become a member  $49.99/mo"}
@@ -162,14 +162,14 @@ export function DeckademyBillingCard({
           </div>
 
           <div className="hidden lg:block">
-            <div className="rotate-2 rounded-2xl border border-lime-200/20 bg-white p-7 text-[#111827] shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
-              <div className="absolute -right-4 -top-4 rounded-xl bg-[#2e1065] px-3 py-2 text-[11px] font-extrabold tracking-wide text-lime-300">
+            <div className="rotate-2 rounded-2xl border border-brand-500/30 bg-card p-7 text-[#f4f4f5] shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
+              <div className="absolute -right-4 -top-4 rounded-xl bg-[#0d0d14] px-3 py-2 text-[11px] font-extrabold tracking-wide text-brand-300">
                 CERTIFY YOUR SKILL
               </div>
-              <div className="flex items-center justify-between border-b border-dashed border-zinc-200 pb-4">
+              <div className="flex items-center justify-between border-b border-dashed border-zinc-800 pb-4">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-[#2e1065]">
-                    <GraduationCap className="size-5 text-lime-300" />
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-[#0d0d14]">
+                    <GraduationCap className="size-5 text-brand-300" />
                   </span>
                   <div>
                     <div className="text-sm font-black tracking-wide">DECKADEMY</div>
@@ -178,18 +178,18 @@ export function DeckademyBillingCard({
                     </div>
                   </div>
                 </div>
-                <Award className="size-6 text-[#6d28d9]" />
+                <Award className="size-6 text-[#ff4d5e]" />
               </div>
               <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-400">
                 Certificate of completion
               </p>
               <h2 className="mt-1.5 text-xl font-black">Fundraising Mastery</h2>
               <div className="mt-4 flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-full bg-[#f5f3ff] text-sm font-extrabold text-[#4c1d95]">
+                <span className="flex size-10 items-center justify-center rounded-full bg-[#2a1014] text-sm font-extrabold text-[#ff4d5e]">
                   JD
                 </span>
                 <div className="text-xs text-zinc-500">
-                  <span className="font-bold text-[#111827]">The Founder</span>
+                  <span className="font-bold text-[#f4f4f5]">The Founder</span>
                   <br />
                   scored 88% · passed the final quiz
                 </div>
@@ -200,21 +200,21 @@ export function DeckademyBillingCard({
                   { label: "Tracks", value: "8" },
                   { label: "Quizzes", value: "8" },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-lg bg-[#f5f3ff] px-2 py-2.5 text-center">
-                    <div className="text-lg font-black text-[#4c1d95]">{s.value}</div>
+                  <div key={s.label} className="rounded-lg bg-[#2a1014] px-2 py-2.5 text-center">
+                    <div className="text-lg font-black text-[#ff4d5e]">{s.value}</div>
                     <div className="text-[9px] font-bold uppercase tracking-wider text-zinc-400">
                       {s.label}
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-dashed border-zinc-200 pt-4">
+              <div className="mt-5 flex items-center justify-between border-t border-dashed border-zinc-800 pt-4">
                 <span className="flex items-center gap-1.5 text-[10px] font-bold text-zinc-400">
                   <Check className="size-3.5 text-emerald-500" />
                   VERIFIED · DECKADEMY
                 </span>
-                <span className="flex size-10 items-center justify-center rounded-full border-2 border-[#6d28d9]">
-                  <Award className="size-5 text-[#6d28d9]" />
+                <span className="flex size-10 items-center justify-center rounded-full border-2 border-[#ff4d5e]">
+                  <Award className="size-5 text-[#ff4d5e]" />
                 </span>
               </div>
             </div>

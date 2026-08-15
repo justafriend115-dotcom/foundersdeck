@@ -16,7 +16,7 @@ export default function ForgotPasswordPage() {
     >
       <div className="space-y-5">
         <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/50 p-4">
-          <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-zinc-950">
+          <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-500">
             <Lock className="size-4 text-brand-300" />
           </span>
           <p className="text-sm leading-relaxed text-muted-foreground">
@@ -29,7 +29,7 @@ export default function ForgotPasswordPage() {
 
         <Link
           href="/login"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-zinc-950 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/25 transition-colors hover:bg-zinc-800"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/25 transition-colors hover:bg-zinc-800"
         >
           Log in to change your password
         </Link>

@@ -38,17 +38,17 @@ const config: Config = {
         border: "var(--border)",
         ring: "var(--ring)",
         brand: {
-          50: "#fbf7ea",
-          100: "#f6edcf",
-          200: "#eeddb0",
-          300: "#e3c87e",
-          400: "#d6b354",
-          500: "#c9a227",
-          600: "#a8861f",
-          700: "#8a6b18",
-          800: "#6b5213",
-          900: "#4d3a0d",
-          950: "#2b2006",
+          50: "#fff0f1",
+          100: "#ffe0e3",
+          200: "#ffc2c9",
+          300: "#ff9aa5",
+          400: "#ff6b7d",
+          500: "#ff4d5e",
+          600: "#f43d4f",
+          700: "#d92d40",
+          800: "#b21f31",
+          900: "#8e1a29",
+          950: "#4f0a13",
         },
       },
       fontFamily: {
@@ -61,7 +61,7 @@ const config: Config = {
       },
       boxShadow: {
         soft: "0 8px 30px rgba(17, 17, 19, 0.06)",
-        glow: "0 0 40px -12px rgba(201, 162, 39, 0.4)",
+        glow: "0 0 40px -12px rgba(255, 77, 94, 0.4)",
       },
       keyframes: {
         "fade-up": {

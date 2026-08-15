@@ -27,13 +27,18 @@ model User {
 }
 
 model AcademyProgress {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  trackId   String
-  score     Int      @default(0)
-  passed    Boolean  @default(false)
-  updatedAt DateTime @updatedAt
+  id                String    @id @default(cuid())
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackId           String
+  score             Int       @default(0)
+  passed            Boolean   @default(false)
+  completedLessons  String    @default("[]")
+  examScore         Int       @default(0)
+  examPassed        Boolean   @default(false)
+  quizLockedUntil   DateTime?
+  examLockedUntil   DateTime?
+  updatedAt         DateTime  @updatedAt
 
   @@unique([userId, trackId])
 }

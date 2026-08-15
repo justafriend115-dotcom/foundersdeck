@@ -34,7 +34,7 @@ export default function AcademySection() {
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-violet-600/25 bg-violet-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-violet-700">
+          <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-600">
             <GraduationCap className="size-3.5" />
             DECKADEMY · by FoundersDeck
           </span>
@@ -58,8 +58,8 @@ export default function AcademySection() {
                 className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-lg hover:shadow-black/5"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#2e1065,#6d28d9)]">
-                    <Icon className="size-5 text-lime-300" />
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#0d0d14,#ff4d5e)]">
+                    <Icon className="size-5 text-brand-300" />
                   </span>
                   <div>
                     <h3 className="font-semibold text-foreground">{track.title}</h3>
@@ -86,10 +86,10 @@ export default function AcademySection() {
           })}
         </div>
 
-        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-violet-600/25 bg-violet-50/60 p-6 sm:flex-row">
+        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-brand-500/30 bg-brand-500/10/60 p-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-xl bg-[#2e1065]">
-              <Award className="size-5 text-lime-300" />
+            <span className="flex size-11 items-center justify-center rounded-xl bg-[#0d0d14]">
+              <Award className="size-5 text-brand-300" />
             </span>
             <p className="text-foreground/80 text-sm">
               <span className="font-semibold text-foreground">
@@ -102,7 +102,7 @@ export default function AcademySection() {
           </div>
           <Link
             href="/deckademy"
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#2e1065,#6d28d9)] px-6 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-colors hover:brightness-110"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#0d0d14,#ff4d5e)] px-6 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:brightness-110"
           >
             Start learning
             <ArrowRight className="size-4" />
