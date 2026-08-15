@@ -52,16 +52,16 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-navy-800 bg-navy-800 text-navy-400">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-5">
-          <div className="md:col-span-2">
+    <footer className="fixed inset-x-0 bottom-0 z-0 h-[600px] overflow-hidden bg-navy-950 text-navy-400 sm:h-[460px] lg:h-[400px]">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Logo dark />
             <p className="mt-4 max-w-sm text-sm leading-relaxed">
               The toolkit for pre-seed founders  pitch decks, business plans, financials
               and investor outreach, all in one place.
             </p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-5 flex gap-3">
               {socialIcons.map((icon) => (
                 <SocialIcon key={icon.label} label={icon.label} path={icon.path} />
               ))}
@@ -73,7 +73,7 @@ export default function Footer() {
               <h4 className="text-sm font-semibold uppercase tracking-wider text-white">
                 {col.title}
               </h4>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-3 space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
                     <Link href="#" className="text-sm transition-colors hover:text-brand-300">
@@ -86,7 +86,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-navy-800 pt-8 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-between gap-3 border-t border-navy-800 pt-6 sm:flex-row">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} FoundersDeck. All rights reserved.
           </p>

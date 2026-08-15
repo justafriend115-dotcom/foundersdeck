@@ -52,8 +52,8 @@ export default async function CertificatePage({ params }: { params: { trackId: s
             >
               <defs>
                 <linearGradient id="cert-gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#F5EDDB" />
-                  <stop offset="100%" stopColor="#C4A978" />
+                  <stop offset="0%" stopColor="#EAD9AC" />
+                  <stop offset="100%" stopColor="#B8914D" />
                 </linearGradient>
               </defs>
               <polygon

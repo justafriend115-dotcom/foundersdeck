@@ -81,7 +81,7 @@ export function DeckademyBillingCard({
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(160deg,#d5bd8b_0%,#e6d6b4_50%,#f5eddb_100%)]">
+    <main className="min-h-screen bg-[linear-gradient(160deg,#cba967_0%,#dcc28a_50%,#ead9ac_100%)]">
       <div className="mx-auto max-w-5xl px-6 py-14">
         <Link
           href="/deckademy"

@@ -81,7 +81,7 @@ export default async function AcademyPage() {
   return (
     <main>
       {/* HERO */}
-      <section className="bg-[linear-gradient(135deg,#d5bd8b_0%,#e6d6b4_55%,#f5eddb_100%)] text-navy-900">
+      <section className="bg-[linear-gradient(135deg,#cba967_0%,#dcc28a_55%,#ead9ac_100%)] text-navy-900">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-20">
           <div>
             <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-navy-800/20 bg-navy-800/5 px-4 py-1.5 text-xs font-bold text-navy-700">
@@ -335,7 +335,7 @@ export default async function AcademyPage() {
                           "h-full rounded-full",
                           certified
                             ? "bg-emerald-500"
-                            : "bg-[linear-gradient(90deg,#d5bd8b,#e6d6b4)]",
+                            : "bg-[linear-gradient(90deg,#cba967,#dcc28a)]",
                         )}
                         style={{ width: `${entry?.score ?? 0}%` }}
                       />
@@ -521,7 +521,7 @@ export default async function AcademyPage() {
                   <div
                     className="mx-auto mt-3 h-2 w-32 rounded-full bg-navy-800"
                     style={{
-                      background: `conic-gradient(#d5bd8b ${Math.min(100, (passedTracks / m.count) * 100)}%, #22304a 0)`,
+                      background: `conic-gradient(#cba967 ${Math.min(100, (passedTracks / m.count) * 100)}%, #22304a 0)`,
                     }}
                   />
                 </div>
@@ -561,7 +561,7 @@ export default async function AcademyPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[linear-gradient(135deg,#d5bd8b,#e6d6b4)] px-6 py-16 text-center text-navy-900">
+      <section className="bg-[linear-gradient(135deg,#cba967,#dcc28a)] px-6 py-16 text-center text-navy-900">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-navy-700">
             <GraduationCap className="mr-1.5 inline size-4" />

@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#d5bd8b_0%,#e6d6b4_55%,#f5eddb_100%)]">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#cba967_0%,#dcc28a_55%,#ead9ac_100%)]">
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
       <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-navy-800/10 blur-3xl" />
 

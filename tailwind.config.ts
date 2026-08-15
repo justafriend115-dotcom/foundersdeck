@@ -76,6 +76,19 @@ const config: Config = {
           900: "#1F2C42",
           950: "#141E30",
         },
+        gold: {
+          50: "#FBF6EA",
+          100: "#F5EAD0",
+          200: "#EAD9AC",
+          300: "#E3CC98",
+          400: "#DCC28A",
+          500: "#CBA967",
+          600: "#B8914D",
+          700: "#99763C",
+          800: "#7A5C2E",
+          900: "#5C4421",
+          950: "#3D2D15",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
@@ -87,7 +100,7 @@ const config: Config = {
       },
       boxShadow: {
         soft: "0 8px 30px rgba(17, 17, 19, 0.06)",
-        glow: "0 0 40px -12px rgba(213, 189, 139, 0.35)",
+        glow: "0 0 40px -12px rgba(203, 169, 103, 0.35)",
       },
       keyframes: {
         "fade-up": {
