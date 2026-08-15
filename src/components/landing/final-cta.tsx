@@ -15,7 +15,7 @@ export default function FinalCta() {
             Your first round starts with a single deck
           </h2>
           <p className="relative mx-auto mt-5 max-w-xl text-lg text-brand-100/80">
-            Join thousands of founders building with FoundersDeck. Free to start — no credit card,
+            Join thousands of founders building with FoundersDeck. Free to start  no credit card,
             no commitment.
           </p>
           <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">

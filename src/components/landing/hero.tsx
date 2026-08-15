@@ -22,7 +22,7 @@ export default function Hero() {
             className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-muted-foreground"
             style={{ animationDelay: "200ms" }}
           >
-            FoundersDeck turns the busywork of starting up into guided workflows — pitch decks,
+            FoundersDeck turns the busywork of starting up into guided workflows  pitch decks,
             business plans, financials and investor outreach in one place, built for founders.
           </p>
 
@@ -57,7 +57,7 @@ export default function Hero() {
               <span className="size-2.5 rounded-full bg-amber-400" />
               <span className="size-2.5 rounded-full bg-green-400" />
               <span className="ml-3 text-xs font-medium text-muted-foreground">
-                FoundersDeck — AI Pitch Generator
+                FoundersDeck  AI Pitch Generator
               </span>
               <span className="ml-auto rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700">
                 SOON

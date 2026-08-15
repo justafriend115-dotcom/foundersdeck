@@ -3,7 +3,7 @@ import type { SuggestionKind } from "@/lib/ai/types";
 import { generateBusinessPlanSuggestion, generatePitchSuggestion } from "@/lib/mock-ai";
 
 const SUGGEST_SYSTEM =
-  "You are a pragmatic startup coach helping founders draft their materials. Write in plain, confident language. Respond with 2-3 sentences only — no headers, no markdown, no commentary.";
+  "You are a pragmatic startup coach helping founders draft their materials. Write in plain, confident language. Respond with 2-3 sentences only  no headers, no markdown, no commentary.";
 
 function buildSuggestPrompt(kind: SuggestionKind, section: string): string {
   if (kind === "business-plan") {

@@ -9,7 +9,7 @@ const defaultScenarios: Scenario[] = [
   {
     id: "best",
     label: "Best case",
-    description: "Everything goes right — hockey stick growth.",
+    description: "Everything goes right  hockey stick growth.",
     years: ["", "", "", "", ""],
   },
   {

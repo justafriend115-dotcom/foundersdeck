@@ -66,7 +66,7 @@ export function ContingencyPlanner() {
     <div>
       <ToolHeader
         title="5-Year Contingency Planner"
-        description="Plan for best, worst and realistic outcomes — with pivot strategies for each. Investors notice founders who have thought through the worst case."
+        description="Plan for best, worst and realistic outcomes  with pivot strategies for each. Investors notice founders who have thought through the worst case."
       />
 
       <div className="print-area space-y-8">
@@ -149,7 +149,7 @@ export function ContingencyPlanner() {
                       >
                         {[1, 2, 3, 4, 5].map((n) => (
                           <option key={n} value={n}>
-                            {n} — {n <= 2 ? "Low" : n <= 4 ? "Medium" : "High"}
+                            {n}  {n <= 2 ? "Low" : n <= 4 ? "Medium" : "High"}
                           </option>
                         ))}
                       </select>
@@ -165,7 +165,7 @@ export function ContingencyPlanner() {
                       >
                         {[1, 2, 3, 4, 5].map((n) => (
                           <option key={n} value={n}>
-                            {n} — {n <= 2 ? "Low" : n <= 4 ? "Medium" : "High"}
+                            {n}  {n <= 2 ? "Low" : n <= 4 ? "Medium" : "High"}
                           </option>
                         ))}
                       </select>

@@ -15,11 +15,11 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: "FoundersDeck — AI-powered tools to launch your startup",
+    default: "FoundersDeck  AI-powered tools to launch your startup",
     template: "%s | FoundersDeck",
   },
   description:
-    "Pitch decks, business plans, financial projections and investor CRM — everything founders need to go from idea to investment-ready, in one place.",
+    "Pitch decks, business plans, financial projections and investor CRM  everything founders need to go from idea to investment-ready, in one place.",
   applicationName: "FoundersDeck",
   keywords: [
     "startup",
@@ -39,15 +39,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: appUrl,
     siteName: "FoundersDeck",
-    title: "FoundersDeck — AI-powered tools to launch your startup",
+    title: "FoundersDeck  AI-powered tools to launch your startup",
     description:
-      "Pitch decks, business plans, financial projections and investor CRM — everything founders need to go from idea to investment-ready.",
+      "Pitch decks, business plans, financial projections and investor CRM  everything founders need to go from idea to investment-ready.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FoundersDeck — AI-powered tools to launch your startup",
+    title: "FoundersDeck  AI-powered tools to launch your startup",
     description:
-      "Pitch decks, business plans, financial projections and investor CRM — everything founders need to go from idea to investment-ready.",
+      "Pitch decks, business plans, financial projections and investor CRM  everything founders need to go from idea to investment-ready.",
   },
   robots: {
     index: true,

@@ -184,7 +184,7 @@ export function BusinessPlanBuilder() {
         <div>
           <h1 className="text-2xl font-extrabold">Business Plan</h1>
           <p className="text-sm text-muted-foreground">
-            Generated with FoundersDeck — {new Date().toLocaleDateString()}
+            Generated with FoundersDeck  {new Date().toLocaleDateString()}
           </p>
         </div>
         {steps.map((s) => (

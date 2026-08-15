@@ -15,7 +15,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const MEMBER_FEATURES = [
-  "All 8 tracks — 68 deep lessons with worked examples",
+  "All 8 tracks  68 deep lessons with worked examples",
   "Action plans after every lesson",
   "8 pro quizzes with certificates",
   "All certificates printable & verifiable",
@@ -101,7 +101,7 @@ export function DeckademyBillingCard({
               {isMember ? "You&apos;re a DECKADEMY member" : "Master the craft of raising"}
             </h1>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
-              DECKADEMY is FoundersDeck&apos;s self-teaching school for founders — 8 tracks, 68
+              DECKADEMY is FoundersDeck&apos;s self-teaching school for founders  8 tracks, 68
               deep lessons, and certificates that prove you&apos;re ready to raise.
             </p>
 
@@ -122,7 +122,7 @@ export function DeckademyBillingCard({
                 <span className="text-sm font-semibold text-white/60">/month</span>
               </div>
               <p className="mt-2 text-sm text-white/60">
-                A separate subscription from your FoundersDeck plan — cancel anytime.
+                A separate subscription from your FoundersDeck plan  cancel anytime.
               </p>
               {isMember ? (
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -147,7 +147,7 @@ export function DeckademyBillingCard({
                   className="mt-5 w-full bg-lime-400 text-[#111827] shadow-lg shadow-lime-500/25 hover:bg-lime-300"
                 >
                   {loading === "join" ? <Loader2 className="animate-spin" /> : <Crown className="size-4" />}
-                  {loading === "join" ? "Starting checkout…" : "Become a member — $49.99/mo"}
+                  {loading === "join" ? "Starting checkout…" : "Become a member  $49.99/mo"}
                 </Button>
               )}
             </div>
@@ -155,7 +155,7 @@ export function DeckademyBillingCard({
             {error && <p className="mt-4 text-sm font-medium text-red-300">{error}</p>}
             {!isMember && (
               <p className="mt-4 text-xs text-white/50">
-                {name}, you&apos;re on the free tier — the Legal track is always free. Membership
+                {name}, you&apos;re on the free tier  the Legal track is always free. Membership
                 unlocks everything else.
               </p>
             )}

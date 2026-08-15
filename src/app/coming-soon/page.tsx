@@ -9,16 +9,16 @@ export default function ComingSoonPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#1e1b2e_0%,#2d1b4e_45%,#7c3aed_100%)] px-4 py-16">
       <div className="relative w-full max-w-3xl">
-        {/* Lottie animation — coding ape at work */}
+        {/* Lottie animation  coding ape at work */}
         <ComingSoonLottie className="mx-auto w-full max-w-[420px] sm:max-w-[480px]" />
 
         <div className="mt-6 text-center">
-          <div className="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-lime-300">
+            <div className="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-lime-300">
             <span className="relative flex size-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime-400 opacity-75" />
               <span className="relative inline-flex size-2 rounded-full bg-lime-400" />
             </span>
-            Coding ape at work
+            JAF is working on it
           </div>
           <h1 className="coming-soon-title mt-4 text-5xl font-black tracking-tight text-white sm:text-7xl">
             {"COMING SOON".split("").map((char, i) => (
@@ -32,7 +32,7 @@ export default function ComingSoonPage() {
             ))}
           </h1>
           <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-white/70">
-            Our coding ape is working on this right now — keep calm and stay tuned. It&apos;ll be
+            JAF is working on this right now  keep calm and stay tuned. It&apos;ll be
             worth the wait.
           </p>
 
@@ -42,7 +42,7 @@ export default function ComingSoonPage() {
               <div className="build-bar h-full rounded-full bg-gradient-to-r from-lime-400 to-emerald-400" />
             </div>
             <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-white/50">
-              Build progress — the ape is on it
+              Build progress  JAF is on it
             </p>
           </div>
 

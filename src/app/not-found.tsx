@@ -19,7 +19,7 @@ export default function NotFound() {
             This page took the money and ran
           </h1>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            The page you&apos;re looking for doesn&apos;t exist — but your idea still does.
+            The page you&apos;re looking for doesn&apos;t exist  but your idea still does.
           </p>
           <Link href="/" className="mt-8 inline-block">
             <Button variant="gradient" size="lg">

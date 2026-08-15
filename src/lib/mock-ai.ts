@@ -52,7 +52,7 @@ export function generatePitchDeck(input: PitchInput): DeckSlide[] {
     {
       title: "Cover",
       bullets: [
-        `${company} — a ${industry} company`,
+        `${company}  a ${industry} company`,
         `Mission: ${headline(mission)}`,
         "Pre-seed · Seed-ready",
       ],
@@ -61,7 +61,7 @@ export function generatePitchDeck(input: PitchInput): DeckSlide[] {
     {
       title: "Problem",
       bullets: problemPoints,
-      narrative: `The market today is broken. ${headline(problem)}. Every week our target customers lose time and money to this pain — and nothing on the market solves it end-to-end.`,
+      narrative: `The market today is broken. ${headline(problem)}. Every week our target customers lose time and money to this pain  and nothing on the market solves it end-to-end.`,
     },
     {
       title: "Solution",
@@ -137,6 +137,6 @@ export function generatePitchSuggestion(field: string): string {
     case "mission":
       return "To make world-class execution available to every founder, removing the busywork between idea and investment-ready.";
     default:
-      return "We are obsessed with this problem and have been living it daily — that is why the solution fits like a glove.";
+      return "We are obsessed with this problem and have been living it daily  that is why the solution fits like a glove.";
   }
 }

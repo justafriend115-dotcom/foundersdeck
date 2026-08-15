@@ -121,7 +121,7 @@ export function BillingCard({ plan, name }: { plan: string; name: string }) {
             ) : (
               <Button variant="gradient" onClick={startCheckout} disabled={loading !== null}>
                 {loading === "upgrade" ? <Loader2 className="animate-spin" /> : <Sparkles />}
-                Upgrade to Pro — $19/mo
+                Upgrade to Pro  $19/mo
               </Button>
             )}
           </div>
@@ -148,3 +148,4 @@ export function BillingCard({ plan, name }: { plan: string; name: string }) {
     </Card>
   );
 }
+

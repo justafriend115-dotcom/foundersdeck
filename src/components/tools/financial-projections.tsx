@@ -77,7 +77,7 @@ export function FinancialProjections() {
     <div>
       <ToolHeader
         title="Financial Projections"
-        description="Pick a revenue model, set your assumptions, and watch 12 months of numbers unfold — including break-even."
+        description="Pick a revenue model, set your assumptions, and watch 12 months of numbers unfold  including break-even."
       />
 
       <div className="grid gap-6 lg:grid-cols-5">
@@ -141,7 +141,7 @@ export function FinancialProjections() {
                   Break-even revenue
                 </div>
                 <p className="mt-2 text-2xl font-extrabold tracking-tight text-foreground">
-                  {Number.isFinite(breakEven) ? formatCurrency(breakEven) : "—"}
+                  {Number.isFinite(breakEven) ? formatCurrency(breakEven) : ""}
                   <span className="text-sm font-medium text-muted-foreground">/mo</span>
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">

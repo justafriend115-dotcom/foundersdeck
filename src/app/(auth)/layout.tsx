@@ -15,7 +15,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             Raise your first round with confidence.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-brand-100/80">
-            Pitch decks, business plans, financials and investor CRM — everything founders need
+            Pitch decks, business plans, financials and investor CRM  everything founders need
             before they walk into the room.
           </p>
         </div>

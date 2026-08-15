@@ -17,7 +17,7 @@ export function useLocalStorage<T>(key: string, fallback: T) {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
     } catch {
-      // storage unavailable — stub mode keeps state in memory
+      // storage unavailable  stub mode keeps state in memory
     }
   }, [key, value]);
 

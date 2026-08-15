@@ -103,7 +103,7 @@ export function InvestorCrm() {
     <div>
       <ToolHeader
         title="Investor CRM"
-        description="Track every investor from first touch to closing — meetings, outcomes and follow-ups in one pipeline."
+        description="Track every investor from first touch to closing  meetings, outcomes and follow-ups in one pipeline."
       />
 
       <div className="no-print mb-6 flex justify-end">

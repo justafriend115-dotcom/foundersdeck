@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-dynamic";
-export const alt = "FoundersDeck — AI-powered tools to launch your startup";
+export const alt = "FoundersDeck  AI-powered tools to launch your startup";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

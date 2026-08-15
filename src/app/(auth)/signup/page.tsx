@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function SignupPage() {
   return (
-    <AuthCard title="Create your account" description="Free forever — no credit card required.">
+    <AuthCard title="Create your account" description="Free forever  no credit card required.">
       <AuthForm mode="signup" />
     </AuthCard>
   );

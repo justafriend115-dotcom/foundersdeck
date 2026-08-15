@@ -99,14 +99,14 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
     description: "The step-by-step path from idea to legal entity.",
     title: "Incorporation Checklist",
     intro:
-      "A practical checklist to incorporate cleanly and avoid expensive fixes later. Order matters — complete it top to bottom.",
+      "A practical checklist to incorporate cleanly and avoid expensive fixes later. Order matters  complete it top to bottom.",
     sections: [
       {
         heading: "1. Foundation",
         body: [
           "Choose the jurisdiction and entity type (e.g., Delaware C-Corp for venture-backed startups).",
           "Reserve the company name and check domain/social handle availability.",
-          "Decide the initial equity split BEFORE incorporating — amendments are expensive.",
+          "Decide the initial equity split BEFORE incorporating  amendments are expensive.",
         ],
       },
       {
@@ -130,7 +130,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
       {
         heading: "4. Raising Capital",
         body: [
-          "Prepare a SAFE or priced round documents with a lawyer — never copy from a friend's round.",
+          "Prepare a SAFE or priced round documents with a lawyer  never copy from a friend's round.",
           "Run a background check on all new investors (signatures, adverse filings, reputation).",
           "Set up data room: deck, financials, cap table, contracts, IP filings.",
         ],
@@ -157,7 +157,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
       {
         heading: "2. Trademarks",
         body: [
-          "Search existing marks before spending on branding — a conflict is far cheaper to fix early.",
+          "Search existing marks before spending on branding  a conflict is far cheaper to fix early.",
           "File for the name and logo in the classes you operate in.",
           "Use the mark consistently and monitor for infringement.",
         ],
@@ -167,7 +167,7 @@ export const LEGAL_DOCUMENTS: LegalDocument[] = [
         body: [
           "File provisional patent applications early to lock in a filing date.",
           "Keep detailed invention records (date, who, what).",
-          "In most jurisdictions, public disclosure can destroy patent rights — publish nothing before filing.",
+          "In most jurisdictions, public disclosure can destroy patent rights  publish nothing before filing.",
         ],
       },
       {

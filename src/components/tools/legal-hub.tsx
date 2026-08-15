@@ -41,7 +41,7 @@ export function LegalHub() {
     <div>
       <ToolHeader
         title="Legal Hub"
-        description="Founder-grade templates and checklists — reviewed by lawyers once, used by founders everywhere. Always get professional advice before signing."
+        description="Founder-grade templates and checklists  reviewed by lawyers once, used by founders everywhere. Always get professional advice before signing."
       />
 
       <div className="grid gap-6 lg:grid-cols-4">

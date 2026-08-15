@@ -283,7 +283,7 @@ export function TrackViewer({
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
             You scored <span className="font-semibold text-foreground">{result.score}%</span> (
-            {result.correct}/{result.total} correct) — {PASS_SCORE}% is required to pass. Best
+            {result.correct}/{result.total} correct)  {PASS_SCORE}% is required to pass. Best
             score: {result.bestScore}%.
           </p>
 

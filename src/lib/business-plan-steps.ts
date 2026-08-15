@@ -17,7 +17,7 @@ export const BUSINESS_PLAN_STEPS: Step[] = [
     id: "summary",
     title: "Executive Summary",
     description:
-      "The elevator pitch for your entire business — write it last if it helps, but keep it sharp.",
+      "The elevator pitch for your entire business  write it last if it helps, but keep it sharp.",
     fields: [
       {
         key: "vision",
@@ -105,7 +105,7 @@ export const BUSINESS_PLAN_STEPS: Step[] = [
   {
     id: "financials",
     title: "Financial Plan",
-    description: "The numbers behind the story — keep assumptions conservative.",
+    description: "The numbers behind the story  keep assumptions conservative.",
     fields: [
       {
         key: "startupCosts",
@@ -130,7 +130,7 @@ export const BUSINESS_PLAN_STEPS: Step[] = [
   {
     id: "team",
     title: "Team",
-    description: "The people executing the plan — and the gaps you'll fill.",
+    description: "The people executing the plan  and the gaps you'll fill.",
     fields: [
       {
         key: "founders",

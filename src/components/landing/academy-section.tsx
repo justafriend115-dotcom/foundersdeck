@@ -43,7 +43,7 @@ export default function AcademySection() {
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             {ACADEMY_STATS.lessons} lessons and {ACADEMY_STATS.quizzes} quiz questions across{" "}
-            {ACADEMY_STATS.tracks} tracks — legal, team, fundraising, finance, product, sales,
+            {ACADEMY_STATS.tracks} tracks  legal, team, fundraising, finance, product, sales,
             pitching and operations. Every lesson ends with an action plan. Pass each quiz with 80%+
             and earn a certificate you can print.
           </p>
@@ -95,7 +95,7 @@ export default function AcademySection() {
               <span className="font-semibold text-foreground">
                 {ACADEMY_TRACKS.length - 2} more tracks
               </span>{" "}
-              await — Fundraising, Finance, Product, Go-to-Market, Pitching and Operations.
+              await  Fundraising, Finance, Product, Go-to-Market, Pitching and Operations.
               Membership unlocks everything at{" "}
               <span className="font-semibold text-foreground">$49.99/mo</span>.
             </p>

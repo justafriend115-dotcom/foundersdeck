@@ -21,7 +21,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
       <main className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
         <h1 className="text-2xl font-bold text-foreground">This track is part of DECKADEMY</h1>
         <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
-          Join DECKADEMY to unlock all 8 tracks and certificates — your first track (Legal &amp;
+          Join DECKADEMY to unlock all 8 tracks and certificates  your first track (Legal &amp;
           Entity Setup) is always free.
         </p>
         <div className="mt-6 flex justify-center gap-3">
@@ -29,7 +29,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
             href="/deckademy/billing"
             className="rounded-lg bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25"
           >
-            Become a member — $49.99/mo
+            Become a member  $49.99/mo
           </Link>
           <Link
             href="/deckademy"

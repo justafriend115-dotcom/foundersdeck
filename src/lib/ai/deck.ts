@@ -3,7 +3,7 @@ import { generateAiText, getProviderInfo } from "@/lib/ai/provider";
 import type { DeckSlide, PitchInput } from "@/lib/ai/types";
 
 const DECK_SYSTEM =
-  "You are a world-class startup pitch deck strategist. You distill founder input into a clear, investor-grade narrative. Always respond with raw JSON only — no markdown, no code fences, no commentary.";
+  "You are a world-class startup pitch deck strategist. You distill founder input into a clear, investor-grade narrative. Always respond with raw JSON only  no markdown, no code fences, no commentary.";
 
 const DECK_SLIDE_TITLES = [
   "Cover",
@@ -26,7 +26,7 @@ function buildDeckPrompt(input: PitchInput): string {
     `Generate a JSON array with exactly 7 slide objects, in this order: ${DECK_SLIDE_TITLES.join(", ")}.`,
     "Each slide object must have exactly this shape:",
     '{"title": string, "bullets": string[] (3-5 punchy bullet points), "narrative": string (2-3 sentences, spoken-leadership tone)}',
-    "Bullets must be specific to the company input — never generic filler. Keep every bullet under 20 words.",
+    "Bullets must be specific to the company input  never generic filler. Keep every bullet under 20 words.",
   ].join("\n");
 }
 

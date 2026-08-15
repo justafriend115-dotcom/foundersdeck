@@ -158,7 +158,7 @@ export function PitchGenerator() {
     <div>
       <ToolHeader
         title="AI Pitch Generator"
-        description="Answer five questions and get a structured, investor-ready deck — narrative, bullets and slide order included. Decks are saved to your workspace."
+        description="Answer five questions and get a structured, investor-ready deck  narrative, bullets and slide order included. Decks are saved to your workspace."
       />
 
       <div className="grid gap-6 lg:grid-cols-5">
@@ -271,7 +271,7 @@ export function PitchGenerator() {
               <Sparkles className="size-8 text-brand-300" />
               <p className="mt-4 font-medium text-foreground">Your deck will appear here</p>
               <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-                Fill in the details and hit &quot;Generate my deck&quot; — seven investor-grade
+                Fill in the details and hit &quot;Generate my deck&quot;  seven investor-grade
                 slides in under a minute.
               </p>
             </div>

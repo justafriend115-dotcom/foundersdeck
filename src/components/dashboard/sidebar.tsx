@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Database,
   FileText,
   GraduationCap,
   Handshake,
@@ -28,6 +29,7 @@ export const navItems = [
   { href: "/dashboard/financials", label: "Financial Projections", icon: TrendingUp },
   { href: "/dashboard/legal", label: "Legal Hub", icon: ShieldCheck },
   { href: "/dashboard/crm", label: "Investor CRM", icon: Handshake },
+  { href: "/dashboard/scraper", label: "Data Scraper", icon: Database },
   { href: "/deckademy", label: "DECKADEMY", icon: GraduationCap },
 ];
 
@@ -112,7 +114,7 @@ export function Sidebar({
           <div className="mb-2 flex items-center gap-2 rounded-lg border border-amber-400/20 bg-amber-400/10 px-3 py-2">
             <Sparkles className="size-3.5 shrink-0 text-amber-300" />
             <p className="text-[11px] font-medium leading-tight text-amber-200/90">
-              AI builder tools are coming soon — the coding ape is on it
+              AI builder tools are coming soon  JAF is on it
             </p>
           </div>
           <NavList />
@@ -143,7 +145,7 @@ export function Sidebar({
               <div className="mb-2 flex items-center gap-2 rounded-lg border border-amber-400/20 bg-amber-400/10 px-3 py-2">
                 <Sparkles className="size-3.5 shrink-0 text-amber-300" />
                 <p className="text-[11px] font-medium leading-tight text-amber-200/90">
-                  AI builder tools are coming soon — the coding ape is on it
+                  AI builder tools are coming soon  JAF is on it
                 </p>
               </div>
               <NavList onNavigate={onClose} />

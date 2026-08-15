@@ -96,7 +96,7 @@ export default async function AcademyPage() {
             </h1>
             <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/70">
               {lessonCount} lessons and {quizCount} quiz questions across {ACADEMY_TRACKS.length}{" "}
-              tracks — legal, team, fundraising, finance, product, sales, pitching and operations.
+              tracks  legal, team, fundraising, finance, product, sales, pitching and operations.
               Learn, act, prove it, and print your certificate.
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
@@ -385,7 +385,7 @@ export default async function AcademyPage() {
                       <span className="ml-auto text-xs text-zinc-400">{track.lessons.length} lessons</span>
                     </div>
                     <p className="mt-2 text-sm font-bold text-[#111827]">
-                      {track.title} — begin your first track
+                      {track.title}  begin your first track
                     </p>
                     <p className="mt-1 text-xs leading-relaxed text-zinc-500">
                       {track.tagline}
@@ -432,7 +432,7 @@ export default async function AcademyPage() {
                     </div>
                     <p className="mt-2 text-sm font-bold text-[#111827]">{track.title}</p>
                     <p className="mt-1 text-xs leading-relaxed text-zinc-500">
-                      Quiz passed at {entry.score}% — certificate ready to print.
+                      Quiz passed at {entry.score}%  certificate ready to print.
                     </p>
                   </div>
                 );
@@ -448,7 +448,7 @@ export default async function AcademyPage() {
                   <p className="mt-2 text-sm font-bold text-[#111827]">{track.title}</p>
                   <p className="mt-1 text-xs leading-relaxed text-zinc-500">
                     {isMember
-                      ? `${track.lessons.length} lessons waiting — dive in.`
+                      ? `${track.lessons.length} lessons waiting  dive in.`
                       : `Join DECKADEMY to unlock all ${track.lessons.length} lessons.`}
                   </p>
                 </div>
@@ -578,7 +578,7 @@ export default async function AcademyPage() {
               href="/deckademy/legal"
               className="inline-flex items-center gap-2 rounded-lg bg-lime-400 px-7 py-3.5 text-sm font-bold text-[#111827] shadow-lg shadow-lime-500/25 transition-colors hover:bg-lime-300"
             >
-              Start Learning — Free
+              Start Learning  Free
               <ArrowRight className="size-4" />
             </Link>
             {!isMember && (
@@ -596,7 +596,7 @@ export default async function AcademyPage() {
 
       <p className="no-print bg-[#f5f5f6] py-8 text-center text-xs text-zinc-400">
         <GraduationCap className="mr-1 inline size-3.5" />
-        FoundersHQ DECKADEMY — {lessonCount} lessons · {quizCount} quiz questions ·{" "}
+        FoundersHQ DECKADEMY  {lessonCount} lessons · {quizCount} quiz questions ·{" "}
         {PASS_SCORE}% to certify · certificates printable
       </p>
     </main>

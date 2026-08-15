@@ -10,7 +10,7 @@ const features = [
     icon: Sparkles,
     title: "AI Pitch Generator",
     description:
-      "Answer a few questions and get a structured, investor-ready pitch deck — narrative, bullets and slide order included.",
+      "Answer a few questions and get a structured, investor-ready pitch deck  narrative, bullets and slide order included.",
   },
   {
     icon: FileText,
