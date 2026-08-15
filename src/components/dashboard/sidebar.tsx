@@ -22,8 +22,8 @@ import type { User } from "@/lib/auth/types";
 
 export const navItems = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
-  { href: "/dashboard/pitch", label: "Pitch Generator", icon: Sparkles },
-  { href: "/dashboard/business-plan", label: "Business Plan", icon: FileText },
+  { href: "/dashboard/pitch", label: "Pitch Generator", icon: Sparkles, comingSoon: true },
+  { href: "/dashboard/business-plan", label: "Business Plan", icon: FileText, comingSoon: true },
   { href: "/dashboard/contingency", label: "Contingency Planner", icon: Workflow },
   { href: "/dashboard/financials", label: "Financial Projections", icon: TrendingUp },
   { href: "/dashboard/legal", label: "Legal Hub", icon: ShieldCheck },
@@ -51,7 +51,12 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
             )}
           >
             <item.icon className="size-4.5 shrink-0" />
-            {item.label}
+            <span className="flex-1 truncate">{item.label}</span>
+            {item.comingSoon && (
+              <span className="shrink-0 rounded-full bg-amber-400/15 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-amber-300 ring-1 ring-amber-400/30">
+                Soon
+              </span>
+            )}
           </Link>
         );
       })}
@@ -104,6 +109,12 @@ export function Sidebar({
           <Logo dark />
         </div>
         <div className="mt-4 flex flex-1 flex-col">
+          <div className="mb-2 flex items-center gap-2 rounded-lg border border-amber-400/20 bg-amber-400/10 px-3 py-2">
+            <Sparkles className="size-3.5 shrink-0 text-amber-300" />
+            <p className="text-[11px] font-medium leading-tight text-amber-200/90">
+              AI builder tools are coming soon — the coding ape is on it
+            </p>
+          </div>
           <NavList />
           <UserFooter user={user} />
         </div>
@@ -129,6 +140,12 @@ export function Sidebar({
               </button>
             </div>
             <div className="mt-4 flex flex-1 flex-col">
+              <div className="mb-2 flex items-center gap-2 rounded-lg border border-amber-400/20 bg-amber-400/10 px-3 py-2">
+                <Sparkles className="size-3.5 shrink-0 text-amber-300" />
+                <p className="text-[11px] font-medium leading-tight text-amber-200/90">
+                  AI builder tools are coming soon — the coding ape is on it
+                </p>
+              </div>
               <NavList onNavigate={onClose} />
               <UserFooter user={user} />
             </div>
