@@ -5,21 +5,21 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#d5bd8b_0%,#e6d6b4_55%,#f5eddb_100%)]">
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
-      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-brand-500/15 blur-3xl" />
+      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-navy-800/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <h1
-            className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+            className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-navy-900 sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "100ms" }}
           >
-            From idea to <span className="text-gradient">investment-ready</span> in days, not months
+            From idea to <span className="text-steel-700">investment-ready</span> in days, not months
           </h1>
 
           <p
-            className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-muted-foreground"
+            className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-navy-700"
             style={{ animationDelay: "200ms" }}
           >
             FoundersDeck turns the busywork of starting up into guided workflows  pitch decks,
@@ -40,7 +40,7 @@ export default function Hero() {
           </div>
 
           <p
-            className="mt-8 animate-fade-up text-sm text-muted-foreground"
+            className="mt-8 animate-fade-up text-sm text-navy-600"
             style={{ animationDelay: "400ms" }}
           >
             No credit card required · Free forever tier
@@ -82,7 +82,7 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
-                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-brand-500 text-sm font-semibold text-navy-950 shadow-lg shadow-black/25 ring-1 ring-navy-700">
+                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-navy-800 text-sm font-semibold text-brand-200 shadow-lg shadow-black/25 ring-1 ring-navy-700">
                   Generate my deck
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function Hero() {
                   <span className="text-xs font-medium text-muted-foreground">92% ready</span>
                 </div>
                 <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <div className="h-full w-[92%] rounded-full bg-brand-500" />
+                  <div className="h-full w-[92%] rounded-full bg-navy-800" />
                 </div>
                 <div className="mt-5 space-y-3">
                   {[

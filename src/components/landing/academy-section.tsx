@@ -102,7 +102,7 @@ export default function AcademySection() {
           </div>
           <Link
             href="/deckademy"
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#0a1120,#5e83ae)] px-6 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:brightness-110"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-navy-800 px-6 text-sm font-semibold text-brand-200 shadow-lg shadow-navy-950/40 transition-colors hover:bg-navy-700"
           >
             Start learning
             <ArrowRight className="size-4" />

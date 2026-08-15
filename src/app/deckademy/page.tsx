@@ -81,20 +81,20 @@ export default async function AcademyPage() {
   return (
     <main>
       {/* HERO */}
-      <section className="bg-[linear-gradient(135deg,#0a1120_0%,#5e83ae_55%,#7fa3c6_100%)] text-white">
+      <section className="bg-[linear-gradient(135deg,#d5bd8b_0%,#e6d6b4_55%,#f5eddb_100%)] text-navy-900">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-20">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-4 py-1.5 text-xs font-bold text-brand-200">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-navy-800/20 bg-navy-800/5 px-4 py-1.5 text-xs font-bold text-navy-700">
               <Sparkles className="size-3.5" />
               {passedTracks > 0
                 ? `You've earned ${passedTracks} certificate${passedTracks === 1 ? "" : "s"}`
                 : "Self-teach every skill a startup demands"}
             </span>
             <h1 className="text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl">
-              Where <em className="not-italic text-brand-400">Founders</em> Are<br />
+              Where <em className="not-italic text-steel-700">Founders</em> Are<br />
               Forged
             </h1>
-            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-white/70">
+            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-navy-700">
               {lessonCount} lessons and {quizCount} quiz questions across {ACADEMY_TRACKS.length}{" "}
               tracks  legal, team, fundraising, finance, product, sales, pitching and operations.
               Learn, act, prove it, and print your certificate.
@@ -102,17 +102,17 @@ export default async function AcademyPage() {
             <div className="mt-8 flex flex-wrap gap-3.5">
               <Link
                 href="/deckademy/legal"
-                className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-bold text-navy-950 shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-400"
+                className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-6 py-3 text-sm font-bold text-brand-200 shadow-lg shadow-navy-950/40 transition-colors hover:bg-navy-700"
               >
                 Start the free Legal track
                 <ArrowRight className="size-4" />
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-card/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-navy-800/30 px-6 py-3 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-800/10"
               >
                 Back to dashboard
-              </Link>
+</Link>
             </div>
           </div>
 
@@ -297,7 +297,7 @@ export default async function AcademyPage() {
                     {locked ? (
                       <Lock className="size-4 text-navy-400" />
                     ) : certified ? (
-                      <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-emerald-600">
+                      <span className="flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-emerald-400">
                         <CheckCircle2 className="size-3" />
                         CERTIFIED
                       </span>
@@ -408,7 +408,7 @@ export default async function AcademyPage() {
                     <p className="mt-2 text-sm font-bold text-foreground">{track.title}</p>
                     <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-navy-800">
                       <div
-                        className="h-full rounded-full bg-brand-500"
+                        className="h-full rounded-full bg-navy-800"
                         style={{ width: `${entry.score}%` }}
                       />
                     </div>
@@ -561,23 +561,23 @@ export default async function AcademyPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[linear-gradient(135deg,#0a1120,#5e83ae)] px-6 py-16 text-center text-white">
+      <section className="bg-[linear-gradient(135deg,#d5bd8b,#e6d6b4)] px-6 py-16 text-center text-navy-900">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/80">
+          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-navy-700">
             <GraduationCap className="mr-1.5 inline size-4" />
             Admissions Open
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
             Begin Your Founder&apos;s Journey
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/70">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-navy-700">
             The Legal track is free and takes about 5 hours. Finish the lessons, pass the quiz at
             80%, pass the final exam at 70%, and your first certificate is yours to print.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/deckademy/legal"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-7 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-400"
+              className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-7 py-3.5 text-sm font-bold text-brand-200 shadow-lg shadow-navy-950/40 transition-colors hover:bg-navy-700"
             >
               Start Learning  Free
               <ArrowRight className="size-4" />
@@ -585,7 +585,7 @@ export default async function AcademyPage() {
             {!isMember && (
               <Link
                 href="/deckademy/billing"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/25 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-card/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-navy-800/30 px-7 py-3.5 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-800/10"
               >
                 <Crown className="size-4" />
                 Unlock all 8 tracks

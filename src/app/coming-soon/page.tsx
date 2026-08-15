@@ -7,7 +7,7 @@ export const metadata = { title: "Coming soon" };
 
 export default function ComingSoonPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#1e1b2e_0%,#2d1b4e_45%,#ff6b7d_100%)] px-4 py-16">
+    <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#141e30_0%,#1f2c42_45%,#5e83ae_100%)] px-4 py-16">
       <div className="relative w-full max-w-3xl">
         {/* Lottie animation  coding ape at work */}
         <ComingSoonLottie className="mx-auto w-full max-w-[420px] sm:max-w-[480px]" />
@@ -15,8 +15,8 @@ export default function ComingSoonPage() {
         <div className="mt-6 text-center">
             <div className="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-brand-300">
             <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-brand-500" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy-800 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-navy-800" />
             </span>
             JAF is working on it
           </div>
@@ -49,7 +49,7 @@ export default function ComingSoonPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-7 py-3.5 text-sm font-bold text-navy-950 shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-400"
+              className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-7 py-3.5 text-sm font-bold text-brand-200 shadow-lg shadow-navy-950/40 transition-colors hover:bg-navy-700"
             >
               <ArrowLeft className="size-4" />
               Back to dashboard

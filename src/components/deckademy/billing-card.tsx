@@ -81,52 +81,52 @@ export function DeckademyBillingCard({
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(160deg,#0a1120_0%,#5e83ae_50%,#7fa3c6_100%)]">
+    <main className="min-h-screen bg-[linear-gradient(160deg,#d5bd8b_0%,#e6d6b4_50%,#f5eddb_100%)]">
       <div className="mx-auto max-w-5xl px-6 py-14">
         <Link
           href="/deckademy"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/70 transition-colors hover:text-white"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 transition-colors hover:text-navy-900"
         >
           <ArrowLeft className="size-4" />
           Back to DECKADEMY
         </Link>
 
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-2">
-          <div className="text-white">
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-400/10 px-4 py-1.5 text-xs font-bold text-brand-200">
+          <div className="text-navy-900">
+            <span className="inline-flex items-center gap-2 rounded-full border border-navy-800/20 bg-navy-800/5 px-4 py-1.5 text-xs font-bold text-navy-700">
               <Sparkles className="size-3.5" />
               {isMember ? "Active membership" : "Affiliated with FoundersDeck"}
             </span>
             <h1 className="mt-5 text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl">
               {isMember ? "You&apos;re a DECKADEMY member" : "Master the craft of raising"}
             </h1>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/70">
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-navy-700">
               DECKADEMY is FoundersDeck&apos;s self-teaching school for founders  8 tracks, 68
               deep lessons, and certificates that prove you&apos;re ready to raise.
             </p>
 
             <ul className="mt-8 space-y-3.5">
               {MEMBER_FEATURES.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-sm text-white/90">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-400/20">
-                    <Check className="size-3 text-brand-300" />
+                <li key={feature} className="flex items-start gap-3 text-sm text-navy-800">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-navy-800/15">
+                    <Check className="size-3 text-navy-700" />
                   </span>
                   {feature}
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 rounded-2xl border border-white/15 bg-card/5 p-6 backdrop-blur">
+            <div className="mt-10 rounded-2xl border border-navy-800/20 bg-navy-800/10 p-6 backdrop-blur">
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-black tracking-tight text-brand-300">$49.99</span>
-                <span className="text-sm font-semibold text-white/60">/month</span>
+                <span className="text-5xl font-black tracking-tight text-navy-800">$49.99</span>
+                <span className="text-sm font-semibold text-navy-600">/month</span>
               </div>
-              <p className="mt-2 text-sm text-white/60">
+              <p className="mt-2 text-sm text-navy-600">
                 A separate subscription from your FoundersDeck plan  cancel anytime.
               </p>
               {isMember ? (
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-6 py-3 text-sm font-bold text-navy-950">
+                  <span className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-6 py-3 text-sm font-bold text-brand-200">
                     <GraduationCap className="size-4" />
                     Membership active
                   </span>
@@ -134,7 +134,7 @@ export function DeckademyBillingCard({
                     type="button"
                     onClick={cancelDemoMembership}
                     disabled={loading !== null}
-                    className="rounded-lg border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-card/10 disabled:opacity-60"
+                    className="rounded-lg border border-navy-800/30 px-6 py-3 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-800/10 disabled:opacity-60"
                   >
                     {loading === "cancel" ? <Loader2 className="animate-spin" /> : "Demo mode: cancel membership"}
                   </button>
@@ -144,7 +144,7 @@ export function DeckademyBillingCard({
                   type="button"
                   onClick={startCheckout}
                   disabled={loading !== null}
-                  className="mt-5 w-full bg-brand-500 text-navy-950 shadow-lg shadow-brand-500/25 hover:bg-brand-400"
+                  className="mt-5 w-full bg-navy-800 text-brand-200 shadow-lg shadow-navy-950/40 hover:bg-navy-700"
                 >
                   {loading === "join" ? <Loader2 className="animate-spin" /> : <Crown className="size-4" />}
                   {loading === "join" ? "Starting checkout…" : "Become a member  $49.99/mo"}
@@ -154,7 +154,7 @@ export function DeckademyBillingCard({
 
             {error && <p className="mt-4 text-sm font-medium text-red-300">{error}</p>}
             {!isMember && (
-              <p className="mt-4 text-xs text-white/50">
+              <p className="mt-4 text-xs text-navy-600">
                 {name}, you&apos;re on the free tier  the Legal track is always free. Membership
                 unlocks everything else.
               </p>

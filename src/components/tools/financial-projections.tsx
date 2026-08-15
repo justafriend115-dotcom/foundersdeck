@@ -201,7 +201,7 @@ export function FinancialProjections() {
                         style={{ height: `${Math.max((row.expenses / maxValue) * 100, 2)}%` }}
                       />
                       <div
-                        className="w-1/3 rounded-t bg-brand-500 transition-opacity group-hover:opacity-80"
+                        className="w-1/3 rounded-t bg-navy-800 transition-opacity group-hover:opacity-80"
                         style={{ height: `${Math.max((row.revenue / maxValue) * 100, 2)}%` }}
                       />
                     </div>
@@ -219,7 +219,7 @@ export function FinancialProjections() {
                 </div>
                 <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="size-2.5 rounded-sm bg-brand-500" />
+                    <span className="size-2.5 rounded-sm bg-navy-800" />
                     Revenue
                   </span>
                   <span className="inline-flex items-center gap-1.5">

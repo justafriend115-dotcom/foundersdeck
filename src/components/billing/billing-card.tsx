@@ -89,7 +89,7 @@ export function BillingCard({ plan, name }: { plan: string; name: string }) {
       <CardContent className="p-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
           <div className="flex items-center gap-4">
-            <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-brand-300 shadow-md shadow-navy-950/25">
+            <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-navy-800 text-brand-300 shadow-md shadow-navy-950/25">
               <CreditCard className="size-5" />
             </span>
             <div>

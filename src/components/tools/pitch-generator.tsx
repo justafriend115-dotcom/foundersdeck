@@ -317,7 +317,7 @@ export function PitchGenerator() {
                     className="rounded-xl border border-border bg-card p-6 shadow-sm"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex size-7 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-brand-300">
+                      <span className="flex size-7 items-center justify-center rounded-full bg-navy-800 text-xs font-bold text-brand-300">
                         {index + 1}
                       </span>
                       <h3 className="text-lg font-bold text-foreground">{slide.title}</h3>
@@ -331,7 +331,7 @@ export function PitchGenerator() {
                           key={bullet}
                           className="text-foreground/90 flex items-start gap-2 text-sm"
                         >
-                          <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500" />
+                          <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-navy-800" />
                           {bullet}
                         </li>
                       ))}

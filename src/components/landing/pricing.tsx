@@ -77,7 +77,7 @@ export default function Pricing() {
               )}
             >
               {tier.highlighted && (
-                <div className="absolute inset-0 -z-10 rounded-2xl bg-brand-500 opacity-10" />
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-navy-800 opacity-10" />
               )}
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold text-foreground">{tier.name}</h3>
@@ -99,7 +99,7 @@ export default function Pricing() {
                     <span
                       className={cn(
                         "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full",
-                        tier.highlighted ? "bg-brand-500" : "bg-brand-50",
+                        tier.highlighted ? "bg-navy-800" : "bg-brand-50",
                       )}
                     >
                       <Check

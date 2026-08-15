@@ -12,7 +12,7 @@ import {
 } from "@/lib/password-rules";
 import { cn } from "@/lib/utils";
 
-const STRENGTH_BAR = ["", "bg-red-500", "bg-orange-500", "bg-brand-400", "bg-brand-500"];
+const STRENGTH_BAR = ["", "bg-red-500", "bg-orange-500", "bg-brand-400", "bg-navy-800"];
 const STRENGTH_TEXT = ["", "text-red-500", "text-orange-500", "text-brand-400", "text-brand-300"];
 
 export function PasswordField({

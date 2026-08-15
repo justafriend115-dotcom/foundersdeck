@@ -52,7 +52,7 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-navy-800 bg-brand-500 text-navy-400">
+    <footer className="border-t border-navy-800 bg-navy-800 text-navy-400">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-5">
           <div className="md:col-span-2">

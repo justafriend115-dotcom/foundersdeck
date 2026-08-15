@@ -75,7 +75,7 @@ function UserFooter({ user }: { user: User }) {
   return (
     <div className="border-t border-navy-800 p-3">
       <div className="flex items-center gap-3 rounded-lg px-2 py-2">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-navy-950">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-700 text-xs font-bold text-brand-200">
           {initials(user.name)}
         </span>
         <div className="min-w-0 flex-1">
