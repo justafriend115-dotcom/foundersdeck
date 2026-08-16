@@ -536,7 +536,7 @@ export default async function AcademyPage() {
       <section className="bg-card py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-primary">
               <ListChecks className="mr-1.5 inline size-4" />
               How It Works
             </p>
@@ -546,15 +546,15 @@ export default async function AcademyPage() {
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {LOOP_STEPS.map((step, i) => (
-              <div key={step.title} className="relative rounded-2xl border border-secondary bg-card p-6">
-                <span className="absolute right-4 top-4 text-3xl font-black text-slate-100">
+              <div key={step.title} className="group relative overflow-hidden rounded-2xl border-2 border-primary/40 bg-card p-6 transition-all hover:border-primary hover:shadow-lg hover:shadow-primary/10">
+                <div className="absolute -right-3 -top-3 text-6xl font-black text-primary/10">
                   {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="flex size-12 items-center justify-center rounded-xl bg-secondary">
-                  <step.icon className="size-5.5 size-6 text-slate-400" />
+                </div>
+                <span className="flex size-12 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/20">
+                  <step.icon className="size-6 text-primary" />
                 </span>
                 <h3 className="mt-4 text-base font-extrabold text-foreground">{step.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{step.desc}</p>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{step.desc}</p>
               </div>
             ))}
           </div>
