@@ -12,14 +12,14 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <h1
-            className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-card sm:text-6xl lg:text-7xl"
+            className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "100ms" }}
           >
             From idea to <span className="text-primary">investment-ready</span> in days, not months
           </h1>
 
           <p
-            className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-secondary"
+            className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-secondary-foreground"
             style={{ animationDelay: "200ms" }}
           >
             FoundersDeck turns the busywork of starting up into guided workflows  pitch decks,
@@ -40,7 +40,7 @@ export default function Hero() {
           </div>
 
           <p
-            className="mt-8 animate-fade-up text-sm text-muted"
+            className="mt-8 animate-fade-up text-sm text-muted-foreground"
             style={{ animationDelay: "400ms" }}
           >
             No credit card required · Free forever tier
