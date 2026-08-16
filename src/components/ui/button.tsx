@@ -10,7 +10,7 @@ export const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
         gradient:
-          "bg-steel-600 text-white shadow-lg shadow-steel-500/40 ring-1 ring-steel-400/60 hover:bg-steel-500 hover:shadow-glow",
+          "bg-primary text-white shadow-lg shadow-muted/40 ring-1 ring-slate-400/60 hover:bg-muted hover:shadow-glow",
         outline: "border border-border bg-background hover:bg-muted hover:text-foreground",
         ghost: "hover:bg-muted hover:text-foreground",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",

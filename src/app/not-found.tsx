@@ -14,7 +14,7 @@ export default function NotFound() {
       </header>
       <main className="flex flex-1 items-center justify-center">
         <Container className="py-24 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-steel-600">404</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">404</p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             This page took the money and ran
           </h1>

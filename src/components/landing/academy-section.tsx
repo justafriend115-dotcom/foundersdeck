@@ -34,7 +34,7 @@ export default function AcademySection() {
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-steel-500/30 bg-steel-600/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-steel-600">
+          <span className="inline-flex items-center gap-2 rounded-full border border-muted/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
             <GraduationCap className="size-3.5" />
             DECKADEMY · by FoundersDeck
           </span>
@@ -58,8 +58,8 @@ export default function AcademySection() {
                 className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-lg hover:shadow-black/5"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-steel-600">
-                    <Icon className="size-5 text-steel-300" />
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-primary">
+                    <Icon className="size-5 text-slate-300" />
                   </span>
                   <div>
                     <h3 className="font-semibold text-foreground">{track.title}</h3>
@@ -86,10 +86,10 @@ export default function AcademySection() {
           })}
         </div>
 
-        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-steel-500/30 bg-steel-600/10 p-6 sm:flex-row">
+        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-muted/30 bg-primary/10 p-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-xl bg-steel-600/20">
-              <Award className="size-5 text-steel-400" />
+            <span className="flex size-11 items-center justify-center rounded-xl bg-primary/20">
+              <Award className="size-5 text-slate-400" />
             </span>
             <p className="text-foreground/80 text-sm">
               <span className="font-semibold text-foreground">
@@ -102,7 +102,7 @@ export default function AcademySection() {
           </div>
           <Link
             href="/deckademy"
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-steel-600 px-6 text-sm font-semibold text-white shadow-lg shadow-steel-500/40 transition-colors hover:bg-steel-500"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-white shadow-lg shadow-muted/40 transition-colors hover:bg-muted"
           >
             Start learning
             <ArrowRight className="size-4" />

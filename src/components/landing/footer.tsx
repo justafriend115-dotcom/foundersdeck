@@ -14,7 +14,7 @@ function SocialIcon({ label, path }: { label: string; path: string }) {
     <a
       href="#"
       aria-label={label}
-      className="flex size-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-900 text-slate-400 transition-colors hover:border-steel-500/50 hover:text-white"
+      className="flex size-9 items-center justify-center rounded-lg border border-secondary bg-card text-slate-400 transition-colors hover:border-muted/50 hover:text-white"
     >
       <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden="true">
         <path d={path} />
@@ -31,7 +31,7 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-navy-950 text-slate-300">
+    <footer className="border-t border-secondary bg-background text-slate-300">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="sm:col-span-2 lg:col-span-2">
@@ -55,7 +55,7 @@ export default function Footer() {
               <ul className="mt-3 space-y-2">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <Link href="#" className="text-sm transition-colors hover:text-steel-300">
+                    <Link href="#" className="text-sm transition-colors hover:text-slate-300">
                       {link}
                     </Link>
                   </li>
@@ -66,7 +66,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-slate-800 pt-6 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-secondary pt-6 sm:flex-row">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} FoundersDeck. All rights reserved.
           </p>

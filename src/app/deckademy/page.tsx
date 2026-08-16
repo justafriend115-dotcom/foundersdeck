@@ -81,20 +81,20 @@ export default async function AcademyPage() {
   return (
     <main>
       {/* HERO */}
-      <section className="bg-[linear-gradient(135deg,#1E3A8A_0%,#2563EB_50%,#E6B464_100%)] text-slate-900">
+      <section className="bg-background text-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-20">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-800/20 bg-slate-800/5 px-4 py-1.5 text-xs font-bold text-slate-700">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary/5 px-4 py-1.5 text-xs font-bold text-secondary">
               <Sparkles className="size-3.5" />
               {passedTracks > 0
                 ? `You've earned ${passedTracks} certificate${passedTracks === 1 ? "" : "s"}`
                 : "Self-teach every skill a startup demands"}
             </span>
             <h1 className="text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl">
-              Where <em className="not-italic text-steel-700">Founders</em> Are<br />
+              Where <em className="not-italic text-primary">Founders</em> Are<br />
               Forged
             </h1>
-            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-slate-700">
+            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-secondary">
               {lessonCount} lessons and {quizCount} quiz questions across {ACADEMY_TRACKS.length}{" "}
               tracks  legal, team, fundraising, finance, product, sales, pitching and operations.
               Learn, act, prove it, and print your certificate.
@@ -102,14 +102,14 @@ export default async function AcademyPage() {
             <div className="mt-8 flex flex-wrap gap-3.5">
               <Link
                 href="/deckademy/legal"
-                className="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-navy-950/40 transition-colors hover:bg-slate-700"
+                className="inline-flex items-center gap-2 rounded-lg bg-secondary px-6 py-3 text-sm font-bold text-white shadow-lg shadow-background/40 transition-colors hover:bg-secondary"
               >
                 Start the free Legal track
                 <ArrowRight className="size-4" />
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-800/30 px-6 py-3 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-800/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 px-6 py-3 text-sm font-semibold text-secondary transition-colors hover:bg-secondary/10"
               >
                 Back to dashboard
 </Link>
@@ -118,14 +118,14 @@ export default async function AcademyPage() {
 
           {/* Certificate mockup */}
           <div className="hidden justify-center md:flex">
-            <div className="relative w-full max-w-sm rotate-2 rounded-2xl border border-steel-500/30 bg-card p-7 text-foreground shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
-              <div className="absolute -right-4 -top-4 rounded-xl bg-navy-950 px-3 py-2 text-[11px] font-extrabold tracking-wide text-steel-300 shadow-lg">
+            <div className="relative w-full max-w-sm rotate-2 rounded-2xl border border-muted/30 bg-card p-7 text-foreground shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
+              <div className="absolute -right-4 -top-4 rounded-xl bg-background px-3 py-2 text-[11px] font-extrabold tracking-wide text-slate-300 shadow-lg">
                 {PASS_SCORE}% TO PASS
               </div>
-              <div className="flex items-center justify-between border-b border-dashed border-slate-800 pb-4">
+              <div className="flex items-center justify-between border-b border-dashed border-secondary pb-4">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-navy-950">
-                    <GraduationCap className="size-5 text-steel-300" />
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-background">
+                    <GraduationCap className="size-5 text-slate-300" />
                   </span>
                   <div>
                     <div className="text-sm font-black tracking-wide">FOUNDERSHQ</div>
@@ -134,17 +134,17 @@ export default async function AcademyPage() {
                     </div>
                   </div>
                 </div>
-                <Award className="size-6 text-steel-400" />
+                <Award className="size-6 text-slate-400" />
               </div>
               <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
                 Certificate of completion
               </p>
               <h2 className="mt-1.5 text-xl font-black">Startup Fundamentals</h2>
               <div className="mt-4 flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-full bg-slate-800 text-sm font-extrabold text-steel-400">
+                <span className="flex size-10 items-center justify-center rounded-full bg-secondary text-sm font-extrabold text-slate-400">
                   JD
                 </span>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-muted">
                   <span className="font-bold text-foreground">The Founder</span>
                   <br />
                   completed 8 of 8 tracks
@@ -156,21 +156,21 @@ export default async function AcademyPage() {
                   { label: "Quizzes", value: quizCount },
                   { label: "Score", value: `${averageScore || 90}%` },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-lg bg-slate-900 px-2 py-2.5 text-center">
-                    <div className="text-lg font-black text-steel-400">{s.value}</div>
+                  <div key={s.label} className="rounded-lg bg-card px-2 py-2.5 text-center">
+                    <div className="text-lg font-black text-slate-400">{s.value}</div>
                     <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
                       {s.label}
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-dashed border-slate-800 pt-4">
+              <div className="mt-5 flex items-center justify-between border-t border-dashed border-secondary pt-4">
                 <span className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400">
                   <CheckCircle2 className="size-3.5 text-emerald-500" />
                   VERIFIED · FOUNDERSHQ.APP
                 </span>
-                <span className="flex size-10 items-center justify-center rounded-full border-2 border-steel-500">
-                  <Award className="size-5 text-steel-400" />
+                <span className="flex size-10 items-center justify-center rounded-full border-2 border-muted">
+                  <Award className="size-5 text-slate-400" />
                 </span>
               </div>
             </div>
@@ -179,7 +179,7 @@ export default async function AcademyPage() {
       </section>
 
       {/* STATS STRIP */}
-      <section className="bg-navy-950 text-white">
+      <section className="bg-background text-white">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-8 px-6 py-9 md:grid-cols-4">
           {[
             { num: ACADEMY_TRACKS.length, label: "Tracks" },
@@ -195,7 +195,7 @@ export default async function AcademyPage() {
                 i % 2 === 0 && "border-r border-white/15 md:border-r-0",
               )}
             >
-              <div className="text-4xl font-black text-steel-400">{stat.num}</div>
+              <div className="text-4xl font-black text-slate-400">{stat.num}</div>
               <div className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/60">
                 {stat.label}
               </div>
@@ -211,28 +211,28 @@ export default async function AcademyPage() {
             {
               href: "/deckademy/legal",
               icon: BookOpen,
-              tile: "bg-steel-900",
+              tile: "bg-secondary",
               label: "Start Learning",
               sub: "Free Legal track, lesson 1",
             },
             {
               href: `/deckademy/${ACADEMY_TRACKS.find((t) => !t.free)?.id ?? "team"}`,
               icon: ClipboardList,
-              tile: "bg-steel-900",
+              tile: "bg-secondary",
               label: "Take a Quiz",
               sub: "Prove it with 80%+",
             },
             {
               href: `/deckademy/certificate/${passedTracks > 0 ? Array.from(progressMap.keys()).find((k) => progressMap.get(k)?.examPassed) ?? "legal" : "legal"}`,
               icon: Award,
-              tile: "bg-slate-900",
+              tile: "bg-card",
               label: "My Certificates",
               sub: `${passedTracks} earned so far`,
             },
             {
               href: isMember ? "/deckademy" : "/deckademy/billing",
               icon: isMember ? Rocket : Crown,
-              tile: "bg-slate-800",
+              tile: "bg-secondary",
               label: isMember ? "DECKADEMY Member" : "Become a Member",
               sub: isMember ? "All 8 tracks unlocked" : "Unlock all 8 tracks - $49.99/mo",
             },
@@ -240,7 +240,7 @@ export default async function AcademyPage() {
             <Link
               key={link.label}
               href={link.href}
-              className="group flex items-center gap-3.5 rounded-2xl border border-slate-800 bg-card p-5 shadow-[0_4px_16px_rgba(0,0,0,0.07)] transition-all hover:-translate-y-0.5 hover:border-steel-400/40 hover:shadow-[0_10px_28px_rgba(37,99,235,0.14)]"
+              className="group flex items-center gap-3.5 rounded-2xl border border-secondary bg-card p-5 shadow-[0_4px_16px_rgba(0,0,0,0.07)] transition-all hover:-translate-y-0.5 hover:border-slate-400/40 hover:shadow-[0_10px_28px_rgba(37,99,235,0.14)]"
             >
               <span
                 className={cn(
@@ -248,7 +248,7 @@ export default async function AcademyPage() {
                   link.tile,
                 )}
               >
-                <link.icon className="size-5 text-steel-400" />
+                <link.icon className="size-5 text-slate-400" />
               </span>
               <span>
                 <span className="block text-sm font-bold text-foreground">{link.label}</span>
@@ -263,13 +263,13 @@ export default async function AcademyPage() {
       <section className="mt-14 px-6">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-steel-400">
+            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-slate-400">
               <GraduationCap className="mr-1.5 inline size-4" />
               The Curriculum
             </p>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-foreground">
               Eight Tracks, One Standard:{" "}
-              <span className="text-steel-400">Ready to Raise</span>
+              <span className="text-slate-400">Ready to Raise</span>
             </h2>
           </div>
 
@@ -284,15 +284,15 @@ export default async function AcademyPage() {
                   key={track.id}
                   href={locked ? "/deckademy/billing" : `/deckademy/${track.id}`}
                   className={cn(
-                    "group flex flex-col rounded-2xl border border-slate-800 bg-card p-5 shadow-[0_4px_16px_rgba(0,0,0,0.05)] transition-all",
+                    "group flex flex-col rounded-2xl border border-secondary bg-card p-5 shadow-[0_4px_16px_rgba(0,0,0,0.05)] transition-all",
                     locked
                       ? "opacity-70"
-                      : "hover:-translate-y-1 hover:border-steel-400/50 hover:shadow-[0_12px_32px_rgba(37,99,235,0.12)]",
+                      : "hover:-translate-y-1 hover:border-slate-400/50 hover:shadow-[0_12px_32px_rgba(37,99,235,0.12)]",
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#0a1120,#5e83ae)]">
-                      <Icon className="size-5 text-steel-300" />
+                    <span className="flex size-11 items-center justify-center rounded-xl bg-[#1A233A]">
+                      <Icon className="size-5 text-slate-300" />
                     </span>
                     {locked ? (
                       <Lock className="size-4 text-slate-400" />
@@ -306,8 +306,8 @@ export default async function AcademyPage() {
                         className={cn(
                           "rounded-full px-2.5 py-1 text-[10px] font-extrabold tracking-wide",
                           track.free
-                            ? "bg-steel-600/10 text-steel-600"
-                            : "bg-steel-900 text-steel-400",
+                            ? "bg-primary/10 text-primary"
+                            : "bg-secondary text-slate-400",
                         )}
                       >
                         {track.free ? "FREE" : "MEMBER"}
@@ -315,7 +315,7 @@ export default async function AcademyPage() {
                     )}
                   </div>
                   <h3 className="mt-4 text-[15px] font-extrabold text-foreground">{track.title}</h3>
-                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-slate-500">
+                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-muted">
                     {track.tagline}
                   </p>
                   <div className="mt-4 flex items-center justify-between text-[11px] font-semibold text-slate-400">
@@ -323,19 +323,19 @@ export default async function AcademyPage() {
                       {track.lessons.length} lessons · {track.estimatedHours}
                     </span>
                     {entry && !locked && (
-                      <span className={cn("font-extrabold", certified ? "text-emerald-600" : "text-steel-400")}>
+                      <span className={cn("font-extrabold", certified ? "text-emerald-600" : "text-slate-400")}>
                         {entry.score}%
                       </span>
                     )}
                   </div>
                   {!locked && (
-                    <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
                       <div
                         className={cn(
                           "h-full rounded-full",
                           certified
                             ? "bg-emerald-500"
-                            : "bg-[linear-gradient(90deg,#cba967,#dcc28a)]",
+                            : "bg-primary",
                         )}
                         style={{ width: `${entry?.score ?? 0}%` }}
                       />
@@ -349,11 +349,11 @@ export default async function AcademyPage() {
       </section>
 
       {/* NOTICES (progress) */}
-      <section className="mt-16 bg-navy-950 py-14">
+      <section className="mt-16 bg-background py-14">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-steel-400">
+              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-slate-400">
                 <Bell className="mr-1.5 inline size-4" />
                 Your Journey
               </p>
@@ -363,7 +363,7 @@ export default async function AcademyPage() {
             </div>
             <Link
               href={`/deckademy/${nextMilestone.count <= passedTracks ? "legal" : ACADEMY_TRACKS.find((t) => !progressMap.get(t.id)?.examPassed)?.id ?? "legal"}`}
-              className="rounded-lg border border-slate-700 px-4 py-2 text-xs font-bold text-foreground transition-colors hover:border-steel-400/50"
+              className="rounded-lg border border-secondary px-4 py-2 text-xs font-bold text-foreground transition-colors hover:border-slate-400/50"
             >
               Continue learning →
             </Link>
@@ -374,12 +374,12 @@ export default async function AcademyPage() {
               const entry = progressMap.get(track.id);
               if (!entry && track.free) {
                 return (
-                  <div key={track.id} className="rounded-xl border-l-4 border-steel-400 border-y border-r border-slate-800 bg-card px-5 py-4">
+                  <div key={track.id} className="rounded-xl border-l-4 border-slate-400 border-y border-r border-secondary bg-card px-5 py-4">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded bg-steel-900 px-2 py-0.5 text-[10px] font-extrabold text-steel-400">
+                      <span className="rounded bg-secondary px-2 py-0.5 text-[10px] font-extrabold text-slate-400">
                         START HERE
                       </span>
-                      <span className="rounded bg-steel-600/10 px-2 py-0.5 text-[10px] font-extrabold text-steel-600">
+                      <span className="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-extrabold text-primary">
                         FREE
                       </span>
                       <span className="ml-auto text-xs text-slate-400">{track.lessons.length} lessons</span>
@@ -387,7 +387,7 @@ export default async function AcademyPage() {
                     <p className="mt-2 text-sm font-bold text-foreground">
                       {track.title}  begin your first track
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                    <p className="mt-1 text-xs leading-relaxed text-muted">
                       {track.tagline}
                     </p>
                   </div>
@@ -395,20 +395,20 @@ export default async function AcademyPage() {
               }
               if (entry && !entry.passed) {
                 return (
-                  <div key={track.id} className="rounded-xl border-l-4 border-steel-500 border-y border-r border-slate-800 bg-card px-5 py-4">
+                  <div key={track.id} className="rounded-xl border-l-4 border-muted border-y border-r border-secondary bg-card px-5 py-4">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded bg-steel-600/10 px-2 py-0.5 text-[10px] font-extrabold text-steel-600">
+                      <span className="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-extrabold text-primary">
                         IN PROGRESS
                       </span>
-                      <span className="text-xs font-extrabold text-steel-600">{entry.score}%</span>
+                      <span className="text-xs font-extrabold text-primary">{entry.score}%</span>
                       <span className="ml-auto text-xs text-slate-400">
                         needs {PASS_SCORE}% to certify
                       </span>
                     </div>
                     <p className="mt-2 text-sm font-bold text-foreground">{track.title}</p>
-                    <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
                       <div
-                        className="h-full rounded-full bg-slate-800"
+                        className="h-full rounded-full bg-secondary"
                         style={{ width: `${entry.score}%` }}
                       />
                     </div>
@@ -417,20 +417,20 @@ export default async function AcademyPage() {
               }
               if (entry?.passed) {
                 return (
-                  <div key={track.id} className="rounded-xl border-l-4 border-emerald-500 border-y border-r border-slate-800 bg-card px-5 py-4">
+                  <div key={track.id} className="rounded-xl border-l-4 border-emerald-500 border-y border-r border-secondary bg-card px-5 py-4">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="rounded bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-emerald-600">
                         QUIZ PASSED
                       </span>
                       <span className="text-xs font-extrabold text-emerald-600">{entry.score}%</span>
-                      <span className="ml-auto text-xs font-bold text-steel-600">
+                      <span className="ml-auto text-xs font-bold text-primary">
                         {entry.examPassed
                           ? "Final exam passed · certified"
                           : "Final exam remaining"}
                       </span>
                     </div>
                     <p className="mt-2 text-sm font-bold text-foreground">{track.title}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                    <p className="mt-1 text-xs leading-relaxed text-muted">
                       {entry.examPassed
                         ? `Exam passed at ${entry.examScore}%  certificate ready to print.`
                         : `Quiz passed at ${entry.score}%. Complete the final exam to earn your certificate.`}
@@ -439,15 +439,15 @@ export default async function AcademyPage() {
                 );
               }
               return (
-                <div key={track.id} className="rounded-xl border-l-4 border-slate-700 border-y border-r border-slate-800 bg-card px-5 py-4 opacity-60">
+                <div key={track.id} className="rounded-xl border-l-4 border-secondary border-y border-r border-secondary bg-card px-5 py-4 opacity-60">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded bg-slate-800 px-2 py-0.5 text-[10px] font-extrabold text-slate-500">
+                    <span className="rounded bg-secondary px-2 py-0.5 text-[10px] font-extrabold text-muted">
                       {isMember ? "NOT STARTED" : "LOCKED"}
                     </span>
                     <span className="ml-auto text-xs text-slate-400">DECKADEMY track</span>
                   </div>
                   <p className="mt-2 text-sm font-bold text-foreground">{track.title}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                  <p className="mt-1 text-xs leading-relaxed text-muted">
                     {isMember
                       ? `${track.lessons.length} lessons waiting  dive in.`
                       : `Join DECKADEMY to unlock all ${track.lessons.length} lessons.`}
@@ -463,12 +463,12 @@ export default async function AcademyPage() {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-steel-400">
+            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-slate-400">
               <Trophy className="mr-1.5 inline size-4" />
               Milestones
             </p>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-foreground">
-              Your Path to <span className="text-steel-400">Founder Elite</span>
+              Your Path to <span className="text-slate-400">Founder Elite</span>
             </h2>
           </div>
 
@@ -484,8 +484,8 @@ export default async function AcademyPage() {
                     unlocked
                       ? "border-emerald-500/60 shadow-[0_8px_32px_rgba(16,185,129,0.15)]"
                       : isNext
-                        ? "border-steel-400/50 shadow-[0_8px_32px_rgba(94,131,174,0.25)]"
-                        : "border-slate-800",
+                        ? "border-slate-400/50 shadow-[0_8px_32px_rgba(94,131,174,0.25)]"
+                        : "border-secondary",
                   )}
                 >
                   {unlocked && (
@@ -497,21 +497,21 @@ export default async function AcademyPage() {
                     className={cn(
                       "mx-auto flex size-16 items-center justify-center rounded-2xl",
                       unlocked
-                        ? "bg-[linear-gradient(135deg,#059669,#10b981)]"
+                        ? "bg-emerald-500"
                         : isNext
-                          ? "bg-[linear-gradient(135deg,#0a1120,#5e83ae)]"
-                          : "bg-slate-800",
+                          ? "bg-[#1A233A]"
+                          : "bg-secondary",
                     )}
                   >
-                    <m.icon className={cn("size-7", unlocked ? "text-white" : isNext ? "text-steel-300" : "text-slate-400")} />
+                    <m.icon className={cn("size-7", unlocked ? "text-white" : isNext ? "text-slate-300" : "text-slate-400")} />
                   </span>
                   <h3 className="mt-4 text-base font-extrabold text-foreground">{m.title}</h3>
-                  <p className="mt-1 text-xs text-slate-500">{m.desc}</p>
+                  <p className="mt-1 text-xs text-muted">{m.desc}</p>
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <span
                       className={cn(
                         "text-2xl font-black",
-                        unlocked ? "text-emerald-600" : isNext ? "text-steel-400" : "text-slate-300",
+                        unlocked ? "text-emerald-600" : isNext ? "text-slate-400" : "text-slate-300",
                       )}
                     >
                       {m.count}
@@ -519,7 +519,7 @@ export default async function AcademyPage() {
                     <span className="text-xs font-semibold text-slate-400">of 8 tracks</span>
                   </div>
                   <div
-                    className="mx-auto mt-3 h-2 w-32 rounded-full bg-slate-800"
+                    className="mx-auto mt-3 h-2 w-32 rounded-full bg-secondary"
                     style={{
                       background: `conic-gradient(#cba967 ${Math.min(100, (passedTracks / m.count) * 100)}%, #22304a 0)`,
                     }}
@@ -535,7 +535,7 @@ export default async function AcademyPage() {
       <section className="bg-card py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
-            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-steel-400">
+            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-slate-400">
               <ListChecks className="mr-1.5 inline size-4" />
               How It Works
             </p>
@@ -545,15 +545,15 @@ export default async function AcademyPage() {
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {LOOP_STEPS.map((step, i) => (
-              <div key={step.title} className="relative rounded-2xl border border-slate-800 bg-card p-6">
+              <div key={step.title} className="relative rounded-2xl border border-secondary bg-card p-6">
                 <span className="absolute right-4 top-4 text-3xl font-black text-slate-100">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="flex size-12 items-center justify-center rounded-xl bg-steel-900">
-                  <step.icon className="size-5.5 size-6 text-steel-400" />
+                <span className="flex size-12 items-center justify-center rounded-xl bg-secondary">
+                  <step.icon className="size-5.5 size-6 text-slate-400" />
                 </span>
                 <h3 className="mt-4 text-base font-extrabold text-foreground">{step.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-slate-500">{step.desc}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -561,23 +561,23 @@ export default async function AcademyPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[linear-gradient(135deg,#1E3A8A,#E6B464)] px-6 py-16 text-center text-slate-900">
+      <section className="bg-[#1A233A] px-6 py-16 text-center text-card">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-slate-700">
+          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary">
             <GraduationCap className="mr-1.5 inline size-4" />
             Admissions Open
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
             Begin Your Founder&apos;s Journey
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-700">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-secondary">
             The Legal track is free and takes about 5 hours. Finish the lessons, pass the quiz at
             80%, pass the final exam at 70%, and your first certificate is yours to print.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/deckademy/legal"
-              className="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-navy-950/40 transition-colors hover:bg-slate-700"
+              className="inline-flex items-center gap-2 rounded-lg bg-secondary px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-background/40 transition-colors hover:bg-secondary"
             >
               Start Learning  Free
               <ArrowRight className="size-4" />
@@ -585,7 +585,7 @@ export default async function AcademyPage() {
             {!isMember && (
               <Link
                 href="/deckademy/billing"
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-800/30 px-7 py-3.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-800/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 px-7 py-3.5 text-sm font-semibold text-secondary transition-colors hover:bg-secondary/10"
               >
                 <Crown className="size-4" />
                 Unlock all 8 tracks
@@ -595,7 +595,7 @@ export default async function AcademyPage() {
         </div>
       </section>
 
-      <p className="no-print bg-navy-950 py-8 text-center text-xs text-slate-400">
+      <p className="no-print bg-background py-8 text-center text-xs text-slate-400">
         <GraduationCap className="mr-1 inline size-3.5" />
         FoundersHQ DECKADEMY  {lessonCount} lessons · {quizCount} quiz questions ·{" "}
         {PASS_SCORE}% to certify · certificates printable

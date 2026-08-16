@@ -87,8 +87,8 @@ export function Overview({ name, plan }: { name: string; plan: string }) {
                   </p>
                 )}
               </div>
-              <div className="flex size-11 items-center justify-center rounded-xl bg-steel-50 ring-1 ring-brand-100">
-                <stat.icon className="size-5 text-steel-600" />
+              <div className="flex size-11 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-primary-100">
+                <stat.icon className="size-5 text-primary" />
               </div>
             </CardContent>
           </Card>
@@ -106,10 +106,10 @@ export function Overview({ name, plan }: { name: string; plan: string }) {
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="group flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 transition-all hover:border-steel-300 hover:shadow-soft"
+                  className="group flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 transition-all hover:border-slate-300 hover:shadow-soft"
                 >
-                  <span className="flex size-9 items-center justify-center rounded-lg bg-steel-50 ring-1 ring-brand-100">
-                    <action.icon className="size-4 text-steel-600" />
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-slate-50 ring-1 ring-primary-100">
+                    <action.icon className="size-4 text-primary" />
                   </span>
                   <span className="flex-1 text-sm font-medium text-foreground">{action.label}</span>
                   <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
@@ -128,8 +128,8 @@ export function Overview({ name, plan }: { name: string; plan: string }) {
                   key={item.title}
                   className="flex items-center gap-4 rounded-lg px-2 py-3 transition-colors hover:bg-muted"
                 >
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-steel-50 ring-1 ring-brand-100">
-                    <item.icon className="size-4 text-steel-600" />
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-slate-50 ring-1 ring-primary-100">
+                    <item.icon className="size-4 text-primary" />
                   </span>
                   <p className="flex-1 text-sm font-medium text-foreground">{item.title}</p>
                   <span className="text-xs text-muted-foreground">{item.meta}</span>

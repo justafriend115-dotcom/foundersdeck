@@ -135,7 +135,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           {isLogin && (
             <Link
               href="/forgot-password"
-              className="text-sm font-medium text-steel-700 hover:text-steel-800"
+              className="text-sm font-medium text-primary hover:text-secondary"
             >
               Forgot password?
             </Link>
@@ -175,7 +175,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
               type="checkbox"
               name="terms"
               required
-              className="mt-0.5 size-4 rounded border-border accent-brand-600"
+              className="mt-0.5 size-4 rounded border-border accent-primary"
             />
             <span>
               I agree to the <span className="font-medium text-foreground">Terms of Service</span>{" "}
@@ -200,14 +200,14 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         {isLogin ? (
           <>
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="font-medium text-steel-700 hover:text-steel-800">
+            <Link href="/signup" className="font-medium text-primary hover:text-secondary">
               Sign up free
             </Link>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <Link href="/login" className="font-medium text-steel-700 hover:text-steel-800">
+            <Link href="/login" className="font-medium text-primary hover:text-secondary">
               Log in
             </Link>
           </>

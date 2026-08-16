@@ -3,22 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --background: #0A1120;
+  --background: #0A0F1F;
   --foreground: #FFFFFF;
-  --primary: #2563EB;
+  --primary: #6C63FF;
   --primary-foreground: #FFFFFF;
-  --secondary: #1E293B;
-  --secondary-foreground: #F8FAFC;
-  --muted: #1E293B;
-  --muted-foreground: #94A3B8;
-  --accent: #E6B464;
-  --accent-foreground: #0A1120;
+  --secondary: #1A233A;
+  --secondary-foreground: #B0B8C8;
+  --muted: #1A233A;
+  --muted-foreground: #6B7A8F;
+  --accent: #00D4FF;
+  --accent-foreground: #0A0F1F;
+  --accent2: #6C63FF;
+  --accent2-foreground: #FFFFFF;
+  --success: #00E676;
+  --success-foreground: #0A0F1F;
+  --warning: #FF6B6B;
+  --warning-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --card: #102A43;
+  --card: #1A233A;
   --card-foreground: #FFFFFF;
-  --border: #334155;
-  --ring: #3B82F6;
+  --border: #2A3550;
+  --ring: #6C63FF;
   --radius: 0.75rem;
 }
 
@@ -33,12 +39,12 @@ body {
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-steel-600 to-gold-500 bg-clip-text text-transparent;
+    @apply bg-primary bg-clip-text text-transparent;
   }
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(100 116 139 / 0.09) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(100 116 139 / 0.09) 1px, transparent 1px);
+      linear-gradient(to right, rgb(108 99 255 / 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(108 99 255 / 0.09) 1px, transparent 1px);
     background-size: 44px 44px;
   }
   .text-balance {

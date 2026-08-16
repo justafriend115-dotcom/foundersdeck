@@ -7,16 +7,16 @@ export const metadata = { title: "Coming soon" };
 
 export default function ComingSoonPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#0A1120_0%,#1E3A8A_45%,#E6B464_100%)] px-4 py-16">
+    <main className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-4 py-16">
       <div className="relative w-full max-w-3xl">
         {/* Lottie animation  coding ape at work */}
         <ComingSoonLottie className="mx-auto w-full max-w-[420px] sm:max-w-[480px]" />
 
         <div className="mt-6 text-center">
-            <div className="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-steel-300">
+            <div className="flex items-center justify-center gap-2 text-xs font-black uppercase tracking-[0.3em] text-slate-300">
             <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-slate-800 opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-slate-800" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-secondary" />
             </span>
             JAF is working on it
           </div>
@@ -39,7 +39,7 @@ export default function ComingSoonPage() {
           {/* Progress bar */}
           <div className="mx-auto mt-8 max-w-sm">
             <div className="h-3 overflow-hidden rounded-full border border-white/20 bg-card/10">
-              <div className="build-bar h-full rounded-full bg-gradient-to-r from-brand-400 to-brand-600" />
+              <div className="build-bar h-full rounded-full bg-primary" />
             </div>
             <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-white/50">
               Build progress  JAF is on it
@@ -49,7 +49,7 @@ export default function ComingSoonPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-navy-950/40 transition-colors hover:bg-slate-700"
+              className="inline-flex items-center gap-2 rounded-lg bg-secondary px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-background/40 transition-colors hover:bg-secondary"
             >
               <ArrowLeft className="size-4" />
               Back to dashboard

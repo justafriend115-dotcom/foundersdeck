@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 const STAGES: { id: Stage; label: string; dot: string }[] = [
   { id: "cold", label: "Cold", dot: "bg-slate-400" },
   { id: "warm", label: "Warm", dot: "bg-amber-400" },
-  { id: "pitching", label: "Pitching", dot: "bg-slate-800" },
+  { id: "pitching", label: "Pitching", dot: "bg-secondary" },
   { id: "closed", label: "Closed", dot: "bg-emerald-500" },
 ];
 
@@ -231,7 +231,7 @@ export function InvestorCrm() {
                           <button
                             type="button"
                             onClick={() => setExpanded(isExpanded ? null : investor.id)}
-                            className="ml-auto inline-flex items-center gap-1 text-xs font-medium text-steel-700 hover:text-steel-800"
+                            className="ml-auto inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-secondary"
                           >
                             {investor.meetings.length > 0 &&
                               `${investor.meetings.length} meeting${investor.meetings.length > 1 ? "s" : ""} · `}
@@ -251,7 +251,7 @@ export function InvestorCrm() {
                                 {investor.meetings.map((meeting) => (
                                   <div key={meeting.id} className="bg-muted/60 rounded-lg p-3">
                                     <div className="flex items-center gap-2 text-xs font-semibold text-foreground">
-                                      <CalendarDays className="size-3.5 text-steel-600" />
+                                      <CalendarDays className="size-3.5 text-primary" />
                                       {formatDate(meeting.date)}
                                       <span className="ml-auto rounded-full bg-card px-2 py-0.5 font-medium text-muted-foreground ring-1 ring-border">
                                         {meeting.outcome}

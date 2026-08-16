@@ -39,10 +39,10 @@ export default async function CertificatePage({ params }: { params: { trackId: s
         <PrintButton />
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border-2 border-steel-500/40 bg-card print:border-steel-500/60">
-        <div className="h-2 bg-gradient-to-r from-steel-600 via-gold-500 to-steel-600" />
+      <div className="mt-8 overflow-hidden rounded-2xl border-2 border-muted/40 bg-card print:border-muted/60">
+        <div className="h-2 bg-primary" />
         <div className="p-8 text-center sm:p-12">
-          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-navy-950">
+          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-background">
             <svg
               width="28"
               height="28"
@@ -69,7 +69,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
             </svg>
           </div>
 
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-steel-700">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
             DECKADEMY · FoundersDeck
           </p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground">

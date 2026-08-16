@@ -67,7 +67,7 @@ export function ResetPasswordForm() {
         </div>
         <Link
           href="/dashboard"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-steel-700 hover:text-steel-800"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-secondary"
         >
           <ArrowLeft className="size-4" />
           Back to dashboard
@@ -136,7 +136,7 @@ export function ResetPasswordForm() {
 
       <p className="text-center text-sm text-muted-foreground">
         Remembered it?{" "}
-        <Link href="/dashboard" className="font-medium text-steel-700 hover:text-steel-800">
+        <Link href="/dashboard" className="font-medium text-primary hover:text-secondary">
           Back to dashboard
         </Link>
       </p>

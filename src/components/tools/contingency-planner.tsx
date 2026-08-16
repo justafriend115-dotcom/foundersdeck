@@ -16,7 +16,7 @@ const YEAR_LABELS = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5"];
 
 function riskColor(score: number): string {
   if (score >= 15) return "bg-red-500/15 text-red-400 ring-red-500/40";
-  if (score >= 9) return "bg-steel-600/15 text-steel-300 ring-steel-500/40";
+  if (score >= 9) return "bg-primary/15 text-slate-300 ring-muted/40";
   return "bg-emerald-500/15 text-emerald-400 ring-emerald-500/40";
 }
 
@@ -83,7 +83,7 @@ export function ContingencyPlanner() {
                         scenario.id === "best"
                           ? "bg-emerald-500"
                           : scenario.id === "realistic"
-                            ? "bg-slate-800"
+                            ? "bg-secondary"
                             : "bg-red-500",
                       )}
                     />

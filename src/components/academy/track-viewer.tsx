@@ -56,15 +56,15 @@ function LockCard({
 
   return (
     <div className="mt-6 rounded-2xl border border-border bg-card p-8 text-center">
-      <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-steel-600/10">
-        <Lock className="size-6 text-steel-500" />
+      <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10">
+        <Lock className="size-6 text-muted" />
       </div>
       <h2 className="mt-4 text-xl font-bold text-foreground">{title}</h2>
       <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
         {message}
       </p>
       {countdown && (
-        <div className="mx-auto mt-5 inline-flex items-center gap-2 rounded-xl border border-steel-500/30 bg-steel-600/10 px-5 py-2.5 font-mono text-lg font-bold text-steel-400">
+        <div className="mx-auto mt-5 inline-flex items-center gap-2 rounded-xl border border-muted/30 bg-primary/10 px-5 py-2.5 font-mono text-lg font-bold text-slate-400">
           <Clock className="size-5" />
           {countdown}
         </div>
@@ -242,7 +242,7 @@ export function TrackViewer({
                 className={cn(
                   "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
 i === lessonIndex
-                    ? "bg-steel-600/15 font-medium text-steel-300"
+                    ? "bg-primary/15 font-medium text-slate-300"
                     : "hover:bg-muted/60 text-muted-foreground hover:text-foreground",
                 )}
               >
@@ -266,7 +266,7 @@ i === lessonIndex
 
           <article className="rounded-2xl border border-border bg-card p-6 sm:p-8">
             <div className="flex items-start justify-between gap-3">
-              <p className="text-xs font-medium text-steel-700">
+              <p className="text-xs font-medium text-primary">
                 Lesson {lessonIndex + 1} of {track.lessons.length} · {lesson.readMinutes} min read
               </p>
               {completed.includes(lesson.id) && (
@@ -292,15 +292,15 @@ i === lessonIndex
             </div>
 
             {lesson.examples && lesson.examples.length > 0 && (
-              <div className="mt-8 rounded-xl border border-steel-500/25 bg-steel-600/5 p-5">
-                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-steel-700">
+              <div className="mt-8 rounded-xl border border-muted/25 bg-primary/5 p-5">
+                <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
                   <Lightbulb className="size-4" />
                   Worked examples
                 </p>
                 <ul className="mt-3 space-y-3">
                   {lesson.examples.map((example, i) => (
                     <li key={i} className="text-sm leading-relaxed text-foreground/80">
-                      <span className="mr-1.5 font-semibold text-steel-700">
+                      <span className="mr-1.5 font-semibold text-primary">
                         {String.fromCharCode(97 + i)}.
                       </span>
                       {example}
@@ -310,29 +310,29 @@ i === lessonIndex
               </div>
             )}
 
-            <div className="mt-6 rounded-xl border border-steel-500/25 bg-steel-600/5 p-5">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-steel-700">
+            <div className="mt-6 rounded-xl border border-muted/25 bg-primary/5 p-5">
+              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
                 <ListChecks className="size-4" />
                 Your action plan
               </p>
               <ul className="mt-3 space-y-2">
                 {lesson.actionItems.map((item) => (
                   <li key={item} className="text-foreground/80 flex gap-2 text-sm">
-                    <span className="mt-0.5 font-semibold text-steel-600">›</span>
+                    <span className="mt-0.5 font-semibold text-primary">›</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="mt-6 rounded-xl border border-steel-500/25 bg-steel-600/5 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-steel-700">
+            <div className="mt-6 rounded-xl border border-muted/25 bg-primary/5 p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary">
                 Key points
               </p>
               <ul className="mt-3 space-y-2">
                 {lesson.keyPoints.map((point) => (
                   <li key={point} className="text-foreground/80 flex gap-2 text-sm">
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-steel-600" />
+                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
                     {point}
                   </li>
                 ))}
@@ -352,7 +352,7 @@ i === lessonIndex
                 <button
                   onClick={markLessonComplete}
                   disabled={marking}
-                  className="flex items-center gap-1 rounded-lg bg-slate-800 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-navy-950/40 transition-opacity disabled:opacity-50"
+                  className="flex items-center gap-1 rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-background/40 transition-opacity disabled:opacity-50"
                 >
                   {marking ? <Loader2 className="animate-spin" /> : <Check className="size-4" />}
                   Mark lesson complete
@@ -366,7 +366,7 @@ i === lessonIndex
               {lessonIndex < track.lessons.length - 1 ? (
                 <button
                   onClick={() => setLessonIndex((i) => Math.min(track.lessons.length - 1, i + 1))}
-                  className="flex items-center gap-1 rounded-lg bg-slate-800 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/25"
+                  className="flex items-center gap-1 rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/25"
                 >
                   Next lesson <ChevronRight className="size-4" />
                 </button>
@@ -374,7 +374,7 @@ i === lessonIndex
                 <button
                   onClick={() => setMode("quiz")}
                   disabled={!canQuiz}
-                  className="flex items-center gap-1 rounded-lg bg-slate-800 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/25 disabled:opacity-40"
+                  className="flex items-center gap-1 rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/25 disabled:opacity-40"
                 >
                   Take the quiz <ChevronRight className="size-4" />
                 </button>
@@ -393,7 +393,7 @@ i === lessonIndex
               cta={
                 <button
                   onClick={() => setMode("lesson")}
-                  className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-semibold text-white"
+                  className="rounded-lg bg-secondary px-5 py-2.5 text-sm font-semibold text-white"
                 >
                   Continue lessons
                 </button>
@@ -412,7 +412,7 @@ i === lessonIndex
               {initialScore !== null && (
                 <div className="flex items-center justify-between rounded-xl border border-border bg-card px-5 py-3 text-sm">
                   <span className="text-muted-foreground">Best score so far</span>
-                  <span className={cn("font-bold", passed ? "text-steel-700" : "text-foreground")}>
+                  <span className={cn("font-bold", passed ? "text-primary" : "text-foreground")}>
                     {initialScore}%{passed ? " · Passed" : ""}
                   </span>
                 </div>
@@ -423,7 +423,7 @@ i === lessonIndex
               {track.quiz.map((q, qi) => (
                 <div key={qi} className="rounded-2xl border border-border bg-card p-6">
                   <p className="text-sm font-semibold text-foreground">
-                    <span className="text-steel-700">{qi + 1}.</span> {q.question}
+                    <span className="text-primary">{qi + 1}.</span> {q.question}
                   </p>
                   <div className="mt-4 space-y-2">
                     {q.options.map((option, oi) => (
@@ -435,16 +435,16 @@ i === lessonIndex
                         className={cn(
                           "flex w-full items-center gap-3 rounded-lg border px-4 py-2.5 text-left text-sm transition-colors",
                           quizAnswers[qi] === oi
-                            ? "border-steel-500/50 bg-steel-600/10 font-medium text-white"
-                            : "border-border text-muted-foreground hover:border-steel-500/30 hover:text-foreground",
+                            ? "border-muted/50 bg-primary/10 font-medium text-white"
+                            : "border-border text-muted-foreground hover:border-muted/30 hover:text-foreground",
                         )}
                       >
                         <span
                           className={cn(
                             "flex size-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-semibold",
                             quizAnswers[qi] === oi
-                              ? "border-steel-500 bg-slate-800 text-white"
-                              : "border-slate-700 text-muted-foreground",
+                              ? "border-muted bg-secondary text-white"
+                              : "border-secondary text-muted-foreground",
                           )}
                         >
                           {String.fromCharCode(65 + oi)}
@@ -459,7 +459,7 @@ i === lessonIndex
               <button
                 onClick={() => submit("quiz")}
                 disabled={quizAnswers.some((a) => a < 0) || submitting}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-800 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-navy-950/40 transition-opacity disabled:opacity-40"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-background/40 transition-opacity disabled:opacity-40"
               >
                 {submitting ? <Loader2 className="animate-spin" /> : <Award />}
                 {submitting
@@ -480,7 +480,7 @@ i === lessonIndex
               cta={
                 <button
                   onClick={() => setMode("quiz")}
-                  className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-semibold text-white"
+                  className="rounded-lg bg-secondary px-5 py-2.5 text-sm font-semibold text-white"
                 >
                   Go to quiz
                 </button>
@@ -499,14 +499,14 @@ i === lessonIndex
               {examScore !== null && (
                 <div className="flex items-center justify-between rounded-xl border border-border bg-card px-5 py-3 text-sm">
                   <span className="text-muted-foreground">Best exam score</span>
-                  <span className={cn("font-bold", examPassed ? "text-steel-700" : "text-foreground")}>
+                  <span className={cn("font-bold", examPassed ? "text-primary" : "text-foreground")}>
                     {examScore}%{examPassed ? " · Certified" : ""}
                   </span>
                 </div>
               )}
-              <div className="rounded-xl border border-steel-500/25 bg-steel-600/5 px-5 py-4">
+              <div className="rounded-xl border border-muted/25 bg-primary/5 px-5 py-4">
                 <p className="text-sm text-muted-foreground">
-                  <span className="font-semibold text-steel-700">Final exam</span> ·{" "}
+                  <span className="font-semibold text-primary">Final exam</span> ·{" "}
                   {track.exam.length} questions covering every lesson in this track. Score{" "}
                   {EXAM_PASS_SCORE}% or higher to earn your certificate. If you fail, the exam
                   locks for 24 hours.
@@ -515,7 +515,7 @@ i === lessonIndex
               {track.exam.map((q, qi) => (
                 <div key={qi} className="rounded-2xl border border-border bg-card p-6">
                   <p className="text-sm font-semibold text-foreground">
-                    <span className="text-steel-700">{qi + 1}.</span> {q.question}
+                    <span className="text-primary">{qi + 1}.</span> {q.question}
                   </p>
                   <div className="mt-4 space-y-2">
                     {q.options.map((option, oi) => (
@@ -527,16 +527,16 @@ i === lessonIndex
                         className={cn(
                           "flex w-full items-center gap-3 rounded-lg border px-4 py-2.5 text-left text-sm transition-colors",
                           examAnswers[qi] === oi
-                            ? "border-steel-500/50 bg-steel-600/10 font-medium text-white"
-                            : "border-border text-muted-foreground hover:border-steel-500/30 hover:text-foreground",
+                            ? "border-muted/50 bg-primary/10 font-medium text-white"
+                            : "border-border text-muted-foreground hover:border-muted/30 hover:text-foreground",
                         )}
                       >
                         <span
                           className={cn(
                             "flex size-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-semibold",
                             examAnswers[qi] === oi
-                              ? "border-steel-500 bg-slate-800 text-white"
-                              : "border-slate-700 text-muted-foreground",
+                              ? "border-muted bg-secondary text-white"
+                              : "border-secondary text-muted-foreground",
                           )}
                         >
                           {String.fromCharCode(65 + oi)}
@@ -551,7 +551,7 @@ i === lessonIndex
               <button
                 onClick={() => submit("exam")}
                 disabled={examAnswers.some((a) => a < 0) || submitting}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-800 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-navy-950/40 transition-opacity disabled:opacity-40"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-background/40 transition-opacity disabled:opacity-40"
               >
                 {submitting ? <Loader2 className="animate-spin" /> : <GraduationCap />}
                 {submitting
@@ -565,12 +565,12 @@ i === lessonIndex
 
       {mode === "result" && result && (
         <div className="mt-6 rounded-2xl border border-border bg-card p-8 text-center">
-          <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-steel-600/10">
+          <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary/10">
             {result.passed ? (
               result.kind === "exam" ? (
-                <GraduationCap className="size-8 text-steel-400" />
+                <GraduationCap className="size-8 text-slate-400" />
               ) : (
-                <Award className="size-8 text-steel-400" />
+                <Award className="size-8 text-slate-400" />
               )
             ) : (
               <XCircle className="size-8 text-red-400" />
@@ -603,7 +603,7 @@ i === lessonIndex
                     <div key={qi} className="bg-muted/30 rounded-xl border border-border p-4">
                       <p className="text-sm font-medium text-foreground">{q.question}</p>
                       <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                        <span className="font-semibold text-steel-700">Correct:</span>{" "}
+                        <span className="font-semibold text-primary">Correct:</span>{" "}
                         {q.options[q.correctIndex]}
                       </p>
                       <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
@@ -614,8 +614,8 @@ i === lessonIndex
                 }
                 return null;
               })}
-              <div className="rounded-xl border border-steel-500/25 bg-steel-600/10 px-5 py-4">
-                <p className="text-sm text-steel-300">
+              <div className="rounded-xl border border-muted/25 bg-primary/10 px-5 py-4">
+                <p className="text-sm text-slate-300">
                   <Lock className="mr-1 inline size-3.5" />
                   {result.kind === "quiz"
                     ? "The quiz is locked for 5 hours after a failed attempt."
@@ -651,14 +651,14 @@ i === lessonIndex
                 {result.kind === "exam" ? (
                   <Link
                     href={`/deckademy/certificate/${track.id}`}
-                    className="flex items-center justify-center gap-2 rounded-lg bg-slate-800 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-navy-950/40"
+                    className="flex items-center justify-center gap-2 rounded-lg bg-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-background/40"
                   >
                     <Award /> View certificate
                   </Link>
                 ) : (
                   <button
                     onClick={() => setMode("exam")}
-                    className="flex items-center justify-center gap-2 rounded-lg bg-slate-800 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-navy-950/40"
+                    className="flex items-center justify-center gap-2 rounded-lg bg-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-background/40"
                   >
                     <GraduationCap /> Take the final exam
                   </button>

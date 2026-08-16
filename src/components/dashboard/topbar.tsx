@@ -40,7 +40,7 @@ export function Topbar({ user, onMenuClick }: { user: User; onMenuClick: () => v
             <Bell className="size-5" />
             <span className="absolute right-2 top-2 size-2 rounded-full bg-red-500 ring-2 ring-background" />
           </button>
-          <span className="flex size-9 items-center justify-center rounded-full bg-slate-700 text-xs font-bold text-white">
+          <span className="flex size-9 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
             {initials(user.name)}
           </span>
         </div>
