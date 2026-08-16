@@ -28,6 +28,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
   });
 
   return (
+    <div className="deckademy-scope">
     <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <div className="flex items-center justify-between">
         <Link
@@ -95,5 +96,6 @@ export default async function CertificatePage({ params }: { params: { trackId: s
         </div>
       </div>
     </main>
+    </div>
   );
 }

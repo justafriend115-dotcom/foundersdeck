@@ -18,6 +18,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
   const isMember = user.deckademyPlan === "member";
   if (!track.free && !isMember) {
     return (
+      <div className="deckademy-scope">
       <main className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
         <h1 className="text-2xl font-bold text-foreground">This track is part of DECKADEMY</h1>
         <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
@@ -39,6 +40,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
           </Link>
         </div>
       </main>
+      </div>
     );
   }
 
@@ -56,6 +58,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
   }
 
   return (
+    <div className="deckademy-scope">
     <TrackViewer
       track={track}
       initialScore={progress?.score ?? null}
@@ -66,5 +69,6 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
       examPassed={progress?.examPassed ?? false}
       examScore={progress?.examScore ?? null}
     />
+    </div>
   );
 }

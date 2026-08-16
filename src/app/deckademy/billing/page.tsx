@@ -11,9 +11,11 @@ export default async function DeckademyBillingPage() {
   if (!user) redirect("/login?next=/deckademy/billing");
 
   return (
+    <div className="deckademy-scope">
     <DeckademyBillingCard
       name={user.name}
       isMember={user.deckademyPlan === "member"}
     />
+    </div>
   );
 }

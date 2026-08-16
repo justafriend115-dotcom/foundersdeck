@@ -79,6 +79,7 @@ export default async function AcademyPage() {
   const currentMilestoneIndex = MILESTONES.findIndex((m) => m.count === nextMilestone.count);
 
   return (
+    <div className="deckademy-scope">
     <main>
       {/* HERO */}
       <section className="bg-background text-foreground">
@@ -521,7 +522,7 @@ export default async function AcademyPage() {
                   <div
                     className="mx-auto mt-3 h-2 w-32 rounded-full bg-secondary"
                     style={{
-                      background: `conic-gradient(#cba967 ${Math.min(100, (passedTracks / m.count) * 100)}%, #22304a 0)`,
+                      background: `conic-gradient(#FBBF24 ${Math.min(100, (passedTracks / m.count) * 100)}%, #1A233A 0)`,
                     }}
                   />
                 </div>
@@ -601,5 +602,6 @@ export default async function AcademyPage() {
         {PASS_SCORE}% to certify · certificates printable
       </p>
     </main>
+    </div>
   );
 }

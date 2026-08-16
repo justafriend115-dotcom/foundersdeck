@@ -352,7 +352,7 @@ i === lessonIndex
                 <button
                   onClick={markLessonComplete}
                   disabled={marking}
-                  className="flex items-center gap-1 rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-background/40 transition-opacity disabled:opacity-50"
+                  className="flex items-center gap-1 rounded-lg bg-primary deckademy-gradient px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-background/40 transition-opacity disabled:opacity-50"
                 >
                   {marking ? <Loader2 className="animate-spin" /> : <Check className="size-4" />}
                   Mark lesson complete
@@ -366,7 +366,7 @@ i === lessonIndex
               {lessonIndex < track.lessons.length - 1 ? (
                 <button
                   onClick={() => setLessonIndex((i) => Math.min(track.lessons.length - 1, i + 1))}
-                  className="flex items-center gap-1 rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/25"
+                  className="flex items-center gap-1 rounded-lg bg-primary deckademy-gradient px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-black/25"
                 >
                   Next lesson <ChevronRight className="size-4" />
                 </button>
@@ -374,7 +374,7 @@ i === lessonIndex
                 <button
                   onClick={() => setMode("quiz")}
                   disabled={!canQuiz}
-                  className="flex items-center gap-1 rounded-lg bg-secondary px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-black/25 disabled:opacity-40"
+                  className="flex items-center gap-1 rounded-lg bg-primary deckademy-gradient px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-black/25 disabled:opacity-40"
                 >
                   Take the quiz <ChevronRight className="size-4" />
                 </button>
@@ -393,7 +393,7 @@ i === lessonIndex
               cta={
                 <button
                   onClick={() => setMode("lesson")}
-                  className="rounded-lg bg-secondary px-5 py-2.5 text-sm font-semibold text-white"
+                  className="rounded-lg bg-primary deckademy-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground"
                 >
                   Continue lessons
                 </button>
@@ -459,7 +459,7 @@ i === lessonIndex
               <button
                 onClick={() => submit("quiz")}
                 disabled={quizAnswers.some((a) => a < 0) || submitting}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-background/40 transition-opacity disabled:opacity-40"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary deckademy-gradient px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-background/40 transition-opacity disabled:opacity-40"
               >
                 {submitting ? <Loader2 className="animate-spin" /> : <Award />}
                 {submitting
@@ -480,7 +480,7 @@ i === lessonIndex
               cta={
                 <button
                   onClick={() => setMode("quiz")}
-                  className="rounded-lg bg-secondary px-5 py-2.5 text-sm font-semibold text-white"
+                  className="rounded-lg bg-primary deckademy-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground"
                 >
                   Go to quiz
                 </button>
@@ -551,7 +551,7 @@ i === lessonIndex
               <button
                 onClick={() => submit("exam")}
                 disabled={examAnswers.some((a) => a < 0) || submitting}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-background/40 transition-opacity disabled:opacity-40"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary deckademy-gradient px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-background/40 transition-opacity disabled:opacity-40"
               >
                 {submitting ? <Loader2 className="animate-spin" /> : <GraduationCap />}
                 {submitting
@@ -651,14 +651,14 @@ i === lessonIndex
                 {result.kind === "exam" ? (
                   <Link
                     href={`/deckademy/certificate/${track.id}`}
-                    className="flex items-center justify-center gap-2 rounded-lg bg-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-background/40"
+                    className="flex items-center justify-center gap-2 rounded-lg bg-primary deckademy-gradient px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-background/40"
                   >
                     <Award /> View certificate
                   </Link>
                 ) : (
                   <button
                     onClick={() => setMode("exam")}
-                    className="flex items-center justify-center gap-2 rounded-lg bg-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-background/40"
+                    className="flex items-center justify-center gap-2 rounded-lg bg-primary deckademy-gradient px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-background/40"
                   >
                     <GraduationCap /> Take the final exam
                   </button>
