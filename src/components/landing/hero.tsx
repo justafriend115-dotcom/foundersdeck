@@ -43,7 +43,7 @@ export default function Hero() {
             className="mt-8 animate-fade-up text-sm text-muted-foreground"
             style={{ animationDelay: "400ms" }}
           >
-            No credit card required · Free forever tier
+            No credit card required
           </p>
         </div>
 
