@@ -84,7 +84,7 @@ export default async function AcademyPage() {
       <section className="bg-background text-foreground">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-20">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary/5 px-4 py-1.5 text-xs font-bold text-secondary">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-secondary/20 bg-secondary/5 px-4 py-1.5 text-xs font-bold text-secondary-foreground">
               <Sparkles className="size-3.5" />
               {passedTracks > 0
                 ? `You've earned ${passedTracks} certificate${passedTracks === 1 ? "" : "s"}`
@@ -94,7 +94,7 @@ export default async function AcademyPage() {
               Where <em className="not-italic text-primary">Founders</em> Are<br />
               Forged
             </h1>
-            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-secondary">
+            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-secondary-foreground">
               {lessonCount} lessons and {quizCount} quiz questions across {ACADEMY_TRACKS.length}{" "}
               tracks  legal, team, fundraising, finance, product, sales, pitching and operations.
               Learn, act, prove it, and print your certificate.
@@ -109,7 +109,7 @@ export default async function AcademyPage() {
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 px-6 py-3 text-sm font-semibold text-secondary transition-colors hover:bg-secondary/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 px-6 py-3 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/10"
               >
                 Back to dashboard
 </Link>
@@ -144,7 +144,7 @@ export default async function AcademyPage() {
                 <span className="flex size-10 items-center justify-center rounded-full bg-secondary text-sm font-extrabold text-slate-400">
                   JD
                 </span>
-                <div className="text-xs text-muted">
+                <div className="text-xs text-muted-foreground">
                   <span className="font-bold text-foreground">The Founder</span>
                   <br />
                   completed 8 of 8 tracks
@@ -315,7 +315,7 @@ export default async function AcademyPage() {
                     )}
                   </div>
                   <h3 className="mt-4 text-[15px] font-extrabold text-foreground">{track.title}</h3>
-                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-muted">
+                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-muted-foreground">
                     {track.tagline}
                   </p>
                   <div className="mt-4 flex items-center justify-between text-[11px] font-semibold text-slate-400">
@@ -387,7 +387,7 @@ export default async function AcademyPage() {
                     <p className="mt-2 text-sm font-bold text-foreground">
                       {track.title}  begin your first track
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted">
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                       {track.tagline}
                     </p>
                   </div>
@@ -430,7 +430,7 @@ export default async function AcademyPage() {
                       </span>
                     </div>
                     <p className="mt-2 text-sm font-bold text-foreground">{track.title}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-muted">
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                       {entry.examPassed
                         ? `Exam passed at ${entry.examScore}%  certificate ready to print.`
                         : `Quiz passed at ${entry.score}%. Complete the final exam to earn your certificate.`}
@@ -441,13 +441,13 @@ export default async function AcademyPage() {
               return (
                 <div key={track.id} className="rounded-xl border-l-4 border-secondary border-y border-r border-secondary bg-card px-5 py-4 opacity-60">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded bg-secondary px-2 py-0.5 text-[10px] font-extrabold text-muted">
+                    <span className="rounded bg-secondary px-2 py-0.5 text-[10px] font-extrabold text-muted-foreground">
                       {isMember ? "NOT STARTED" : "LOCKED"}
                     </span>
                     <span className="ml-auto text-xs text-slate-400">DECKADEMY track</span>
                   </div>
                   <p className="mt-2 text-sm font-bold text-foreground">{track.title}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-muted">
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {isMember
                       ? `${track.lessons.length} lessons waiting  dive in.`
                       : `Join DECKADEMY to unlock all ${track.lessons.length} lessons.`}
@@ -506,7 +506,7 @@ export default async function AcademyPage() {
                     <m.icon className={cn("size-7", unlocked ? "text-white" : isNext ? "text-slate-300" : "text-slate-400")} />
                   </span>
                   <h3 className="mt-4 text-base font-extrabold text-foreground">{m.title}</h3>
-                  <p className="mt-1 text-xs text-muted">{m.desc}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{m.desc}</p>
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <span
                       className={cn(
@@ -553,7 +553,7 @@ export default async function AcademyPage() {
                   <step.icon className="size-5.5 size-6 text-slate-400" />
                 </span>
                 <h3 className="mt-4 text-base font-extrabold text-foreground">{step.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-muted">{step.desc}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -561,16 +561,16 @@ export default async function AcademyPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#1A233A] px-6 py-16 text-center text-card">
+      <section className="bg-[#1A233A] px-6 py-16 text-center text-foreground">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary">
+          <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary-foreground">
             <GraduationCap className="mr-1.5 inline size-4" />
             Admissions Open
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
             Begin Your Founder&apos;s Journey
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-secondary">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-secondary-foreground">
             The Legal track is free and takes about 5 hours. Finish the lessons, pass the quiz at
             80%, pass the final exam at 70%, and your first certificate is yours to print.
           </p>
@@ -585,7 +585,7 @@ export default async function AcademyPage() {
             {!isMember && (
               <Link
                 href="/deckademy/billing"
-                className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 px-7 py-3.5 text-sm font-semibold text-secondary transition-colors hover:bg-secondary/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-secondary/30 px-7 py-3.5 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-secondary/10"
               >
                 <Crown className="size-4" />
                 Unlock all 8 tracks
