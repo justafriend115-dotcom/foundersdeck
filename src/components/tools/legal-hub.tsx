@@ -56,7 +56,7 @@ export function LegalHub() {
                 className={cn(
                   "flex w-full items-start gap-3 rounded-xl border p-4 text-left transition-all",
                   d.id === activeId
-                    ? "border-brand-400 bg-brand-50 shadow-soft"
+                    ? "border-steel-400 bg-steel-50 shadow-soft"
                     : "border-border bg-card hover:border-brand-200",
                 )}
               >
@@ -64,8 +64,8 @@ export function LegalHub() {
                   className={cn(
                     "flex size-9 shrink-0 items-center justify-center rounded-lg",
                     d.id === activeId
-                      ? "bg-navy-800 text-brand-300"
-                      : "bg-brand-50 text-brand-600 ring-1 ring-brand-100",
+                      ? "bg-slate-800 text-steel-300"
+                      : "bg-steel-50 text-steel-600 ring-1 ring-brand-100",
                   )}
                 >
                   <Icon className="size-4.5" />

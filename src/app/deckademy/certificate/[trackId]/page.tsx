@@ -39,8 +39,8 @@ export default async function CertificatePage({ params }: { params: { trackId: s
         <PrintButton />
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border-2 border-brand-500/40 bg-card print:border-brand-500/60">
-        <div className="h-2 bg-gradient-to-r from-brand-600 via-brand-400 to-brand-600" />
+      <div className="mt-8 overflow-hidden rounded-2xl border-2 border-steel-500/40 bg-card print:border-steel-500/60">
+        <div className="h-2 bg-gradient-to-r from-steel-600 via-gold-500 to-steel-600" />
         <div className="p-8 text-center sm:p-12">
           <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-navy-950">
             <svg
@@ -52,8 +52,8 @@ export default async function CertificatePage({ params }: { params: { trackId: s
             >
               <defs>
                 <linearGradient id="cert-gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#EAD9AC" />
-                  <stop offset="100%" stopColor="#B8914D" />
+                  <stop offset="0%" stopColor="#E6B464" />
+                  <stop offset="100%" stopColor="#9A1D26" />
                 </linearGradient>
               </defs>
               <polygon
@@ -69,7 +69,7 @@ export default async function CertificatePage({ params }: { params: { trackId: s
             </svg>
           </div>
 
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-brand-700">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-steel-700">
             DECKADEMY · FoundersDeck
           </p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground">

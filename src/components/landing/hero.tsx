@@ -5,21 +5,21 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#cba967_0%,#dcc28a_55%,#ead9ac_100%)]">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#1E3A8A_0%,#2563EB_50%,#E6B464_100%)]">
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_75%)]" />
-      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-navy-800/10 blur-3xl" />
+      <div className="pointer-events-none absolute -top-48 left-1/2 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-slate-800/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="mx-auto max-w-3xl text-center">
           <h1
-            className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-navy-900 sm:text-6xl lg:text-7xl"
+            className="mt-6 animate-fade-up text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "100ms" }}
           >
             From idea to <span className="text-steel-700">investment-ready</span> in days, not months
           </h1>
 
           <p
-            className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-navy-700"
+            className="mx-auto mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-slate-700"
             style={{ animationDelay: "200ms" }}
           >
             FoundersDeck turns the busywork of starting up into guided workflows  pitch decks,
@@ -40,7 +40,7 @@ export default function Hero() {
           </div>
 
           <p
-            className="mt-8 animate-fade-up text-sm text-navy-600"
+            className="mt-8 animate-fade-up text-sm text-slate-600"
             style={{ animationDelay: "400ms" }}
           >
             No credit card required · Free forever tier
@@ -59,7 +59,7 @@ export default function Hero() {
               <span className="ml-3 text-xs font-medium text-muted-foreground">
                 FoundersDeck  AI Pitch Generator
               </span>
-              <span className="ml-auto rounded-full bg-brand-500/15 px-2.5 py-0.5 text-[10px] font-semibold text-brand-300 ring-1 ring-brand-500/30">
+              <span className="ml-auto rounded-full bg-steel-600/15 px-2.5 py-0.5 text-[10px] font-semibold text-steel-300 ring-1 ring-steel-500/30">
                 SOON
               </span>
             </div>
@@ -82,7 +82,7 @@ export default function Hero() {
                     </div>
                   </div>
                 ))}
-                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-navy-800 text-sm font-semibold text-brand-200 shadow-lg shadow-black/25 ring-1 ring-navy-700">
+                <div className="flex h-10 w-full items-center justify-center rounded-lg bg-slate-800 text-sm font-semibold text-white shadow-lg shadow-black/25 ring-1 ring-navy-700">
                   Generate my deck
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function Hero() {
                   <span className="text-xs font-medium text-muted-foreground">92% ready</span>
                 </div>
                 <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <div className="h-full w-[92%] rounded-full bg-navy-800" />
+                  <div className="h-full w-[92%] rounded-full bg-slate-800" />
                 </div>
                 <div className="mt-5 space-y-3">
                   {[
@@ -107,7 +107,7 @@ export default function Hero() {
                       className="bg-muted/30 flex items-center justify-between rounded-lg border border-border px-3 py-2.5"
                     >
                       <span className="text-sm font-medium text-foreground">{slide.title}</span>
-                      <div className={`h-2 rounded-full bg-brand-400 ${slide.w}`} />
+                      <div className={`h-2 rounded-full bg-steel-500 ${slide.w}`} />
                     </div>
                   ))}
                 </div>

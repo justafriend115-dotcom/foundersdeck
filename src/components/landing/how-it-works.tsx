@@ -28,7 +28,7 @@ export default function HowItWorks() {
     <section id="how-it-works" className="bg-muted/60 scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">
+          <p className="text-sm font-semibold uppercase tracking-widest text-steel-600">
             How it works
           </p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -40,9 +40,9 @@ export default function HowItWorks() {
           <div className="absolute left-0 right-0 top-7 hidden h-px bg-brand-200 md:block" />
           {steps.map((step, i) => (
             <div key={step.title} className="relative flex flex-col items-center text-center">
-              <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl bg-navy-800 text-brand-300 shadow-lg shadow-navy-950/30">
+              <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl bg-slate-800 text-steel-300 shadow-lg shadow-navy-950/30">
                 <step.icon className="size-6" />
-                <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-background text-xs font-bold text-brand-700 shadow-sm ring-1 ring-border">
+                <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-background text-xs font-bold text-steel-700 shadow-sm ring-1 ring-border">
                   {i + 1}
                 </span>
               </div>

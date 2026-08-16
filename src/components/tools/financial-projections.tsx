@@ -94,7 +94,7 @@ export function FinancialProjections() {
                     className={cn(
                       "w-full rounded-lg border px-4 py-3 text-left transition-all",
                       state.model === model.id
-                        ? "border-brand-400 bg-brand-50 shadow-soft"
+                        ? "border-steel-400 bg-steel-50 shadow-soft"
                         : "border-border bg-background hover:border-brand-200",
                     )}
                   >
@@ -137,7 +137,7 @@ export function FinancialProjections() {
             <Card>
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <Calculator className="size-4 text-brand-600" />
+                  <Calculator className="size-4 text-steel-600" />
                   Break-even revenue
                 </div>
                 <p className="mt-2 text-2xl font-extrabold tracking-tight text-foreground">
@@ -152,7 +152,7 @@ export function FinancialProjections() {
             <Card>
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                  <TrendingUp className="size-4 text-brand-600" />
+                  <TrendingUp className="size-4 text-steel-600" />
                   Break-even month
                 </div>
                 <p className="mt-2 text-2xl font-extrabold tracking-tight text-foreground">
@@ -197,11 +197,11 @@ export function FinancialProjections() {
                       title={`M${row.month}: ${formatCurrency(row.revenue)} rev / ${formatCurrency(row.expenses)} exp`}
                     >
                       <div
-                        className="w-1/3 rounded-t bg-navy-300 transition-colors group-hover:bg-navy-400"
+                        className="w-1/3 rounded-t bg-slate-300 transition-colors group-hover:bg-slate-400"
                         style={{ height: `${Math.max((row.expenses / maxValue) * 100, 2)}%` }}
                       />
                       <div
-                        className="w-1/3 rounded-t bg-navy-800 transition-opacity group-hover:opacity-80"
+                        className="w-1/3 rounded-t bg-slate-800 transition-opacity group-hover:opacity-80"
                         style={{ height: `${Math.max((row.revenue / maxValue) * 100, 2)}%` }}
                       />
                     </div>
@@ -219,11 +219,11 @@ export function FinancialProjections() {
                 </div>
                 <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="size-2.5 rounded-sm bg-navy-800" />
+                    <span className="size-2.5 rounded-sm bg-slate-800" />
                     Revenue
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="size-2.5 rounded-sm bg-navy-300" />
+                    <span className="size-2.5 rounded-sm bg-slate-300" />
                     Expenses
                   </span>
                 </div>

@@ -27,7 +27,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
         <div className="mt-6 flex justify-center gap-3">
           <Link
             href="/deckademy/billing"
-            className="rounded-lg bg-navy-800 px-5 py-2.5 text-sm font-semibold text-brand-200 shadow-lg shadow-black/25"
+            className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25"
           >
             Become a member  $49.99/mo
           </Link>

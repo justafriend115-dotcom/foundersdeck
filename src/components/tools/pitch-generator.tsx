@@ -205,7 +205,7 @@ export function PitchGenerator() {
                     type="button"
                     onClick={() => addSuggestion(field.key)}
                     disabled={suggestingField !== null}
-                    className="inline-flex items-center gap-1 text-xs font-medium text-brand-700 hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-steel-700 hover:text-steel-800 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {suggestingField === field.key ? (
                       <Loader2 className="size-3 animate-spin" />
@@ -245,7 +245,7 @@ export function PitchGenerator() {
               <p className="no-print mt-3 text-center text-xs font-medium text-red-600">{error}</p>
             )}
             {planLimited && (
-              <div className="no-print mt-4 rounded-xl border border-brand-200 bg-brand-50 p-4 text-center">
+              <div className="no-print mt-4 rounded-xl border border-brand-200 bg-steel-50 p-4 text-center">
                 <p className="text-sm font-bold text-foreground">
                   You&apos;ve hit the free plan limit
                 </p>
@@ -268,7 +268,7 @@ export function PitchGenerator() {
         <div className="lg:col-span-3">
           {!current && !generating && (
             <div className="bg-card/50 flex h-full min-h-64 flex-col items-center justify-center rounded-xl border border-dashed border-border p-8 text-center">
-              <Sparkles className="size-8 text-brand-300" />
+              <Sparkles className="size-8 text-steel-300" />
               <p className="mt-4 font-medium text-foreground">Your deck will appear here</p>
               <p className="mt-1 max-w-sm text-sm text-muted-foreground">
                 Fill in the details and hit &quot;Generate my deck&quot;  seven investor-grade
@@ -317,7 +317,7 @@ export function PitchGenerator() {
                     className="rounded-xl border border-border bg-card p-6 shadow-sm"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="flex size-7 items-center justify-center rounded-full bg-navy-800 text-xs font-bold text-brand-300">
+                      <span className="flex size-7 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-steel-300">
                         {index + 1}
                       </span>
                       <h3 className="text-lg font-bold text-foreground">{slide.title}</h3>
@@ -331,7 +331,7 @@ export function PitchGenerator() {
                           key={bullet}
                           className="text-foreground/90 flex items-start gap-2 text-sm"
                         >
-                          <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-navy-800" />
+                          <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-slate-800" />
                           {bullet}
                         </li>
                       ))}

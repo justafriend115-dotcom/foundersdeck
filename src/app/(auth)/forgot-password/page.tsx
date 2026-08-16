@@ -16,8 +16,8 @@ export default function ForgotPasswordPage() {
     >
       <div className="space-y-5">
         <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/50 p-4">
-          <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-navy-800">
-            <Lock className="size-4 text-brand-300" />
+          <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-800">
+            <Lock className="size-4 text-steel-300" />
           </span>
           <p className="text-sm leading-relaxed text-muted-foreground">
             For security, password changes require your{" "}
@@ -29,21 +29,21 @@ export default function ForgotPasswordPage() {
 
         <Link
           href="/login"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-navy-800 px-5 py-3 text-sm font-semibold text-brand-200 shadow-lg shadow-black/25 transition-colors hover:bg-navy-800"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-slate-800 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/25 transition-colors hover:bg-slate-800"
         >
           Log in to change your password
         </Link>
 
         <p className="text-center text-sm text-muted-foreground">
           Need an account?{" "}
-          <Link href="/signup" className="font-medium text-brand-700 hover:text-brand-800">
+          <Link href="/signup" className="font-medium text-steel-700 hover:text-steel-800">
             Sign up
           </Link>
         </p>
         <p className="text-center">
           <Link
             href="/login"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-800"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-steel-700 hover:text-steel-800"
           >
             <ArrowLeft className="size-4" />
             Back to log in

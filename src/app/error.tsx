@@ -13,7 +13,7 @@ export default function Error({
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <Container className="py-24 text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">
+        <p className="text-sm font-semibold uppercase tracking-widest text-steel-600">
           Something went wrong
         </p>
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">

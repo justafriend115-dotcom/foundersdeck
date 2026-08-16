@@ -129,7 +129,7 @@ export default function Features() {
     <section id="features" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">
+          <p className="text-sm font-semibold uppercase tracking-widest text-steel-600">
             Everything you need
           </p>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -148,8 +148,8 @@ export default function Features() {
               className="fd-feature-card relative transition-shadow duration-300 hover:shadow-soft"
             >
               <CardHeader>
-                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-brand-50 ring-1 ring-brand-100">
-                  <feature.icon className="size-5 text-brand-600" />
+                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-steel-50 ring-1 ring-brand-100">
+                  <feature.icon className="size-5 text-steel-600" />
                 </div>
                 <CardTitle>{feature.title}</CardTitle>
                 <CardDescription className="leading-relaxed">{feature.description}</CardDescription>

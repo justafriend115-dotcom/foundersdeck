@@ -135,7 +135,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           {isLogin && (
             <Link
               href="/forgot-password"
-              className="text-sm font-medium text-brand-700 hover:text-brand-800"
+              className="text-sm font-medium text-steel-700 hover:text-steel-800"
             >
               Forgot password?
             </Link>
@@ -200,14 +200,14 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         {isLogin ? (
           <>
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="font-medium text-brand-700 hover:text-brand-800">
+            <Link href="/signup" className="font-medium text-steel-700 hover:text-steel-800">
               Sign up free
             </Link>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <Link href="/login" className="font-medium text-brand-700 hover:text-brand-800">
+            <Link href="/login" className="font-medium text-steel-700 hover:text-steel-800">
               Log in
             </Link>
           </>

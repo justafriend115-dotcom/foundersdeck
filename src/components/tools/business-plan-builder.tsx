@@ -65,7 +65,7 @@ export function BusinessPlanBuilder() {
       <div className="mb-6 flex items-center gap-3">
         <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
           <div
-            className="h-full rounded-full bg-navy-800 transition-all duration-300"
+            className="h-full rounded-full bg-slate-800 transition-all duration-300"
             style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
           />
         </div>
@@ -83,8 +83,8 @@ export function BusinessPlanBuilder() {
             className={cn(
               "rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors",
               i === currentStep
-                ? "bg-navy-800 text-brand-200 shadow-md shadow-black/25 ring-1 ring-navy-700"
-                : "border border-border bg-card text-muted-foreground hover:border-brand-300 hover:text-foreground",
+                ? "bg-slate-800 text-white shadow-md shadow-black/25 ring-1 ring-navy-700"
+                : "border border-border bg-card text-muted-foreground hover:border-steel-300 hover:text-foreground",
             )}
           >
             {i + 1}. {s.title}

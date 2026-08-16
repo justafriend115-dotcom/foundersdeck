@@ -81,52 +81,52 @@ export function DeckademyBillingCard({
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(160deg,#cba967_0%,#dcc28a_50%,#ead9ac_100%)]">
+    <main className="min-h-screen bg-[linear-gradient(160deg,#1E3A8A_0%,#2563EB_50%,#E6B464_100%)]">
       <div className="mx-auto max-w-5xl px-6 py-14">
         <Link
           href="/deckademy"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-600 transition-colors hover:text-navy-900"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900"
         >
           <ArrowLeft className="size-4" />
           Back to DECKADEMY
         </Link>
 
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-2">
-          <div className="text-navy-900">
-            <span className="inline-flex items-center gap-2 rounded-full border border-navy-800/20 bg-navy-800/5 px-4 py-1.5 text-xs font-bold text-navy-700">
+          <div className="text-slate-900">
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-800/20 bg-slate-800/5 px-4 py-1.5 text-xs font-bold text-slate-700">
               <Sparkles className="size-3.5" />
               {isMember ? "Active membership" : "Affiliated with FoundersDeck"}
             </span>
             <h1 className="mt-5 text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl">
               {isMember ? "You&apos;re a DECKADEMY member" : "Master the craft of raising"}
             </h1>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-navy-700">
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-slate-700">
               DECKADEMY is FoundersDeck&apos;s self-teaching school for founders  8 tracks, 68
               deep lessons, and certificates that prove you&apos;re ready to raise.
             </p>
 
             <ul className="mt-8 space-y-3.5">
               {MEMBER_FEATURES.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-sm text-navy-800">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-navy-800/15">
-                    <Check className="size-3 text-navy-700" />
+                <li key={feature} className="flex items-start gap-3 text-sm text-slate-800">
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-slate-800/15">
+                    <Check className="size-3 text-slate-700" />
                   </span>
                   {feature}
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 rounded-2xl border border-navy-800/20 bg-navy-800/10 p-6 backdrop-blur">
+            <div className="mt-10 rounded-2xl border border-slate-800/20 bg-slate-800/10 p-6 backdrop-blur">
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-black tracking-tight text-navy-800">$49.99</span>
-                <span className="text-sm font-semibold text-navy-600">/month</span>
+                <span className="text-5xl font-black tracking-tight text-slate-800">$49.99</span>
+                <span className="text-sm font-semibold text-slate-600">/month</span>
               </div>
-              <p className="mt-2 text-sm text-navy-600">
+              <p className="mt-2 text-sm text-slate-600">
                 A separate subscription from your FoundersDeck plan  cancel anytime.
               </p>
               {isMember ? (
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-6 py-3 text-sm font-bold text-brand-200">
+                  <span className="inline-flex items-center gap-2 rounded-lg bg-slate-800 px-6 py-3 text-sm font-bold text-white">
                     <GraduationCap className="size-4" />
                     Membership active
                   </span>
@@ -134,7 +134,7 @@ export function DeckademyBillingCard({
                     type="button"
                     onClick={cancelDemoMembership}
                     disabled={loading !== null}
-                    className="rounded-lg border border-navy-800/30 px-6 py-3 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-800/10 disabled:opacity-60"
+                    className="rounded-lg border border-slate-800/30 px-6 py-3 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-800/10 disabled:opacity-60"
                   >
                     {loading === "cancel" ? <Loader2 className="animate-spin" /> : "Demo mode: cancel membership"}
                   </button>
@@ -144,7 +144,7 @@ export function DeckademyBillingCard({
                   type="button"
                   onClick={startCheckout}
                   disabled={loading !== null}
-                  className="mt-5 w-full bg-navy-800 text-brand-200 shadow-lg shadow-navy-950/40 hover:bg-navy-700"
+                  className="mt-5 w-full bg-slate-800 text-white shadow-lg shadow-navy-950/40 hover:bg-slate-700"
                 >
                   {loading === "join" ? <Loader2 className="animate-spin" /> : <Crown className="size-4" />}
                   {loading === "join" ? "Starting checkout…" : "Become a member  $49.99/mo"}
@@ -154,7 +154,7 @@ export function DeckademyBillingCard({
 
             {error && <p className="mt-4 text-sm font-medium text-red-300">{error}</p>}
             {!isMember && (
-              <p className="mt-4 text-xs text-navy-600">
+              <p className="mt-4 text-xs text-slate-600">
                 {name}, you&apos;re on the free tier  the Legal track is always free. Membership
                 unlocks everything else.
               </p>
@@ -162,33 +162,33 @@ export function DeckademyBillingCard({
           </div>
 
           <div className="hidden lg:block">
-            <div className="rotate-2 rounded-2xl border border-brand-500/30 bg-card p-7 text-foreground shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
-              <div className="absolute -right-4 -top-4 rounded-xl bg-navy-950 px-3 py-2 text-[11px] font-extrabold tracking-wide text-brand-300">
+            <div className="rotate-2 rounded-2xl border border-steel-500/30 bg-card p-7 text-foreground shadow-[0_32px_80px_rgba(0,0,0,0.35)]">
+              <div className="absolute -right-4 -top-4 rounded-xl bg-navy-950 px-3 py-2 text-[11px] font-extrabold tracking-wide text-steel-300">
                 CERTIFY YOUR SKILL
               </div>
-              <div className="flex items-center justify-between border-b border-dashed border-navy-800 pb-4">
+              <div className="flex items-center justify-between border-b border-dashed border-slate-800 pb-4">
                 <div className="flex items-center gap-2.5">
                   <span className="flex size-9 items-center justify-center rounded-lg bg-navy-950">
-                    <GraduationCap className="size-5 text-brand-300" />
+                    <GraduationCap className="size-5 text-steel-300" />
                   </span>
                   <div>
                     <div className="text-sm font-black tracking-wide">DECKADEMY</div>
-                    <div className="text-[10px] font-semibold text-navy-400">
+                    <div className="text-[10px] font-semibold text-slate-400">
                       FOUNDED BY FOUNDERSDECK
                     </div>
                   </div>
                 </div>
-                <Award className="size-6 text-brand-400" />
+                <Award className="size-6 text-steel-400" />
               </div>
-              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-navy-400">
+              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
                 Certificate of completion
               </p>
               <h2 className="mt-1.5 text-xl font-black">Fundraising Mastery</h2>
               <div className="mt-4 flex items-center gap-3">
-                <span className="flex size-10 items-center justify-center rounded-full bg-steel-900 text-sm font-extrabold text-brand-400">
+                <span className="flex size-10 items-center justify-center rounded-full bg-steel-900 text-sm font-extrabold text-steel-400">
                   JD
                 </span>
-                <div className="text-xs text-navy-500">
+                <div className="text-xs text-slate-500">
                   <span className="font-bold text-foreground">The Founder</span>
                   <br />
                   scored 88% · passed the final quiz
@@ -201,20 +201,20 @@ export function DeckademyBillingCard({
                   { label: "Quizzes", value: "8" },
                 ].map((s) => (
                   <div key={s.label} className="rounded-lg bg-steel-900 px-2 py-2.5 text-center">
-                    <div className="text-lg font-black text-brand-400">{s.value}</div>
-                    <div className="text-[9px] font-bold uppercase tracking-wider text-navy-400">
+                    <div className="text-lg font-black text-steel-400">{s.value}</div>
+                    <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
                       {s.label}
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-dashed border-navy-800 pt-4">
-                <span className="flex items-center gap-1.5 text-[10px] font-bold text-navy-400">
+              <div className="mt-5 flex items-center justify-between border-t border-dashed border-slate-800 pt-4">
+                <span className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400">
                   <Check className="size-3.5 text-emerald-500" />
                   VERIFIED · DECKADEMY
                 </span>
                 <span className="flex size-10 items-center justify-center rounded-full border-2 border-steel-400">
-                  <Award className="size-5 text-brand-400" />
+                  <Award className="size-5 text-steel-400" />
                 </span>
               </div>
             </div>
