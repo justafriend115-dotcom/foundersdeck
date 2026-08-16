@@ -148,7 +148,7 @@ export default function Features() {
               className="fd-feature-card relative transition-shadow duration-300 hover:shadow-soft"
             >
               <CardHeader>
-                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-primary-100">
+                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/20">
                   <feature.icon className="size-5 text-primary" />
                 </div>
                 <CardTitle>{feature.title}</CardTitle>

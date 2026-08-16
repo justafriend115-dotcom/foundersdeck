@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-2">
             <Logo dark />
             <p className="mt-4 max-w-sm text-sm leading-relaxed">
-              The toolkit for pre-seed founders  pitch decks, business plans, financials
+              The toolkit for pre-seed founders — pitch decks, business plans, financials
               and investor outreach, all in one place.
             </p>
             <div className="mt-4 flex gap-3">

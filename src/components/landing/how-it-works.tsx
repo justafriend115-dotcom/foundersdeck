@@ -9,7 +9,7 @@ const steps = [
   {
     icon: FilePlus2,
     title: "Choose a tool",
-    description: "Pick the workflow you need  pitch, plan, projections, legal or CRM.",
+    description: "Pick the workflow you need — pitch, plan, projections, legal or CRM.",
   },
   {
     icon: Wand2,

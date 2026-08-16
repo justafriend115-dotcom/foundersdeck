@@ -57,9 +57,9 @@ export default function Hero() {
               <span className="size-2.5 rounded-full bg-amber-400" />
               <span className="size-2.5 rounded-full bg-green-400" />
               <span className="ml-3 text-xs font-medium text-muted-foreground">
-                FoundersDeck  AI Pitch Generator
+                FoundersDeck — AI Pitch Generator
               </span>
-              <span className="ml-auto rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-semibold text-slate-300 ring-1 ring-muted/30">
+              <span className="ml-auto rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-bold text-primary ring-1 ring-primary/30">
                 SOON
               </span>
             </div>
@@ -107,7 +107,7 @@ export default function Hero() {
                       className="bg-muted/30 flex items-center justify-between rounded-lg border border-border px-3 py-2.5"
                     >
                       <span className="text-sm font-medium text-foreground">{slide.title}</span>
-                      <div className={`h-2 rounded-full bg-muted ${slide.w}`} />
+                      <div className={`h-2 rounded-full bg-primary/30 ${slide.w}`} />
                     </div>
                   ))}
                 </div>
