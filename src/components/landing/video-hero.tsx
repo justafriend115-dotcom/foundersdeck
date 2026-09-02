@@ -110,8 +110,8 @@ export default function VideoHero() {
         style={{ opacity: 0 }}
       />
 
-      {/* Dark overlay for legibility */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Warm overlay — matches brand charcoal, not cold black */}
+      <div className="absolute inset-0 bg-[#0C0B09]/60" />
 
       {/* Navigation */}
       <nav className="relative z-20 px-4 py-5 sm:px-6 sm:py-6">
