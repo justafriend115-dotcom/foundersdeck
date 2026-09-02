@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Camera, Globe, MessageCircle } from "lucide-react";
+// Globe is kept for the social footer icon
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -113,15 +114,27 @@ export default function VideoHero() {
       <div className="absolute inset-0 bg-black/30" />
 
       {/* Navigation */}
-      <nav className="relative z-20 px-6 py-6">
-        <div className="liquid-glass mx-auto flex max-w-5xl items-center justify-between rounded-full px-6 py-3">
+      <nav className="relative z-20 px-4 py-5 sm:px-6 sm:py-6">
+        <div className="liquid-glass mx-auto flex max-w-5xl items-center justify-between rounded-full px-4 py-3 sm:px-6">
           {/* Left: logo + links */}
-          <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 font-semibold text-lg text-white">
-              <Globe size={24} />
-              <span>FoundersDeck</span>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-white"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              <svg width="20" height="18" viewBox="0 0 80 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="20" y="4"  width="52" height="40" rx="5" fill="rgba(201,164,65,0.12)" stroke="#C9A441" strokeWidth="1.6" opacity="0.38" />
+                <rect x="12" y="14" width="52" height="40" rx="5" fill="rgba(201,164,65,0.14)" stroke="#C9A441" strokeWidth="1.6" opacity="0.62" />
+                <rect x="4"  y="24" width="52" height="40" rx="5" fill="rgba(201,164,65,0.18)" stroke="#C9A441" strokeWidth="1.8" />
+                <line x1="12" y1="37" x2="47" y2="37" stroke="#C9A441" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
+                <line x1="12" y1="44" x2="38" y2="44" stroke="#C9A441" strokeWidth="1.4" strokeLinecap="round" opacity="0.35" />
+              </svg>
+              <span className="text-base font-normal tracking-tight">
+                Founders<span className="italic" style={{ color: "#C9A441" }}>Deck</span>
+              </span>
             </Link>
-            <div className="hidden items-center gap-8 md:flex">
+            <div className="hidden items-center gap-6 md:flex">
               {[
                 { label: "Features", href: "#features" },
                 { label: "Pricing", href: "#pricing" },
@@ -130,7 +143,7 @@ export default function VideoHero() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+                  className="text-sm font-medium text-white/70 transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -139,13 +152,13 @@ export default function VideoHero() {
           </div>
 
           {/* Right: auth */}
-          <div className="flex items-center gap-4">
-            <Link href="/signup" className="text-sm font-medium text-white transition-opacity hover:opacity-80">
+          <div className="flex items-center gap-3">
+            <Link href="/signup" className="hidden text-sm font-medium text-white/80 transition-opacity hover:opacity-80 sm:block">
               Sign Up
             </Link>
             <Link
               href="/login"
-              className="liquid-glass rounded-full px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-white/5"
+              className="liquid-glass rounded-full px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/5 sm:px-6 sm:py-2"
             >
               Login
             </Link>
@@ -154,9 +167,9 @@ export default function VideoHero() {
       </nav>
 
       {/* Hero content */}
-      <div className="relative z-10 flex flex-1 -translate-y-[20%] flex-col items-center justify-center px-6 py-12 text-center">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-12 text-center">
         <h1
-          className="mb-8 whitespace-nowrap text-5xl tracking-tight text-white md:text-6xl lg:text-7xl"
+          className="mb-8 text-balance text-4xl tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
           Built for the curious
