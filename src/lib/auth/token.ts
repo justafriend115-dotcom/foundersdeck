@@ -51,10 +51,18 @@ export function readSessionToken(token: string | undefined | null): User | null 
       id: String(data.sub ?? ""),
       name: String(data.name ?? ""),
       email: String(data.email ?? ""),
-      plan: data.plan === "pro" || data.plan === "enterprise" ? data.plan : "free",
+      plan:
+        data.plan === "pro" || data.plan === "enterprise" || data.plan === "starter"
+          ? data.plan
+          : "free",
       deckademyPlan: "free",
       stripeCustomerId: null,
       stripeSubscriptionId: null,
+      bypassCaps: false,
+      businessPlanCompleted: false,
+      isAdmin: false,
+      suspiciousActivity: false,
+      orgId: null,
       createdAt: 0,
     };
   } catch {
