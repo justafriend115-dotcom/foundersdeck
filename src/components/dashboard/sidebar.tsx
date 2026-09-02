@@ -57,11 +57,6 @@ function NavList({ onNavigate, isAdmin }: { onNavigate?: () => void; isAdmin?: b
           >
             <item.icon className="size-4.5 shrink-0" />
             <span className="flex-1 truncate">{item.label}</span>
-            {item.comingSoon && (
-              <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-slate-300 ring-1 ring-muted/30">
-                Soon
-              </span>
-            )}
           </Link>
         );
       })}
