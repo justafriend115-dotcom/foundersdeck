@@ -3,14 +3,12 @@
 import { FileText, Handshake, ShieldCheck, Sparkles, TrendingUp, Workflow } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
 const features = [
   {
     icon: Sparkles,
     title: "AI Pitch Generator",
     description:
-      "Answer a few questions and get a structured, investor-ready pitch deck  narrative, bullets and slide order included.",
+      "Answer a few questions and get a structured, investor-ready pitch deck — narrative, bullets and slide order included.",
   },
   {
     icon: FileText,
@@ -129,32 +127,36 @@ export default function Features() {
     <section id="features" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)]">
             Everything you need
           </p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Six tools. <span className="text-gradient">One founder stack.</span>
+          <h2
+            className="mt-3 text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Six tools.{" "}
+            <span className="text-[var(--primary)]">One founder stack.</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Stop stitching together docs, spreadsheets and templates. FoundersDeck covers the entire
             pre-seed journey.
           </p>
         </div>
 
-        <div ref={gridRef} className="fd-card-grid mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div ref={gridRef} className="fd-card-grid mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <Card
+            <div
               key={feature.title}
-              className="fd-feature-card relative transition-shadow duration-300 hover:shadow-soft"
+              className="fd-feature-card relative rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6"
             >
-              <CardHeader>
-                <div className="mb-2 inline-flex size-11 items-center justify-center rounded-xl bg-primary/10 ring-1 ring-primary/20">
-                  <feature.icon className="size-5 text-primary" />
-                </div>
-                <CardTitle>{feature.title}</CardTitle>
-                <CardDescription className="leading-relaxed">{feature.description}</CardDescription>
-              </CardHeader>
-            </Card>
+              <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-[#1A2640]">
+                <feature.icon className="size-5 text-[var(--primary)]" />
+              </div>
+              <h3 className="text-base font-semibold text-foreground">{feature.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {feature.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>

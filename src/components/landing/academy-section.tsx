@@ -31,17 +31,20 @@ export default function AcademySection() {
   const featured = ACADEMY_TRACKS.slice(0, 2);
 
   return (
-    <section className="py-20">
+    <section className="bg-[#0D1325] py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-muted/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#1E2D45] bg-[#0F1628] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--primary)]">
             <GraduationCap className="size-3.5" />
             DECKADEMY · by FoundersDeck
           </span>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          <h2
+            className="mt-4 text-4xl tracking-tight text-foreground sm:text-5xl"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
             Self-teach every skill a startup demands
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {ACADEMY_STATS.lessons} lessons and {ACADEMY_STATS.quizzes} quiz questions across{" "}
             {ACADEMY_STATS.tracks} tracks — legal, team, fundraising, finance, product, sales,
             pitching and operations. Every lesson ends with an action plan. Pass each quiz with 80%+
@@ -55,11 +58,11 @@ export default function AcademySection() {
             return (
               <div
                 key={track.id}
-                className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-lg hover:shadow-black/5"
+                className="rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-primary">
-                    <Icon className="size-5 text-slate-300" />
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-[#1A2640]">
+                    <Icon className="size-5 text-[var(--primary)]" />
                   </span>
                   <div>
                     <h3 className="font-semibold text-foreground">{track.title}</h3>
@@ -75,7 +78,7 @@ export default function AcademySection() {
                   {track.lessons.slice(0, 3).map((lesson) => (
                     <span
                       key={lesson.id}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-[#1E2D45] bg-[#0A0F1F] px-2.5 py-1 text-[11px] font-medium text-muted-foreground"
                     >
                       <BookOpen className="size-3" /> {lesson.title}
                     </span>
@@ -86,12 +89,12 @@ export default function AcademySection() {
           })}
         </div>
 
-        <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-muted/30 bg-primary/10 p-6 sm:flex-row">
+        <div className="mx-auto mt-6 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-xl bg-primary/20">
-              <Award className="size-5 text-slate-400" />
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#1A2640]">
+              <Award className="size-5 text-[var(--primary)]" />
             </span>
-            <p className="text-foreground/80 text-sm">
+            <p className="text-sm text-muted-foreground">
               <span className="font-semibold text-foreground">
                 {ACADEMY_TRACKS.length - 2} more tracks
               </span>{" "}
@@ -102,7 +105,7 @@ export default function AcademySection() {
           </div>
           <Link
             href="/deckademy"
-            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-sm font-semibold text-white shadow-lg shadow-muted/40 transition-colors hover:bg-muted"
+            className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--primary)] px-6 text-sm font-semibold text-[var(--primary)] transition-colors hover:bg-[var(--primary)] hover:text-white"
           >
             Start learning
             <ArrowRight className="size-4" />
