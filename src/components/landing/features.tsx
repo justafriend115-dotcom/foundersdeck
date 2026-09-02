@@ -1,6 +1,6 @@
 "use client";
 
-import { FileText, Handshake, ShieldCheck, Sparkles, TrendingUp, Workflow } from "lucide-react";
+import { FileText, FolderOpen, Handshake, ShieldCheck, Sparkles, TrendingUp, Workflow } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const features = [
@@ -39,6 +39,12 @@ const features = [
     title: "Legal Hub",
     description:
       "NDA templates, founder equity agreements, incorporation checklists and IP guides in plain English.",
+  },
+  {
+    icon: FolderOpen,
+    title: "Data Room",
+    description:
+      "Organise every document investors will ask for — financials, legal, team, and market research — in a structured due-diligence checklist.",
   },
 ];
 
@@ -134,7 +140,7 @@ export default function Features() {
             className="mt-3 text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
-            Six tools.{" "}
+            Seven tools.{" "}
             <span className="text-primary">One founder stack.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -144,10 +150,10 @@ export default function Features() {
         </div>
 
         <div ref={gridRef} className="fd-card-grid mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
+          {features.map((feature, i) => (
             <div
               key={feature.title}
-              className="fd-feature-card relative rounded-2xl border border-border bg-card p-6"
+              className={`fd-feature-card relative rounded-2xl border border-border bg-card p-6${i === features.length - 1 && features.length % 3 !== 0 ? " sm:col-span-2 lg:col-span-1" : ""}`}
             >
               <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-secondary">
                 <feature.icon className="size-5 text-primary" />

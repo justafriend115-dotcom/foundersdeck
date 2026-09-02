@@ -3,6 +3,7 @@
 import {
   Database,
   FileText,
+  FolderOpen,
   GraduationCap,
   Handshake,
   LayoutDashboard,
@@ -29,6 +30,7 @@ export const navItems = [
   { href: "/dashboard/financials", label: "Financial Projections", icon: TrendingUp },
   { href: "/dashboard/legal", label: "Legal Hub", icon: ShieldCheck },
   { href: "/dashboard/crm", label: "Investor CRM", icon: Handshake },
+  { href: "/dashboard/data-room", label: "Data Room", icon: FolderOpen },
   { href: "/dashboard/scraper", label: "Data Scraper", icon: Database },
   { href: "/deckademy", label: "DECKADEMY", icon: GraduationCap },
 ];

@@ -25,7 +25,7 @@ const tiers = [
     description: "For founders ready to raise",
     features: [
       "AI pitch deck builder",
-      "All 6 tools with full access",
+      "All 7 tools with full access",
       "White-label PDF exports",
       "Unlimited investor CRM",
       "Financial projections & charts",

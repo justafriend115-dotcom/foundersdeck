@@ -3,6 +3,7 @@
 import {
   ArrowRight,
   FileText,
+  FolderOpen,
   GraduationCap,
   Handshake,
   Plus,
@@ -22,6 +23,7 @@ const quickActions = [
   { href: "/dashboard/business-plan", label: "Build a business plan", icon: FileText },
   { href: "/deckademy", label: "Take DECKADEMY", icon: GraduationCap },
   { href: "/dashboard/crm", label: "Add an investor", icon: Plus },
+  { href: "/dashboard/data-room", label: "Prepare your data room", icon: FolderOpen },
 ];
 
 const activity = [
