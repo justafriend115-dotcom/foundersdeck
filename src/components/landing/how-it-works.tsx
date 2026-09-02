@@ -25,10 +25,10 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="scroll-mt-20 bg-[#0D1325] py-24">
+    <section id="how-it-works" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)]">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
             How it works
           </p>
           <h2
@@ -36,17 +36,17 @@ export default function HowItWorks() {
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             From signup to{" "}
-            <span className="text-[var(--primary)]">funded</span> in four steps
+            <span className="text-primary">funded</span> in four steps
           </h2>
         </div>
 
         <div className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
-          <div className="absolute left-0 right-0 top-7 hidden h-px bg-[#1E2D45] md:block" />
+          <div className="absolute left-0 right-0 top-7 hidden h-px bg-border md:block" />
           {steps.map((step, i) => (
             <div key={step.title} className="relative flex flex-col items-center text-center">
-              <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl border border-[#1E2D45] bg-[#0F1628] text-slate-300">
+              <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl border border-border bg-card text-muted-foreground">
                 <step.icon className="size-6" />
-                <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full border border-[#1E2D45] bg-[#0A0F1F] text-xs font-semibold text-[var(--primary)]">
+                <span className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full border border-border bg-background text-xs font-semibold text-primary">
                   {i + 1}
                 </span>
               </div>

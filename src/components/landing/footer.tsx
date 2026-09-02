@@ -14,7 +14,7 @@ function SocialIcon({ label, path }: { label: string; path: string }) {
     <a
       href="#"
       aria-label={label}
-      className="flex size-9 items-center justify-center rounded-lg border border-[#1E2D45] bg-[#0F1628] text-muted-foreground transition-colors hover:border-[#2A3D58] hover:text-foreground"
+      className="flex size-9 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
     >
       <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden="true">
         <path d={path} />
@@ -40,7 +40,7 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#1E2D45] bg-[#0A0F1F] text-muted-foreground">
+    <footer className="border-t border-border bg-card text-muted-foreground">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="sm:col-span-2 lg:col-span-2">
@@ -74,7 +74,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-[#1E2D45] pt-6 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
           <p className="text-sm">&copy; {new Date().getFullYear()} FoundersDeck. All rights reserved.</p>
           <p className="text-sm">Made for founders, everywhere.</p>
         </div>

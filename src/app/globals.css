@@ -5,34 +5,34 @@
 @tailwind utilities;
 
 :root {
-  --background: #0A0F1F;
-  --foreground: #FFFFFF;
+  --background: #0C0B09;
+  --foreground: #F0EBE0;
   --primary: #C9A441;
-  --primary-foreground: #0A0F1F;
-  --secondary: #1A233A;
-  --secondary-foreground: #B0B8C8;
-  --muted: #1A233A;
-  --muted-foreground: #6B7A8F;
+  --primary-foreground: #0C0B09;
+  --secondary: #1E1B16;
+  --secondary-foreground: #B5AFA5;
+  --muted: #1E1B16;
+  --muted-foreground: #7A7468;
   --accent: #C9A441;
-  --accent-foreground: #0A0F1F;
+  --accent-foreground: #0C0B09;
   --accent2: #C9A441;
-  --accent2-foreground: #0A0F1F;
-  --success: #00E676;
-  --success-foreground: #0A0F1F;
-  --warning: #FF6B6B;
-  --warning-foreground: #FFFFFF;
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-  --card: #1A233A;
-  --card-foreground: #FFFFFF;
-  --border: #2A3550;
+  --accent2-foreground: #0C0B09;
+  --success: #4ADE80;
+  --success-foreground: #0C0B09;
+  --warning: #FB923C;
+  --warning-foreground: #0C0B09;
+  --destructive: #F87171;
+  --destructive-foreground: #0C0B09;
+  --card: #161410;
+  --card-foreground: #F0EBE0;
+  --border: #2D2923;
   --ring: #C9A441;
   --radius: 0.75rem;
 }
 
 .deckademy-scope {
   --primary: #FBBF24;
-  --primary-foreground: #0A0F1F;
+  --primary-foreground: #0C0B09;
   --ring: #FBBF24;
 }
 

@@ -97,7 +97,7 @@ export default function VideoHero() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black flex flex-col">
+    <div className="relative min-h-screen overflow-hidden bg-background flex flex-col">
       {/* Background video */}
       <video
         ref={videoRef}

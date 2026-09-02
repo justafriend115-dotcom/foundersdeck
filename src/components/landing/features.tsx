@@ -127,7 +127,7 @@ export default function Features() {
     <section id="features" className="scroll-mt-20 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)]">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
             Everything you need
           </p>
           <h2
@@ -135,7 +135,7 @@ export default function Features() {
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Six tools.{" "}
-            <span className="text-[var(--primary)]">One founder stack.</span>
+            <span className="text-primary">One founder stack.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Stop stitching together docs, spreadsheets and templates. FoundersDeck covers the entire
@@ -147,10 +147,10 @@ export default function Features() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="fd-feature-card relative rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6"
+              className="fd-feature-card relative rounded-2xl border border-border bg-card p-6"
             >
-              <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-[#1C1B10]">
-                <feature.icon className="size-5 text-[var(--primary)]" />
+              <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-secondary">
+                <feature.icon className="size-5 text-primary" />
               </div>
               <h3 className="text-base font-semibold text-foreground">{feature.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

@@ -52,10 +52,10 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="scroll-mt-20 py-24">
+    <section id="pricing" className="scroll-mt-20 bg-card py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)]">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
             Pricing
           </p>
           <h2
@@ -63,7 +63,7 @@ export default function Pricing() {
             style={{ fontFamily: "'Instrument Serif', serif" }}
           >
             Simple pricing.{" "}
-            <span className="text-[var(--primary)]">Serious leverage.</span>
+            <span className="text-primary">Serious leverage.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Start free. Upgrade when you&apos;re ready to raise. Cancel anytime.
@@ -77,14 +77,14 @@ export default function Pricing() {
               className={cn(
                 "relative flex flex-col rounded-2xl border p-8",
                 tier.highlighted
-                  ? "border-[var(--primary)]/40 bg-[#0F1628] ring-1 ring-[var(--primary)]/20"
-                  : "border-[#1E2D45] bg-[#0F1628]",
+                  ? "border-primary/40 bg-secondary ring-1 ring-primary/20"
+                  : "border-border bg-secondary",
               )}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-semibold text-foreground">{tier.name}</h3>
                 {tier.highlighted && (
-                  <span className="rounded-full border border-[var(--primary)]/40 px-2.5 py-0.5 text-xs font-semibold text-[var(--primary)]">
+                  <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-xs font-semibold text-primary">
                     Most popular
                   </span>
                 )}
@@ -105,8 +105,8 @@ export default function Pricing() {
               <ul className="mt-8 flex-1 space-y-3.5">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 text-sm text-foreground/80">
-                    <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#1C1B10]">
-                      <Check className="size-3 text-[var(--primary)]" />
+                    <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-muted">
+                      <Check className="size-3 text-primary" />
                     </span>
                     {feature}
                   </li>
