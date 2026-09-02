@@ -2,7 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  plan: "free" | "pro" | "enterprise";
+  plan: "free" | "starter" | "pro" | "enterprise";
   deckademyPlan: "free" | "member";
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
