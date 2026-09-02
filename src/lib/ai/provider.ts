@@ -1,5 +1,11 @@
 export type AiProvider = "openai" | "anthropic" | "mock";
 
+export interface AiResult {
+  text: string | null;
+  inputTokens: number;
+  outputTokens: number;
+}
+
 const OPENAI_MODEL = process.env.AI_MODEL_OPENAI ?? "gpt-4o-mini";
 const ANTHROPIC_MODEL = process.env.AI_MODEL_ANTHROPIC ?? "claude-3-5-haiku-latest";
 
@@ -31,7 +37,7 @@ async function callOpenAI(
   system: string,
   prompt: string,
   maxTokens: number,
-): Promise<string | null> {
+): Promise<AiResult> {
   const response = await fetchWithTimeout(
     "https://api.openai.com/v1/chat/completions",
     {
@@ -52,16 +58,19 @@ async function callOpenAI(
     },
     45000,
   );
-  if (!response.ok) return null;
+  if (!response.ok) return { text: null, inputTokens: 0, outputTokens: 0 };
   const json = await response.json().catch(() => null);
-  return json?.choices?.[0]?.message?.content?.trim() || null;
+  const text = json?.choices?.[0]?.message?.content?.trim() || null;
+  const inputTokens = json?.usage?.prompt_tokens ?? 0;
+  const outputTokens = json?.usage?.completion_tokens ?? 0;
+  return { text, inputTokens, outputTokens };
 }
 
 async function callAnthropic(
   system: string,
   prompt: string,
   maxTokens: number,
-): Promise<string | null> {
+): Promise<AiResult> {
   const response = await fetchWithTimeout(
     "https://api.anthropic.com/v1/messages",
     {
@@ -81,9 +90,27 @@ async function callAnthropic(
     },
     45000,
   );
-  if (!response.ok) return null;
+  if (!response.ok) return { text: null, inputTokens: 0, outputTokens: 0 };
   const json = await response.json().catch(() => null);
-  return json?.content?.[0]?.text?.trim() || null;
+  const text = json?.content?.[0]?.text?.trim() || null;
+  const inputTokens = json?.usage?.input_tokens ?? 0;
+  const outputTokens = json?.usage?.output_tokens ?? 0;
+  return { text, inputTokens, outputTokens };
+}
+
+export async function generateAiTextWithUsage(
+  system: string,
+  prompt: string,
+  maxTokens = 500,
+): Promise<AiResult> {
+  const { provider } = getProviderInfo();
+  try {
+    if (provider === "openai") return await callOpenAI(system, prompt, maxTokens);
+    if (provider === "anthropic") return await callAnthropic(system, prompt, maxTokens);
+    return { text: null, inputTokens: 0, outputTokens: 0 };
+  } catch {
+    return { text: null, inputTokens: 0, outputTokens: 0 };
+  }
 }
 
 export async function generateAiText(
@@ -91,12 +118,6 @@ export async function generateAiText(
   prompt: string,
   maxTokens = 500,
 ): Promise<string | null> {
-  const { provider } = getProviderInfo();
-  try {
-    if (provider === "openai") return await callOpenAI(system, prompt, maxTokens);
-    if (provider === "anthropic") return await callAnthropic(system, prompt, maxTokens);
-    return null;
-  } catch {
-    return null;
-  }
+  const result = await generateAiTextWithUsage(system, prompt, maxTokens);
+  return result.text;
 }

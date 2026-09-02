@@ -14,6 +14,9 @@ type StoredUser = {
   stripeSubscriptionId: string | null;
   bypassCaps: boolean;
   businessPlanCompleted: boolean;
+  isAdmin: boolean;
+  suspiciousActivity: boolean;
+  orgId: string | null;
   createdAt: Date;
 };
 
@@ -36,6 +39,9 @@ export function toPublicUser(user: StoredUser): User {
     stripeSubscriptionId: user.stripeSubscriptionId,
     bypassCaps: user.bypassCaps,
     businessPlanCompleted: user.businessPlanCompleted,
+    isAdmin: user.isAdmin,
+    suspiciousActivity: user.suspiciousActivity,
+    orgId: user.orgId,
     createdAt: user.createdAt.getTime(),
   };
 }

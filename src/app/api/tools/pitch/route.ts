@@ -4,6 +4,7 @@ import { generateDeckSlides } from "@/lib/ai/deck";
 import type { DeckSlide, PitchInput } from "@/lib/ai/types";
 import { requireUser } from "@/lib/auth/server";
 import { prisma } from "@/lib/db";
+import { checkDailySpendCap, checkHourlyLimit, logGeneration } from "@/lib/generation-limiter";
 import { LIMITS, normalizePlan } from "@/lib/plans";
 import { readJsonBody } from "@/lib/request";
 
@@ -107,13 +108,26 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const slides = await generateDeckSlides(input);
+  const [hourly, spend] = await Promise.all([
+    checkHourlyLimit(user.id, user.bypassCaps),
+    checkDailySpendCap(user.id, plan, user.bypassCaps),
+  ]);
+  if (!hourly.allowed || !spend.allowed) {
+    return NextResponse.json(
+      { ok: false, code: "rate_limited", error: "Generation limit reached. Please try again later." },
+      { status: 429 },
+    );
+  }
+
+  const { slides, inputTokens, outputTokens } = await generateDeckSlides(input);
   const title = String(input.companyName ?? "Untitled deck").slice(0, 120);
   const watermarked = isFree && !user.bypassCaps;
 
   const deck = await prisma.pitchDeck.create({
     data: { userId: user.id, title, content: JSON.stringify(slides), watermarked },
   });
+
+  await logGeneration(user.id, "pitch_deck", inputTokens, outputTokens);
 
   return NextResponse.json({ ok: true, deck: deckDto(deck) });
 }

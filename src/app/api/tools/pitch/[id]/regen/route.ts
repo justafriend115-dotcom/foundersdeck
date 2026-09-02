@@ -4,6 +4,7 @@ import { generateDeckSlides } from "@/lib/ai/deck";
 import type { DeckSlide, PitchInput } from "@/lib/ai/types";
 import { requireUser } from "@/lib/auth/server";
 import { prisma } from "@/lib/db";
+import { checkDailySpendCap, checkHourlyLimit, logGeneration } from "@/lib/generation-limiter";
 import { LIMITS, normalizePlan } from "@/lib/plans";
 import { readJsonBody } from "@/lib/request";
 
@@ -68,13 +69,24 @@ export async function POST(
     );
   }
 
+  const [hourly, spend] = await Promise.all([
+    checkHourlyLimit(user.id, user.bypassCaps),
+    checkDailySpendCap(user.id, plan, user.bypassCaps),
+  ]);
+  if (!hourly.allowed || !spend.allowed) {
+    return NextResponse.json(
+      { ok: false, code: "rate_limited", error: "Generation limit reached. Please try again later." },
+      { status: 429 },
+    );
+  }
+
   const body = (await readJsonBody(request, 64 * 1024)) as Record<string, unknown> | null;
   const input = cleanPitchInput(body?.input);
   if (!input) {
     return NextResponse.json({ ok: false, error: "Invalid payload." }, { status: 400 });
   }
 
-  const slides = await generateDeckSlides(input);
+  const { slides, inputTokens, outputTokens } = await generateDeckSlides(input);
   const watermarked = isFree && !user.bypassCaps;
 
   const updated = await prisma.pitchDeck.update({
@@ -85,6 +97,8 @@ export async function POST(
       watermarked,
     },
   });
+
+  await logGeneration(user.id, "pitch_deck", inputTokens, outputTokens);
 
   return NextResponse.json({
     ok: true,

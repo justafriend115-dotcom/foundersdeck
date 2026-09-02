@@ -18,14 +18,41 @@ model User {
   stripeSubscriptionId  String?
   bypassCaps            Boolean  @default(false)
   businessPlanCompleted Boolean  @default(false)
+  isAdmin               Boolean  @default(false)
+  suspiciousActivity    Boolean  @default(false)
+  orgId                 String?
   createdAt             DateTime @default(now())
 
-  pitchDecks   PitchDeck[]
-  businessPlan BusinessPlan?
-  contingency  ContingencyPlan?
-  financials   FinancialProjection?
-  investors    Investor[]
-  academy      AcademyProgress[]
+  pitchDecks     PitchDeck[]
+  businessPlan   BusinessPlan?
+  contingency    ContingencyPlan?
+  financials     FinancialProjection?
+  investors      Investor[]
+  academy        AcademyProgress[]
+  org            Organization?   @relation(fields: [orgId], references: [id])
+  generationLogs GenerationLog[]
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  members   User[]
+}
+
+model GenerationLog {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tool          String
+  estimatedCost Float    @default(0)
+  inputTokens   Int      @default(0)
+  outputTokens  Int      @default(0)
+  refused       Boolean  @default(false)
+  refuseReason  String?
+  createdAt     DateTime @default(now())
+
+  @@index([userId, createdAt])
 }
 
 model AcademyProgress {

@@ -8,5 +8,8 @@ export interface User {
   stripeSubscriptionId: string | null;
   bypassCaps: boolean;
   businessPlanCompleted: boolean;
+  isAdmin: boolean;
+  suspiciousActivity: boolean;
+  orgId: string | null;
   createdAt: number;
 }

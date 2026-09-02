@@ -33,12 +33,15 @@ export const navItems = [
   { href: "/deckademy", label: "DECKADEMY", icon: GraduationCap },
 ];
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate, isAdmin }: { onNavigate?: () => void; isAdmin?: boolean }) {
   const pathname = usePathname();
+  const items = isAdmin
+    ? [...navItems, { href: "/dashboard/admin", label: "Admin — Spend", icon: ShieldCheck }]
+    : navItems;
 
   return (
     <nav className="flex-1 space-y-1 px-3">
-      {navItems.map((item) => {
+      {items.map((item) => {
         const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
         return (
           <Link
@@ -111,7 +114,7 @@ export function Sidebar({
           <Logo dark />
         </div>
         <div className="mt-4 flex flex-1 flex-col">
-          <NavList />
+          <NavList isAdmin={user.isAdmin} />
           <UserFooter user={user} />
         </div>
       </aside>
@@ -142,7 +145,7 @@ export function Sidebar({
                   AI builder tools are coming soon  JAF is on it
                 </p>
               </div>
-              <NavList onNavigate={onClose} />
+              <NavList onNavigate={onClose} isAdmin={user.isAdmin} />
               <UserFooter user={user} />
             </div>
           </aside>
