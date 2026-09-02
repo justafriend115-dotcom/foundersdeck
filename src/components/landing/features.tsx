@@ -124,7 +124,7 @@ export default function Features() {
   }, []);
 
   return (
-    <section id="features" className="scroll-mt-20 py-24">
+    <section id="features" className="scroll-mt-20 overflow-hidden py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-primary">
