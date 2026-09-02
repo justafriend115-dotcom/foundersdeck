@@ -61,7 +61,7 @@ export default function AcademySection() {
                 className="rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-xl bg-[#1A2640]">
+                  <span className="flex size-11 items-center justify-center rounded-xl bg-[#1C1B10]">
                     <Icon className="size-5 text-[var(--primary)]" />
                   </span>
                   <div>
@@ -91,7 +91,7 @@ export default function AcademySection() {
 
         <div className="mx-auto mt-6 flex max-w-4xl flex-col items-center justify-between gap-5 rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#1A2640]">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#1C1B10]">
               <Award className="size-5 text-[var(--primary)]" />
             </span>
             <p className="text-sm text-muted-foreground">

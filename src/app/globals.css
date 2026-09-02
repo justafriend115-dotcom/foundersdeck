@@ -7,16 +7,16 @@
 :root {
   --background: #0A0F1F;
   --foreground: #FFFFFF;
-  --primary: #6C63FF;
-  --primary-foreground: #FFFFFF;
+  --primary: #C9A441;
+  --primary-foreground: #0A0F1F;
   --secondary: #1A233A;
   --secondary-foreground: #B0B8C8;
   --muted: #1A233A;
   --muted-foreground: #6B7A8F;
-  --accent: #00D4FF;
+  --accent: #C9A441;
   --accent-foreground: #0A0F1F;
-  --accent2: #6C63FF;
-  --accent2-foreground: #FFFFFF;
+  --accent2: #C9A441;
+  --accent2-foreground: #0A0F1F;
   --success: #00E676;
   --success-foreground: #0A0F1F;
   --warning: #FF6B6B;
@@ -26,7 +26,7 @@
   --card: #1A233A;
   --card-foreground: #FFFFFF;
   --border: #2A3550;
-  --ring: #6C63FF;
+  --ring: #C9A441;
   --radius: 0.75rem;
 }
 
@@ -155,7 +155,7 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     circle at var(--mx, 50%) var(--my, 50%),
-    rgba(255, 77, 94, 0.12),
+    rgba(201, 164, 65, 0.10),
     transparent 60%
   );
   opacity: 0;

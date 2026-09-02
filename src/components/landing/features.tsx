@@ -149,7 +149,7 @@ export default function Features() {
               key={feature.title}
               className="fd-feature-card relative rounded-2xl border border-[#1E2D45] bg-[#0F1628] p-6"
             >
-              <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-[#1A2640]">
+              <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-[#1C1B10]">
                 <feature.icon className="size-5 text-[var(--primary)]" />
               </div>
               <h3 className="text-base font-semibold text-foreground">{feature.title}</h3>
