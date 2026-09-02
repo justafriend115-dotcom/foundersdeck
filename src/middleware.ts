@@ -6,7 +6,7 @@ import { SESSION_COOKIE } from "@/lib/auth/constants";
 const protectedRoutes = ["/dashboard", "/deckademy", "/reset-password"];
 const authRoutes = ["/login", "/signup", "/forgot-password"];
 
-const comingSoonRoutes = ["/dashboard/pitch", "/dashboard/business-plan"];
+const comingSoonRoutes: string[] = [];
 
 const publicApiPaths = [
   "/api/auth/login",

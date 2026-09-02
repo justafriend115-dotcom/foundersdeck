@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { requireUser } from "@/lib/auth/server";
-import { getToolValue, setToolValue } from "@/lib/tool-store";
+import { prisma } from "@/lib/db";
 import { readJsonBody } from "@/lib/request";
+import { getToolValue, setToolValue } from "@/lib/tool-store";
 
 export async function GET() {
   const user = await requireUser();
@@ -24,5 +25,15 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Invalid payload." }, { status: 400 });
   }
   await setToolValue("businessPlan", user.id, value);
+
+  // Track first completion for future AI gating — when AI generation is added to this
+  // route, check !user.bypassCaps && user.businessPlanCompleted before calling AI.
+  if (!user.businessPlanCompleted) {
+    await prisma.user.update({
+      where: { id: user.id },
+      data: { businessPlanCompleted: true },
+    });
+  }
+
   return NextResponse.json({ ok: true });
 }

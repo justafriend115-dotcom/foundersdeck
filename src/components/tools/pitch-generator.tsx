@@ -15,6 +15,8 @@ interface DeckDto {
   id: string;
   title: string;
   slides: DeckSlide[];
+  regenCount: number;
+  watermarked: boolean;
   createdAt: string;
 }
 
@@ -26,13 +28,17 @@ const emptyInput: PitchInput = {
   solution: "",
 };
 
+const FREE_REGEN_LIMIT = 3;
+
 export function PitchGenerator() {
   const [input, setInput] = useState(emptyInput);
   const [decks, setDecks] = useState<DeckDto[] | null>(null);
   const [generating, setGenerating] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [planLimited, setPlanLimited] = useState(false);
+  const [generationCapped, setGenerationCapped] = useState(false);
+  const [regenCapped, setRegenCapped] = useState(false);
+  const [downloadGated, setDownloadGated] = useState(false);
   const [suggestingField, setSuggestingField] = useState<keyof PitchInput | null>(null);
   const [imageBusy, setImageBusy] = useState<number | null>(null);
 
@@ -50,6 +56,7 @@ export function PitchGenerator() {
   }, []);
 
   const current = decks && decks.length > 0 ? decks[0] : null;
+  const hasExistingDeck = Boolean(current);
 
   function update(field: keyof PitchInput, value: string) {
     setInput((prev) => ({ ...prev, [field]: value }));
@@ -77,24 +84,43 @@ export function PitchGenerator() {
   async function generate() {
     setGenerating(true);
     setError(null);
-    setPlanLimited(false);
+    setGenerationCapped(false);
+    setRegenCapped(false);
+    setDownloadGated(false);
     setCopied(false);
     const startedAt = Date.now();
     try {
-      const response = await fetch("/api/tools/pitch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input }),
-      });
+      let response: Response;
+      if (hasExistingDeck && current) {
+        response = await fetch(`/api/tools/pitch/${current.id}/regen`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ input }),
+        });
+      } else {
+        response = await fetch("/api/tools/pitch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ input }),
+        });
+      }
       const json = await response.json();
       if (json?.ok) {
         trackEvent("generate_deck", {
           title: json.deck.title,
           slides: json.deck.slides.length,
         });
-        setDecks((prev) => [json.deck as DeckDto, ...(prev ?? [])]);
-      } else if (json?.code === "plan_limit") {
-        setPlanLimited(true);
+        if (hasExistingDeck && current) {
+          setDecks((prev) =>
+            (prev ?? []).map((d) => (d.id === current.id ? (json.deck as DeckDto) : d)),
+          );
+        } else {
+          setDecks((prev) => [json.deck as DeckDto, ...(prev ?? [])]);
+        }
+      } else if (json?.code === "generation_cap") {
+        setGenerationCapped(true);
+      } else if (json?.code === "regen_cap") {
+        setRegenCapped(true);
       } else {
         setError("Couldn't generate your deck. Please try again.");
       }
@@ -110,6 +136,10 @@ export function PitchGenerator() {
 
   async function copyDeck() {
     if (!current) return;
+    if (current.watermarked) {
+      setDownloadGated(true);
+      return;
+    }
     const text = current.slides
       .map(
         (slide) =>
@@ -119,6 +149,15 @@ export function PitchGenerator() {
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  }
+
+  function exportPdf() {
+    if (!current) return;
+    if (current.watermarked) {
+      setDownloadGated(true);
+      return;
+    }
+    window.print();
   }
 
   async function runImageAction(slideIndex: number, action: "generate" | "edit" | "remove") {
@@ -154,11 +193,18 @@ export function PitchGenerator() {
     }
   }
 
+  const showPaywall = generationCapped || regenCapped || downloadGated;
+  const paywallMessage = downloadGated
+    ? "Clean exports are a Pro feature. Upgrade to remove the watermark and export your deck."
+    : regenCapped
+      ? `You've used all ${FREE_REGEN_LIMIT} free regenerations. Upgrade to Pro for more.`
+      : "You've used your 1 free deck. Upgrade to Pro to create unlimited decks.";
+
   return (
     <div>
       <ToolHeader
         title="AI Pitch Generator"
-        description="Answer five questions and get a structured, investor-ready deck  narrative, bullets and slide order included. Decks are saved to your workspace."
+        description="Answer five questions and get a structured, investor-ready deck — narrative, bullets and slide order included. Decks are saved to your workspace."
       />
 
       <div className="grid gap-6 lg:grid-cols-5">
@@ -232,27 +278,34 @@ export function PitchGenerator() {
               </div>
             ))}
 
+            {hasExistingDeck && current && (
+              <p className="mb-3 text-center text-xs text-muted-foreground">
+                {current.regenCount} / {FREE_REGEN_LIMIT} regenerations used
+              </p>
+            )}
+
             <Button
               variant="gradient"
-              className="mt-5 w-full"
+              className="mt-2 w-full"
               onClick={generate}
-              disabled={generating}
+              disabled={generating || regenCapped || generationCapped}
             >
               {generating ? <Loader2 className="animate-spin" /> : <Sparkles />}
-              {generating ? "Generating your deck…" : "Generate my deck"}
+              {generating
+                ? "Generating your deck…"
+                : hasExistingDeck
+                  ? "Regenerate deck"
+                  : "Generate my deck"}
             </Button>
             {error && (
               <p className="no-print mt-3 text-center text-xs font-medium text-red-600">{error}</p>
             )}
-            {planLimited && (
+            {showPaywall && (
               <div className="no-print mt-4 rounded-xl border border-primary-200 bg-slate-50 p-4 text-center">
                 <p className="text-sm font-bold text-foreground">
-                  You&apos;ve hit the free plan limit
+                  {downloadGated ? "Pro feature" : "Free plan limit reached"}
                 </p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  The free plan includes {`3`} AI pitch decks. Upgrade to Pro for unlimited
-                  generations, white-label exports and priority support.
-                </p>
+                <p className="mt-1 text-xs text-muted-foreground">{paywallMessage}</p>
                 <a
                   href="/#pricing"
                   className={cn(buttonVariants({ variant: "gradient" }), "mt-3 w-full")}
@@ -271,7 +324,7 @@ export function PitchGenerator() {
               <Sparkles className="size-8 text-slate-300" />
               <p className="mt-4 font-medium text-foreground">Your deck will appear here</p>
               <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-                Fill in the details and hit &quot;Generate my deck&quot;  seven investor-grade
+                Fill in the details and hit &quot;Generate my deck&quot; — seven investor-grade
                 slides in under a minute.
               </p>
             </div>
@@ -300,22 +353,39 @@ export function PitchGenerator() {
                     {copied ? <Check /> : <Copy />}
                     {copied ? "Copied" : "Copy deck"}
                   </Button>
-                  <Button variant="outline" size="sm" onClick={() => window.print()}>
+                  <Button variant="outline" size="sm" onClick={exportPdf}>
                     <Printer />
                     Export PDF
                   </Button>
                 </div>
-                <span className="ml-auto text-xs font-medium text-muted-foreground">
-                  {decks?.length ?? 0} deck{(decks?.length ?? 0) === 1 ? "" : "s"} saved
-                </span>
+                {current.watermarked && (
+                  <span className="ml-auto rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                    Preview — upgrade to remove watermark
+                  </span>
+                )}
+                {!current.watermarked && (
+                  <span className="ml-auto text-xs font-medium text-muted-foreground">
+                    {decks?.length ?? 0} deck{(decks?.length ?? 0) === 1 ? "" : "s"} saved
+                  </span>
+                )}
               </div>
 
               <div className="print-area space-y-4">
                 {current.slides.map((slide, index) => (
                   <div
                     key={slide.title}
-                    className="rounded-xl border border-border bg-card p-6 shadow-sm"
+                    className="relative overflow-hidden rounded-xl border border-border bg-card p-6 shadow-sm"
                   >
+                    {current.watermarked && (
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+                      >
+                        <span className="-rotate-[35deg] select-none whitespace-nowrap text-3xl font-bold tracking-widest text-slate-400/20">
+                          FoundersDeck Preview
+                        </span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-3">
                       <span className="flex size-7 items-center justify-center rounded-full bg-secondary text-xs font-bold text-slate-300">
                         {index + 1}

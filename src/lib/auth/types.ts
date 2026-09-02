@@ -6,5 +6,7 @@ export interface User {
   deckademyPlan: "free" | "member";
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
+  bypassCaps: boolean;
+  businessPlanCompleted: boolean;
   createdAt: number;
 }

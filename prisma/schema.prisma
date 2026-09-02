@@ -8,15 +8,17 @@ datasource db {
 }
 
 model User {
-  id                  String   @id @default(cuid())
-  name                String
-  email               String   @unique
-  passwordHash        String
-  plan                String   @default("free")
-  deckademyPlan       String   @default("free")
-  stripeCustomerId    String?
-  stripeSubscriptionId String?
-  createdAt           DateTime @default(now())
+  id                    String   @id @default(cuid())
+  name                  String
+  email                 String   @unique
+  passwordHash          String
+  plan                  String   @default("free")
+  deckademyPlan         String   @default("free")
+  stripeCustomerId      String?
+  stripeSubscriptionId  String?
+  bypassCaps            Boolean  @default(false)
+  businessPlanCompleted Boolean  @default(false)
+  createdAt             DateTime @default(now())
 
   pitchDecks   PitchDeck[]
   businessPlan BusinessPlan?
@@ -44,12 +46,14 @@ model AcademyProgress {
 }
 
 model PitchDeck {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title     String
-  content   String
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  content     String
+  regenCount  Int      @default(0)
+  watermarked Boolean  @default(true)
+  createdAt   DateTime @default(now())
 }
 
 model BusinessPlan {

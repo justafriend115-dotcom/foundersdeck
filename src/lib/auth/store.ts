@@ -12,6 +12,8 @@ type StoredUser = {
   deckademyPlan: string;
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
+  bypassCaps: boolean;
+  businessPlanCompleted: boolean;
   createdAt: Date;
 };
 
@@ -32,6 +34,8 @@ export function toPublicUser(user: StoredUser): User {
     deckademyPlan: normalizeDeckademyPlan(user.deckademyPlan),
     stripeCustomerId: user.stripeCustomerId,
     stripeSubscriptionId: user.stripeSubscriptionId,
+    bypassCaps: user.bypassCaps,
+    businessPlanCompleted: user.businessPlanCompleted,
     createdAt: user.createdAt.getTime(),
   };
 }

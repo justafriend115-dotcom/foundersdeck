@@ -8,20 +8,7 @@ import { LIMITS, normalizePlan } from "@/lib/plans";
 import { readJsonBody } from "@/lib/request";
 
 const FIELD_MAX = 500;
-const PITCH_FIELDS = [
-  "companyName",
-  "mission",
-  "problem",
-  "solution",
-  "industry",
-  "targetMarket",
-  "businessModel",
-  "stage",
-  "location",
-  "foundingYear",
-  "founderName",
-  "founderBackground",
-] as const;
+const PITCH_FIELDS = ["companyName", "mission", "problem", "solution", "industry"] as const;
 
 function cleanPitchInput(value: unknown): PitchInput | null {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return null;
@@ -51,69 +38,63 @@ function parseSlides(content: string): DeckSlide[] {
   }
 }
 
-function deckDto(deck: {
-  id: string;
-  title: string;
-  content: string;
-  regenCount: number;
-  watermarked: boolean;
-  createdAt: Date;
-}) {
-  return {
-    id: deck.id,
-    title: deck.title,
-    slides: parseSlides(deck.content),
-    regenCount: deck.regenCount,
-    watermarked: deck.watermarked,
-    createdAt: deck.createdAt.toISOString(),
-  };
-}
-
-export async function GET() {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {
   const user = await requireUser();
   if (!user) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
-  const decks = await prisma.pitchDeck.findMany({
-    where: { userId: user.id },
-    orderBy: { createdAt: "desc" },
-    take: 20,
-  });
-  return NextResponse.json({ ok: true, decks: decks.map(deckDto) });
-}
 
-export async function POST(request: NextRequest) {
-  const user = await requireUser();
-  if (!user) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const deck = await prisma.pitchDeck.findUnique({ where: { id: params.id } });
+
+  if (!deck || deck.userId !== user.id) {
+    return NextResponse.json({ ok: false, error: "Not found." }, { status: 404 });
   }
+
+  const plan = normalizePlan(user.plan);
+  const isFree = plan === "free";
+  const regenLimit = LIMITS[plan].pitchDeckRegens;
+
+  if (!user.bypassCaps && regenLimit !== null && deck.regenCount >= regenLimit) {
+    return NextResponse.json(
+      {
+        ok: false,
+        code: "regen_cap",
+        error: "Regeneration limit reached. Upgrade to continue refining your deck.",
+      },
+      { status: 402 },
+    );
+  }
+
   const body = (await readJsonBody(request, 64 * 1024)) as Record<string, unknown> | null;
   const input = cleanPitchInput(body?.input);
   if (!input) {
     return NextResponse.json({ ok: false, error: "Invalid payload." }, { status: 400 });
   }
 
-  const plan = normalizePlan(user.plan);
-  const isFree = plan === "free";
-  const limit = LIMITS[plan].pitchDeckCreations;
-
-  if (!user.bypassCaps && limit !== null) {
-    const deckCount = await prisma.pitchDeck.count({ where: { userId: user.id } });
-    if (deckCount >= limit) {
-      return NextResponse.json(
-        { ok: false, code: "generation_cap", error: "Free plan deck limit reached. Upgrade to create more decks." },
-        { status: 402 },
-      );
-    }
-  }
-
   const slides = await generateDeckSlides(input);
-  const title = String(input.companyName ?? "Untitled deck").slice(0, 120);
   const watermarked = isFree && !user.bypassCaps;
 
-  const deck = await prisma.pitchDeck.create({
-    data: { userId: user.id, title, content: JSON.stringify(slides), watermarked },
+  const updated = await prisma.pitchDeck.update({
+    where: { id: deck.id },
+    data: {
+      content: JSON.stringify(slides),
+      regenCount: { increment: 1 },
+      watermarked,
+    },
   });
 
-  return NextResponse.json({ ok: true, deck: deckDto(deck) });
+  return NextResponse.json({
+    ok: true,
+    deck: {
+      id: updated.id,
+      title: updated.title,
+      slides: parseSlides(updated.content),
+      regenCount: updated.regenCount,
+      watermarked: updated.watermarked,
+      createdAt: updated.createdAt.toISOString(),
+    },
+  });
 }

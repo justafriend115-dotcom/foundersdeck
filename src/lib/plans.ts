@@ -3,7 +3,6 @@ export type Plan = "free" | "pro" | "enterprise";
 export interface PlanInfo {
   name: string;
   priceLabel: string;
-  deckLimit: number | null;
   description: string;
 }
 
@@ -11,24 +10,37 @@ export const PLANS: Record<Plan, PlanInfo> = {
   free: {
     name: "Free",
     priceLabel: "$0/mo",
-    deckLimit: 3,
     description: "For validating your idea",
   },
   pro: {
     name: "Pro",
     priceLabel: "$29/mo",
-    deckLimit: null,
     description: "For founders ready to raise",
   },
   enterprise: {
     name: "Enterprise",
     priceLabel: "Custom",
-    deckLimit: null,
     description: "For accelerators & funds",
   },
 };
 
-export const FREE_DECK_LIMIT = PLANS.free.deckLimit as number;
+export const LIMITS = {
+  free: {
+    pitchDeckCreations: 1,
+    pitchDeckRegens: 3,
+    businessPlanCompletions: 1,
+  },
+  pro: {
+    pitchDeckCreations: null as number | null,
+    pitchDeckRegens: Number(process.env.PRO_REGEN_LIMIT ?? "4"),
+    businessPlanCompletions: null as number | null,
+  },
+  enterprise: {
+    pitchDeckCreations: null as number | null,
+    pitchDeckRegens: null as number | null,
+    businessPlanCompletions: null as number | null,
+  },
+};
 
 export function normalizePlan(plan: string | null | undefined): Plan {
   return plan === "pro" || plan === "enterprise" ? plan : "free";

@@ -23,8 +23,8 @@ import type { User } from "@/lib/auth/types";
 
 export const navItems = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
-  { href: "/dashboard/pitch", label: "Pitch Generator", icon: Sparkles, comingSoon: true },
-  { href: "/dashboard/business-plan", label: "Business Plan", icon: FileText, comingSoon: true },
+  { href: "/dashboard/pitch", label: "Pitch Generator", icon: Sparkles },
+  { href: "/dashboard/business-plan", label: "Business Plan", icon: FileText },
   { href: "/dashboard/contingency", label: "Contingency Planner", icon: Workflow },
   { href: "/dashboard/financials", label: "Financial Projections", icon: TrendingUp },
   { href: "/dashboard/legal", label: "Legal Hub", icon: ShieldCheck },
@@ -111,12 +111,6 @@ export function Sidebar({
           <Logo dark />
         </div>
         <div className="mt-4 flex flex-1 flex-col">
-          <div className="mb-2 flex items-center gap-2 rounded-lg border border-muted/25 bg-primary/10 px-3 py-2">
-            <Sparkles className="size-3.5 shrink-0 text-slate-300" />
-            <p className="text-[11px] font-medium leading-tight text-white/90">
-              AI builder tools are coming soon  JAF is on it
-            </p>
-          </div>
           <NavList />
           <UserFooter user={user} />
         </div>
