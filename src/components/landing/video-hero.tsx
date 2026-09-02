@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Globe, Instagram, Twitter } from "lucide-react";
+import { ArrowRight, Camera, Globe, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -200,8 +200,8 @@ export default function VideoHero() {
       {/* Social footer */}
       <div className="relative z-10 flex justify-center gap-4 pb-12">
         {[
-          { icon: Instagram, label: "Instagram" },
-          { icon: Twitter, label: "Twitter" },
+          { icon: Camera, label: "Instagram" },
+          { icon: MessageCircle, label: "Twitter" },
           { icon: Globe, label: "Website" },
         ].map(({ icon: Icon, label }) => (
           <button
