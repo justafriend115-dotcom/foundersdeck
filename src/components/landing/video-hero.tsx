@@ -1,7 +1,6 @@
 "use client";
 
-import { ArrowRight, Camera, Globe, MessageCircle } from "lucide-react";
-// Globe is kept for the social footer icon
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -110,8 +109,8 @@ export default function VideoHero() {
         style={{ opacity: 0 }}
       />
 
-      {/* Warm overlay — matches brand charcoal, not cold black */}
-      <div className="absolute inset-0 bg-[#0C0B09]/60" />
+      {/* Warm overlay */}
+      <div className="absolute inset-0 bg-[#0C0B09]/68" />
 
       {/* Navigation */}
       <nav className="relative z-20 px-4 py-5 sm:px-6 sm:py-6">
@@ -123,12 +122,11 @@ export default function VideoHero() {
               className="flex items-center gap-2 text-white"
               style={{ fontFamily: "'Instrument Serif', serif" }}
             >
-              <svg width="20" height="18" viewBox="0 0 80 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="20" y="4"  width="52" height="40" rx="5" fill="rgba(201,164,65,0.12)" stroke="#C9A441" strokeWidth="1.6" opacity="0.38" />
-                <rect x="12" y="14" width="52" height="40" rx="5" fill="rgba(201,164,65,0.14)" stroke="#C9A441" strokeWidth="1.6" opacity="0.62" />
-                <rect x="4"  y="24" width="52" height="40" rx="5" fill="rgba(201,164,65,0.18)" stroke="#C9A441" strokeWidth="1.8" />
-                <line x1="12" y1="37" x2="47" y2="37" stroke="#C9A441" strokeWidth="1.4" strokeLinecap="round" opacity="0.55" />
-                <line x1="12" y1="44" x2="38" y2="44" stroke="#C9A441" strokeWidth="1.4" strokeLinecap="round" opacity="0.35" />
+              {/* Ascending Deck mark — three staircase rectangles */}
+              <svg width="22" height="20" viewBox="0 0 32 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="0"  y="14" width="18" height="14" rx="2.5" fill="#C9A441" opacity="0.35" />
+                <rect x="7"  y="7"  width="18" height="14" rx="2.5" fill="#C9A441" opacity="0.65" />
+                <rect x="14" y="0"  width="18" height="14" rx="2.5" fill="#C9A441" />
               </svg>
               <span className="text-base font-normal tracking-tight">
                 Founders<span className="italic" style={{ color: "#C9A441" }}>Deck</span>
@@ -166,66 +164,99 @@ export default function VideoHero() {
         </div>
       </nav>
 
-      {/* Hero content */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-12 text-center">
-        <h1
-          className="mb-8 text-balance text-4xl tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
-          style={{ fontFamily: "'Instrument Serif', serif" }}
-        >
-          Built for the curious
-        </h1>
+      {/* Hero content — two-column on large screens */}
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-12 lg:flex-row lg:items-center lg:gap-16 lg:px-12 lg:max-w-6xl lg:mx-auto lg:w-full">
 
-        <div className="w-full max-w-xl space-y-4">
-          {/* Email subscribe bar */}
-          <div className="liquid-glass flex items-center gap-3 rounded-full py-2 pl-6 pr-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 bg-transparent text-base text-white outline-none placeholder:text-white/40"
-            />
-            <button
-              type="submit"
-              aria-label="Subscribe"
-              className="flex shrink-0 items-center justify-center rounded-full bg-white p-3 text-black transition-opacity hover:opacity-90"
-            >
-              <ArrowRight size={20} />
-            </button>
+        {/* Left: headline + CTAs */}
+        <div className="flex-1 text-center lg:text-left">
+          {/* Social proof eyebrow */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-white/70">
+            <span className="size-1.5 rounded-full bg-[#C9A441]" />
+            47 founders raised this quarter using FoundersDeck
           </div>
 
-          {/* Subtitle */}
-          <p className="px-4 text-sm leading-relaxed text-white">
-            Stay updated with the latest news and insights. Subscribe to our newsletter today and
-            never miss out on exciting updates.
+          <h1
+            className="text-balance text-5xl tracking-tight text-white sm:text-6xl lg:text-7xl"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Raise-ready<br />
+            <em style={{ fontStyle: "italic", color: "#C9A441" }}>in 4 weeks.</em>
+          </h1>
+
+          <p className="mt-6 text-base leading-relaxed text-white/60 lg:max-w-md">
+            Seven tools that cover every document investors will ask for — from pitch deck to data room. Know exactly where you stand before your first meeting.
           </p>
 
-          {/* Manifesto */}
-          <div className="flex justify-center">
-            <button
-              type="button"
-              className="liquid-glass rounded-full px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <Link
+              href="/signup"
+              className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-[#0C0B09] transition-opacity hover:opacity-90"
+              style={{ background: "#C9A441" }}
             >
-              Read our manifesto
-            </button>
+              Get your raise-ready score
+              <ArrowRight size={15} />
+            </Link>
+            <Link
+              href="#features"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3 text-sm font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white"
+            >
+              See how it works
+            </Link>
           </div>
         </div>
-      </div>
 
-      {/* Social footer */}
-      <div className="relative z-10 flex justify-center gap-4 pb-12">
-        {[
-          { icon: Camera, label: "Instagram" },
-          { icon: MessageCircle, label: "Twitter" },
-          { icon: Globe, label: "Website" },
-        ].map(({ icon: Icon, label }) => (
-          <button
-            key={label}
-            type="button"
-            aria-label={label}
-            className="liquid-glass rounded-full p-4 text-white/80 transition-all hover:bg-white/5 hover:text-white"
+        {/* Right: raise-ready score widget */}
+        <div className="mt-12 w-full max-w-xs shrink-0 lg:mt-0 lg:max-w-sm">
+          <div
+            className="rounded-2xl border border-white/10 p-6"
+            style={{ background: "rgba(26,24,20,0.85)", backdropFilter: "blur(12px)" }}
           >
-            <Icon size={20} />
-          </button>
-        ))}
+            <div className="mb-4 flex items-start justify-between">
+              <div>
+                <p className="text-sm font-semibold text-white">Raise-ready score</p>
+                <p className="mt-0.5 text-xs text-white/40">Based on 7 investor checkpoints</p>
+              </div>
+              <p className="text-3xl font-semibold tabular-nums" style={{ fontFamily: "'Instrument Serif', serif", color: "#C9A441" }}>
+                67<span className="text-base text-white/40">%</span>
+              </p>
+            </div>
+
+            {/* Progress bar */}
+            <div className="mb-5 h-1.5 overflow-hidden rounded-full" style={{ background: "rgba(255,255,255,0.08)" }}>
+              <div className="h-full w-[67%] rounded-full" style={{ background: "#C9A441" }} />
+            </div>
+
+            {/* Checklist items */}
+            <div className="space-y-3">
+              {[
+                { label: "Pitch deck", done: true },
+                { label: "Financial model", done: true },
+                { label: "Investor CRM", done: true },
+                { label: "Data room", done: false, pct: "40%" },
+                { label: "Legal documents", done: false },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center justify-between">
+                  <span className="text-xs text-white/50">{item.label}</span>
+                  {item.done ? (
+                    <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ background: "rgba(201,164,65,0.15)", color: "#C9A441" }}>Done</span>
+                  ) : (
+                    <span className="rounded-full border border-white/10 px-2 py-0.5 text-[10px] font-medium text-white/30" style={{ background: "rgba(255,255,255,0.04)" }}>
+                      {item.pct ?? "Start"}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Deadline anchor */}
+            <div className="mt-5 flex items-center gap-2 border-t border-white/10 pt-4 text-xs text-white/40">
+              Q4 investor season opens in
+              <span className="rounded-full border border-[#9B7A2E]/50 px-2 py-0.5 text-[10px] font-semibold" style={{ background: "rgba(201,164,65,0.1)", color: "#C9A441" }}>
+                29 days
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
