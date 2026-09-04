@@ -12,9 +12,10 @@ const tiers = [
     priceMonthly: "$0",
     priceAnnual: "$0",
     period: "Free forever",
-    description: "Try the tools. See what raise-ready looks like before you commit.",
+    oneTime: false,
+    description: "Try every tool. See what raise-ready looks like before you commit.",
     features: [
-      "1 AI pitch deck (watermarked)",
+      "Unlimited decks (watermarked exports)",
       "Business plan builder",
       "Raise-ready score",
       "Legal Hub templates",
@@ -25,23 +26,42 @@ const tiers = [
     ctaTier: "free" as const,
   },
   {
+    name: "Raise Pass",
+    priceMonthly: "$79",
+    priceAnnual: "$79",
+    period: "· one-time",
+    oneTime: true,
+    description: "Everything for your raise, once. Pay once, close your round — no subscription needed.",
+    features: [
+      "All 7 tools, full access",
+      "Watermark removed on all exports",
+      "Shareable investor links",
+      "White-label PDF exports",
+      "Investor CRM & data room",
+      "Financial projections & charts",
+      "90 days from purchase",
+    ],
+    cta: "Get Raise Pass",
+    highlighted: true,
+    ctaTier: "raise_pass" as const,
+  },
+  {
     name: "Pro",
     priceMonthly: "$19",
     priceAnnual: "$149",
     period: "/mo",
     periodAnnual: "/yr · $12.41/mo",
-    description: "Everything you need to run a professional fundraise from first deck to close.",
+    oneTime: false,
+    description: "For founders who raise continuously and need all tools month to month.",
     features: [
-      "Unlimited pitch decks, no watermark",
-      "All 7 tools with full access",
-      "Shareable investor links",
-      "White-label PDF exports",
-      "Unlimited investor CRM",
-      "Financial projections & charts",
+      "Everything in Raise Pass",
+      "Ongoing monthly access",
+      "Unlimited pitch deck regens",
+      "Portfolio update letters",
       "Priority support",
     ],
     cta: "Start 14-day free trial",
-    highlighted: true,
+    highlighted: false,
     ctaTier: "pro" as const,
   },
   {
@@ -49,7 +69,8 @@ const tiers = [
     priceMonthly: "Custom",
     priceAnnual: "Custom",
     period: "",
-    description: "Full-cohort access for accelerator programs and pre-seed funds. One purchase covers every founder.",
+    oneTime: false,
+    description: "Full-cohort access for accelerator programs and pre-seed funds.",
     features: [
       "Team workspaces",
       "Co-branded PDF exports",
@@ -85,7 +106,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        {/* Annual / Monthly toggle */}
+        {/* Annual / Monthly toggle — only affects Pro */}
         <div className="mt-10 flex items-center justify-center gap-3">
           <button
             type="button"
@@ -129,12 +150,12 @@ export default function Pricing() {
           </button>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3 lg:items-stretch">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
           {tiers.map((tier) => (
             <div
               key={tier.name}
               className={cn(
-                "relative flex flex-col rounded-2xl border p-8",
+                "relative flex flex-col rounded-2xl border p-6",
                 tier.highlighted
                   ? "border-primary/40 bg-secondary ring-1 ring-primary/20"
                   : "border-border bg-secondary",
@@ -154,11 +175,11 @@ export default function Pricing() {
                   className="text-4xl tracking-tight text-foreground"
                   style={{ fontFamily: "'Instrument Serif', serif" }}
                 >
-                  {annual ? tier.priceAnnual : tier.priceMonthly}
+                  {annual && !tier.oneTime ? tier.priceAnnual : tier.priceMonthly}
                 </span>
                 {tier.name === "Pro" ? (
                   <span className="text-sm font-medium text-muted-foreground">
-                    {annual ? tier.periodAnnual : tier.period}
+                    {annual ? (tier as { periodAnnual?: string }).periodAnnual ?? tier.period : tier.period}
                   </span>
                 ) : (
                   tier.period && (
@@ -169,7 +190,7 @@ export default function Pricing() {
 
               <p className="mt-2 text-sm text-muted-foreground">{tier.description}</p>
 
-              <ul className="mt-8 flex-1 space-y-3.5">
+              <ul className="mt-6 flex-1 space-y-3">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3 text-sm text-foreground/80">
                     <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-muted">
@@ -180,16 +201,12 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <div className="mt-8">
-                {tier.highlighted ? (
-                  <CheckoutCta tier="pro" label={tier.cta} variant="gradient" />
-                ) : (
-                  <CheckoutCta
-                    tier={tier.ctaTier}
-                    label={tier.cta}
-                    variant="outline"
-                  />
-                )}
+              <div className="mt-6">
+                <CheckoutCta
+                  tier={tier.ctaTier}
+                  label={tier.cta}
+                  variant={tier.highlighted ? "gradient" : "outline"}
+                />
               </div>
             </div>
           ))}

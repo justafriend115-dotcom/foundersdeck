@@ -1,4 +1,4 @@
-export type Plan = "free" | "starter" | "pro" | "enterprise";
+export type Plan = "free" | "starter" | "raise_pass" | "pro" | "enterprise";
 
 export interface PlanInfo {
   name: string;
@@ -8,41 +8,52 @@ export interface PlanInfo {
 
 export const PLANS: Record<Plan, PlanInfo> = {
   free: {
-    name: "Free",
-    priceLabel: "$0/mo",
-    description: "For validating your idea",
+    name: "Preview",
+    priceLabel: "$0",
+    description: "Try every tool, watermarked exports",
   },
   starter: {
     name: "Starter",
     priceLabel: "$9/mo",
     description: "For early-stage founders",
   },
+  raise_pass: {
+    name: "Raise Pass",
+    priceLabel: "$79",
+    description: "Everything for your raise. Once.",
+  },
   pro: {
     name: "Pro",
     priceLabel: "$19/mo",
-    description: "For founders ready to raise",
+    description: "For ongoing fundraising & portfolio updates",
   },
   enterprise: {
-    name: "Enterprise",
+    name: "Accelerator",
     priceLabel: "Custom",
-    description: "For accelerators & funds",
+    description: "For accelerators & pre-seed funds",
   },
 };
 
 export const LIMITS = {
   free: {
-    pitchDeckCreations: 1,
-    pitchDeckRegens: 3,
-    businessPlanCompletions: 1,
+    // Unlimited creation — gate is at distribution (watermarked export)
+    pitchDeckCreations: null as number | null,
+    pitchDeckRegens: 5,
+    businessPlanCompletions: null as number | null,
   },
   starter: {
-    pitchDeckCreations: 3 as number | null,
-    pitchDeckRegens: 2,
+    pitchDeckCreations: null as number | null,
+    pitchDeckRegens: 5,
+    businessPlanCompletions: null as number | null,
+  },
+  raise_pass: {
+    pitchDeckCreations: null as number | null,
+    pitchDeckRegens: null as number | null,
     businessPlanCompletions: null as number | null,
   },
   pro: {
     pitchDeckCreations: null as number | null,
-    pitchDeckRegens: Number(process.env.PRO_REGEN_LIMIT ?? "4"),
+    pitchDeckRegens: Number(process.env.PRO_REGEN_LIMIT ?? "10"),
     businessPlanCompletions: null as number | null,
   },
   enterprise: {
@@ -53,6 +64,12 @@ export const LIMITS = {
 };
 
 export function normalizePlan(plan: string | null | undefined): Plan {
-  if (plan === "pro" || plan === "enterprise" || plan === "starter") return plan;
+  if (
+    plan === "pro" ||
+    plan === "enterprise" ||
+    plan === "starter" ||
+    plan === "raise_pass"
+  )
+    return plan;
   return "free";
 }

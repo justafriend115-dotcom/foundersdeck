@@ -42,7 +42,8 @@ const DEMO_STORED_USER: StoredUser = {
 };
 
 export function normalizePlan(plan: string): User["plan"] {
-  return plan === "pro" || plan === "enterprise" ? plan : "free";
+  if (plan === "pro" || plan === "enterprise" || plan === "starter" || plan === "raise_pass") return plan;
+  return "free";
 }
 
 export function normalizeDeckademyPlan(plan: string): User["deckademyPlan"] {
