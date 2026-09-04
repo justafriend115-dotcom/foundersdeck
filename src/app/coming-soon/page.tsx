@@ -18,7 +18,7 @@ export default function ComingSoonPage() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75" />
               <span className="relative inline-flex size-2 rounded-full bg-secondary" />
             </span>
-            JAF is working on it
+            MB is working on it
           </div>
           <h1 className="coming-soon-title mt-4 text-5xl font-black tracking-tight text-white sm:text-7xl">
             {"COMING SOON".split("").map((char, i) => (
@@ -32,7 +32,7 @@ export default function ComingSoonPage() {
             ))}
           </h1>
           <p className="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-white/70">
-            JAF is working on this right now  keep calm and stay tuned. It&apos;ll be
+            MB is working on this right now  keep calm and stay tuned. It&apos;ll be
             worth the wait.
           </p>
 
@@ -42,7 +42,7 @@ export default function ComingSoonPage() {
               <div className="build-bar h-full rounded-full bg-primary" />
             </div>
             <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-white/50">
-              Build progress  JAF is on it
+              Build progress  MB is on it
             </p>
           </div>
 

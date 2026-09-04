@@ -121,4 +121,32 @@ export const store = {
     });
     return result.count > 0;
   },
+
+  async createSession(id: string, userId: string, expiresAt: Date): Promise<void> {
+    if (userId === DEMO_USER_ID) return;
+    try {
+      await prisma.session.create({ data: { id, userId, expiresAt } });
+    } catch {
+      // DB unavailable — cookie-only session
+    }
+  },
+
+  async deleteSession(id: string): Promise<void> {
+    if (!id) return;
+    try {
+      await prisma.session.delete({ where: { id } });
+    } catch {
+      // Not found or DB unavailable — ignore
+    }
+  },
+
+  async sessionExists(id: string): Promise<boolean> {
+    if (!id) return true;
+    try {
+      const session = await prisma.session.findUnique({ where: { id } });
+      return session !== null && session.expiresAt > new Date();
+    } catch {
+      return true; // DB unavailable — don't block authenticated requests
+    }
+  },
 };

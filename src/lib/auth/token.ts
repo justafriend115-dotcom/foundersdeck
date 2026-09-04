@@ -1,4 +1,4 @@
-import { createHmac, timingSafeEqual } from "crypto";
+import { createHmac, randomBytes, timingSafeEqual } from "crypto";
 
 import type { User } from "./types";
 
@@ -12,10 +12,15 @@ function sign(payload: string): string {
   return createHmac("sha256", SECRET).update(payload).digest("base64url");
 }
 
-export function createSessionToken(user: User): string {
+export function createSessionId(): string {
+  return randomBytes(16).toString("hex");
+}
+
+export function createSessionToken(user: User, sessionId: string): string {
   const payload = Buffer.from(
     JSON.stringify({
       sub: user.id,
+      jti: sessionId,
       name: user.name,
       email: user.email,
       plan: user.plan,
@@ -25,7 +30,9 @@ export function createSessionToken(user: User): string {
   return `${payload}.${sign(payload)}`;
 }
 
-export function readSessionToken(token: string | undefined | null): User | null {
+export type SessionClaims = User & { sessionId: string };
+
+export function readSessionToken(token: string | undefined | null): SessionClaims | null {
   if (!token) return null;
   if (!SECRET) return null;
   const [payload, signature] = token.split(".");
@@ -41,20 +48,26 @@ export function readSessionToken(token: string | undefined | null): User | null 
   try {
     const data = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as {
       sub?: string;
+      jti?: string;
       name?: string;
       email?: string;
       plan?: string;
       exp?: number;
     };
     if (typeof data.exp !== "number" || data.exp < Date.now()) return null;
+
+    const plan = data.plan;
+    const normalizedPlan: User["plan"] =
+      plan === "pro" || plan === "enterprise" || plan === "starter" || plan === "raise_pass"
+        ? plan
+        : "free";
+
     return {
       id: String(data.sub ?? ""),
+      sessionId: String(data.jti ?? ""),
       name: String(data.name ?? ""),
       email: String(data.email ?? ""),
-      plan:
-        data.plan === "pro" || data.plan === "enterprise" || data.plan === "starter"
-          ? data.plan
-          : "free",
+      plan: normalizedPlan,
       deckademyPlan: "free",
       stripeCustomerId: null,
       stripeSubscriptionId: null,

@@ -31,6 +31,17 @@ model User {
   academy        AcademyProgress[]
   org            Organization?   @relation(fields: [orgId], references: [id])
   generationLogs GenerationLog[]
+  sessions       Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
 }
 
 model Organization {
