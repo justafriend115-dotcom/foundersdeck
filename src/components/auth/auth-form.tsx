@@ -178,8 +178,14 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
               className="mt-0.5 size-4 rounded border-border accent-primary"
             />
             <span>
-              I agree to the <span className="font-medium text-foreground">Terms of Service</span>{" "}
-              and <span className="font-medium text-foreground">Privacy Policy</span>.
+              I agree to the{" "}
+              <a href="/legal/terms" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground underline underline-offset-2 hover:text-primary">
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a href="/legal/privacy" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground underline underline-offset-2 hover:text-primary">
+                Privacy Policy
+              </a>.
             </span>
           </label>
         </>

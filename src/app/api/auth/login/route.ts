@@ -26,7 +26,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const result = await signIn(email, password);
+  let result: Awaited<ReturnType<typeof signIn>>;
+  try {
+    result = await signIn(email, password);
+  } catch {
+    return NextResponse.json(
+      { ok: false, error: "Service temporarily unavailable. Please try again." },
+      { status: 503 },
+    );
+  }
   if (!result.ok) {
     return NextResponse.json(
       { ok: false, error: result.error },
