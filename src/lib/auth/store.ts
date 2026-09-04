@@ -21,7 +21,7 @@ type StoredUser = {
 };
 
 export const DEMO_USER_ID = "demo-0000-0000-0000-000000000001";
-export const DEMO_EMAIL = "justafriend115@gmail.com";
+export const DEMO_EMAIL = "demo@foundersdeck.co";
 export const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? "demo1234";
 
 const DEMO_STORED_USER: StoredUser = {

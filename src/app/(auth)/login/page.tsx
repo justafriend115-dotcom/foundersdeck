@@ -16,7 +16,7 @@ export default function LoginPage() {
         <p>
           Demo account:{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">
-            justafriend115@gmail.com
+            demo@foundersdeck.co
           </code>{" "}
           / <code className="rounded bg-muted px-1.5 py-0.5 text-xs text-foreground">demo1234</code>
         </p>
