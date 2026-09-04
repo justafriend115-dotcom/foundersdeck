@@ -8,6 +8,7 @@ import {
   ChevronUp,
   Plus,
   Trash2,
+  Users,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -164,7 +165,37 @@ export function InvestorCrm() {
         </Card>
       )}
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {investors.length === 0 && !showForm && (
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card/40 px-8 py-16 text-center">
+          <div className="flex size-14 items-center justify-center rounded-2xl border border-border bg-secondary">
+            <Users className="size-6 text-primary" />
+          </div>
+          <p className="mt-4 text-lg font-semibold text-foreground">No investors tracked yet</p>
+          <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+            Add your first contact and move them through your pipeline — from cold outreach to closed.
+          </p>
+          <div className="mx-auto mt-7 flex w-full max-w-xs flex-col gap-3 text-left">
+            {[
+              { step: "1", text: "Add an investor — name, firm, and your first note" },
+              { step: "2", text: "Move them through stages as the relationship warms" },
+              { step: "3", text: "Log meetings and follow-ups as they happen" },
+            ].map(({ step, text }) => (
+              <div key={step} className="flex items-start gap-3">
+                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary">
+                  {step}
+                </span>
+                <p className="text-sm text-muted-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
+          <Button variant="gradient" className="mt-8" onClick={() => setShowForm(true)}>
+            <Plus />
+            Add your first investor
+          </Button>
+        </div>
+      )}
+
+      <div className={cn("grid gap-4 md:grid-cols-2 xl:grid-cols-4", investors.length === 0 && "hidden")}>
         {STAGES.map((stage) => {
           const column = investors.filter((i) => i.stage === stage.id);
           return (

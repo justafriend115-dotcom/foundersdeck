@@ -321,12 +321,27 @@ export function PitchGenerator() {
         <div className="lg:col-span-3">
           {!current && !generating && (
             <div className="bg-card/50 flex h-full min-h-64 flex-col items-center justify-center rounded-xl border border-dashed border-border p-8 text-center">
-              <Sparkles className="size-8 text-slate-300" />
-              <p className="mt-4 font-medium text-foreground">Your deck will appear here</p>
-              <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-                Fill in the details and hit &quot;Generate my deck&quot; — seven investor-grade
-                slides in under a minute.
+              <div className="flex size-14 items-center justify-center rounded-2xl border border-border bg-card">
+                <Sparkles className="size-6 text-primary" />
+              </div>
+              <p className="mt-4 text-lg font-semibold text-foreground">Your deck will appear here</p>
+              <p className="mt-1.5 max-w-xs text-sm text-muted-foreground">
+                Seven investor-grade slides — problem, solution, market, team and more — in under a minute.
               </p>
+              <div className="mx-auto mt-6 flex w-full max-w-xs flex-col gap-3 text-left">
+                {[
+                  { step: "1", text: "Fill in your company details on the left" },
+                  { step: "2", text: 'Hit “Generate my deck” to run the AI' },
+                  { step: "3", text: "Review, refine, and export as PDF" },
+                ].map(({ step, text }) => (
+                  <div key={step} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary">
+                      {step}
+                    </span>
+                    <p className="text-sm text-muted-foreground">{text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
