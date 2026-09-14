@@ -45,7 +45,7 @@ export function CheckoutCta({
       });
       const json = await response.json();
       if (response.status === 401) {
-        window.location.href = "/login?next=/pricing";
+        window.location.href = "/login?next=/deckademy";
         return;
       }
       if (json?.ok && json.url) {

@@ -12,7 +12,6 @@ const navLinks = [
   { label: "Features", href: "#features" },
   { label: "DECKADEMY", href: "/deckademy", highlight: true },
   { label: "How it works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
 ];
 
 export default function Navbar() {

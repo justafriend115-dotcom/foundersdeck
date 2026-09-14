@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy, ImageIcon, Loader2, Printer, Sparkles, Trash2 } from "lucide-react";
+import { Check, Copy, ImageIcon, Link2, Loader2, Printer, Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { ToolHeader } from "@/components/tools/tool-header";
@@ -194,11 +194,6 @@ export function PitchGenerator() {
   }
 
   const showPaywall = generationCapped || regenCapped || downloadGated;
-  const paywallMessage = downloadGated
-    ? "Clean exports are a Pro feature. Upgrade to remove the watermark and export your deck."
-    : regenCapped
-      ? `You've used all ${FREE_REGEN_LIMIT} free regenerations. Upgrade to Pro for more.`
-      : "You've used your 1 free deck. Upgrade to Pro to create unlimited decks.";
 
   return (
     <div>
@@ -305,14 +300,14 @@ export function PitchGenerator() {
                 <p className="text-sm font-bold text-foreground">
                   {downloadGated ? "Pro feature" : "Free plan limit reached"}
                 </p>
-                <p className="mt-1 text-xs text-muted-foreground">{paywallMessage}</p>
-                <a
-                  href="/#pricing"
+                <p className="mt-1 text-xs text-muted-foreground">Upgrade to unlock full access.</p>
+                <Link
+                  href="/signup"
                   className={cn(buttonVariants({ variant: "gradient" }), "mt-3 w-full")}
                 >
                   <Sparkles />
-                  Upgrade to Pro
-                </a>
+                  Get Started
+                </Link>
               </div>
             )}
           </div>

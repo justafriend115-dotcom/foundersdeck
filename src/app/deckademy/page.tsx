@@ -235,7 +235,7 @@ export default async function AcademyPage() {
               icon: isMember ? Rocket : Crown,
               tile: "bg-secondary",
               label: isMember ? "DECKADEMY Member" : "Become a Member",
-              sub: isMember ? "All 8 tracks unlocked" : "Unlock all 8 tracks - $49.99/mo",
+              sub: isMember ? "All 8 tracks unlocked" : "Unlock all 8 tracks",
             },
           ].map((link) => (
             <Link

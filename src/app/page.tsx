@@ -3,7 +3,6 @@ import Features from "@/components/landing/features";
 import FinalCta from "@/components/landing/final-cta";
 import Footer from "@/components/landing/footer";
 import HowItWorks from "@/components/landing/how-it-works";
-import Pricing from "@/components/landing/pricing";
 import VideoHero from "@/components/landing/video-hero";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
         <Features />
         <AcademySection />
         <HowItWorks />
-        <Pricing />
         <FinalCta />
       </main>
       <Footer />

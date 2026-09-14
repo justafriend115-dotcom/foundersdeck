@@ -117,12 +117,9 @@ export function DeckademyBillingCard({
             </ul>
 
             <div className="mt-10 rounded-2xl border border-secondary/20 bg-secondary/10 p-6 backdrop-blur">
-              <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-black tracking-tight text-secondary-foreground">$49.99</span>
-                <span className="text-sm font-semibold text-muted-foreground">/month</span>
-              </div>
+              <p className="text-sm font-semibold text-secondary-foreground">Membership Pricing</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                A separate subscription from your FoundersDeck plan  cancel anytime.
+                Contact us for pricing information. DECKADEMY membership is a separate subscription from your FoundersDeck plan — cancel anytime.
               </p>
               {isMember ? (
                 <div className="mt-5 flex flex-wrap gap-3">
@@ -147,7 +144,7 @@ export function DeckademyBillingCard({
                   className="mt-5 w-full bg-primary deckademy-gradient text-primary-foreground shadow-lg shadow-background/40 hover:bg-primary"
                 >
                   {loading === "join" ? <Loader2 className="animate-spin" /> : <Crown className="size-4" />}
-                  {loading === "join" ? "Starting checkout…" : "Become a member  $49.99/mo"}
+                  {loading === "join" ? "Starting checkout…" : "Become a member"}
                 </Button>
               )}
             </div>
@@ -155,8 +152,7 @@ export function DeckademyBillingCard({
             {error && <p className="mt-4 text-sm font-medium text-red-300">{error}</p>}
             {!isMember && (
               <p className="mt-4 text-xs text-muted-foreground">
-                {name}, you&apos;re on the free tier  the Legal track is always free. Membership
-                unlocks everything else.
+                {name}, the Legal track is always free. Membership unlocks all remaining tracks.
               </p>
             )}
           </div>

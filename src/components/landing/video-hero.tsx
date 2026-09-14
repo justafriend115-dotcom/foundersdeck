@@ -135,7 +135,6 @@ export default function VideoHero() {
             <div className="hidden items-center gap-6 md:flex">
               {[
                 { label: "Features", href: "#features" },
-                { label: "Pricing", href: "#pricing" },
                 { label: "About", href: "#about" },
               ].map((link) => (
                 <Link

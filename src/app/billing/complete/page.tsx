@@ -79,10 +79,10 @@ function CompleteContent() {
                 We couldn&apos;t confirm your payment. Please try again.
               </p>
               <Link
-                href="/#pricing"
+                href="/signup"
                 className={cn(buttonVariants({ variant: "outline" }), "mt-8 w-full")}
               >
-                Back to pricing
+                Try for free
               </Link>
             </>
           )}

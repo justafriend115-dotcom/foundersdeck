@@ -30,7 +30,7 @@ export default async function DeckademyTrackPage({ params }: { params: { trackId
             href="/deckademy/billing"
             className="rounded-lg bg-secondary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/25"
           >
-            Become a member  $49.99/mo
+            Become a member
           </Link>
           <Link
             href="/deckademy"

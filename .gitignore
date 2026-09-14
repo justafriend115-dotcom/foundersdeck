@@ -1,43 +1,79 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependencies
+node_modules/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
+# Build outputs
+.next/
+dist/
+build/
+out/
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
+# Environment variables
 .env
-.env*.local
+.env.local
+.env.*
 
-# vercel
-.vercel
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Logs
+*.log
 
 # Prisma
 prisma/dev.db*
 
 # Claude Council journal lock (transient mutex)
 .agents/skills/claude-council/journal/*.lock
+
+# Temporary files
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Python (if applicable)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+.env
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+```

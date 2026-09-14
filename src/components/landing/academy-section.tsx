@@ -99,8 +99,7 @@ export default function AcademySection() {
                 {ACADEMY_TRACKS.length - 2} more tracks
               </span>{" "}
               coming soon — Fundraising, Finance, Product, Go-to-Market, Pitching and Operations.
-              Membership unlocks everything at{" "}
-              <span className="font-semibold text-foreground">$49.99/mo</span>.
+              Membership unlocks everything.
             </p>
           </div>
           <Link
