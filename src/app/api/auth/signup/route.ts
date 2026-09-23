@@ -42,7 +42,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const result = await signUp(name, email, password);
+  let result: Awaited<ReturnType<typeof signUp>>;
+  try {
+    result = await signUp(name, email, password);
+  } catch {
+    return NextResponse.json(
+      { ok: false, error: "Service temporarily unavailable. Please try again." },
+      { status: 503 },
+    );
+  }
   if (!result.ok) {
     return NextResponse.json(
       { ok: false, error: result.error },
