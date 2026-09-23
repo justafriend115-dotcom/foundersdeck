@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Features", href: "#features" },
-  { label: "DECKADEMY", href: "/deckademy" },
+  { label: "DECKADEMY", href: "/deckademy", highlight: true },
   { label: "How it works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
 ];
@@ -33,7 +33,12 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-foreground",
+                link.highlight
+                  ? "font-semibold text-[#C9A441] hover:text-[#C9A441]/80"
+                  : "text-muted-foreground",
+              )}
             >
               {link.label}
             </Link>
@@ -67,7 +72,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className={cn(
+                  "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                  link.highlight ? "text-[#C9A441]" : "text-muted-foreground",
+                )}
               >
                 {link.label}
               </Link>
