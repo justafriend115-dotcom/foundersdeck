@@ -38,3 +38,6 @@ next-env.d.ts
 
 # Prisma
 prisma/dev.db*
+
+# Claude Council journal lock (transient mutex)
+.agents/skills/claude-council/journal/*.lock
