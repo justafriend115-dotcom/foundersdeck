@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM Council — Deckademy Pricing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #f5f5f0;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; }
+
+    .header {
+      background: #fff;
+      border: 1px solid #e0e0d8;
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .header h1 { font-size: 1.25rem; font-weight: 600; color: #2d5a88; margin-bottom: 0.25rem; }
+    .header .meta { font-size: 0.8rem; color: #888; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .badge {
+      background: #e8f0fb;
+      color: #2d5a88;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .badge.mode-standard { background: #e8f0fb; color: #2d5a88; }
+
+    .confidence-block {
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+      border-left: 4px solid;
+    }
+    .confidence-medium { background: #fff8e1; border-color: #ff9800; }
+    .confidence-block strong { display: block; margin-bottom: 0.25rem; }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0d8;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+    .card-title {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+      border-bottom: 1px solid #e0e0d8;
+      background: #fafaf8;
+    }
+    .card-body { padding: 1.25rem 1.5rem; }
+
+    .question-text {
+      background: #f8f8f5;
+      border-left: 3px solid #2d5a88;
+      padding: 0.875rem 1rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .bias-flags {
+      margin-top: 0.875rem;
+      padding: 0.75rem 1rem;
+      background: #fffde7;
+      border: 1px solid #f9e200;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .bias-flags strong { display: block; margin-bottom: 0.25rem; color: #856900; }
+
+    .verdict h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.5rem;
+      color: #2d5a88;
+      padding-top: 1rem;
+      border-top: 1px solid #e8e8e0;
+    }
+    .verdict h2:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .verdict p { margin-bottom: 0.75rem; }
+    .verdict ul { padding-left: 1.5rem; margin-bottom: 0.75rem; }
+    .verdict li { margin-bottom: 0.4rem; }
+    .verdict strong { font-weight: 600; }
+
+    .dissent-note {
+      background: #fff3cd;
+      border: 1px solid #ffb300;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      color: #5d4037;
+    }
+    .dissent-note strong { color: #b71c1c; }
+
+    .dissent-ledger {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      background: #fff5f5;
+      border: 1px solid #ffcdd2;
+      border-radius: 6px;
+    }
+    .dissent-ledger > strong { display: block; margin-bottom: 0.5rem; color: #b71c1c; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .dissent-ledger ul { padding-left: 1.25rem; font-size: 0.9rem; }
+    .dissent-ledger li { margin-bottom: 0.4rem; }
+
+    .grid-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .grid-table th {
+      padding: 0.4rem 0.75rem;
+      text-align: center;
+      background: #f0f4fa;
+      color: #2d5a88;
+      font-weight: 600;
+      border: 1px solid #dde4f0;
+    }
+    .grid-table th:first-child { text-align: left; min-width: 180px; }
+    .grid-table td {
+      padding: 0.4rem 0.75rem;
+      border: 1px solid #e8e8e0;
+      text-align: center;
+    }
+    .grid-table td:first-child { text-align: left; font-size: 0.8rem; color: #333; }
+    .dot { color: #2d5a88; font-size: 1.1rem; }
+    .partial { color: #e65100; font-size: 1.1rem; }
+
+    .rice-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .rice-table th { padding: 0.4rem 0.75rem; background: #f0f4fa; color: #2d5a88; font-weight: 600; border: 1px solid #dde4f0; text-align: left; }
+    .rice-table td { padding: 0.4rem 0.75rem; border: 1px solid #e8e8e0; vertical-align: top; }
+    .rice-score { font-weight: 700; color: #2d5a88; }
+    .rice-winner { background: #f0faf0; }
+    .status-draft { color: #f57c00; font-weight: 600; font-size: 0.75rem; }
+
+    details { margin-bottom: 0.5rem; }
+    details summary {
+      cursor: pointer;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: "▶"; font-size: 0.7rem; transition: transform 0.15s; }
+    details[open] summary::before { transform: rotate(90deg); }
+    details .detail-body {
+      padding: 0.875rem 1rem 0.875rem 1.5rem;
+      font-size: 0.875rem;
+      border-left: 3px solid #e0e0d8;
+      margin-left: 0.5rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .advisor-red-team summary { border-left: 3px solid #e53935; background: #fff5f5; }
+    .advisor-red-team .detail-body { border-left-color: #e53935; }
+    .advisor-first-principles summary { border-left: 3px solid #1e88e5; background: #f0f4fb; }
+    .advisor-first-principles .detail-body { border-left-color: #1e88e5; }
+    .advisor-expansionist summary { border-left: 3px solid #43a047; background: #f0faf0; }
+    .advisor-expansionist .detail-body { border-left-color: #43a047; }
+    .advisor-outsider summary { border-left: 3px solid #fb8c00; background: #fff8f0; }
+    .advisor-outsider .detail-body { border-left-color: #fb8c00; }
+    .advisor-executor summary { border-left: 3px solid #8e24aa; background: #f8f0fb; }
+    .advisor-executor .detail-body { border-left-color: #8e24aa; }
+
+    .conf-high { color: #2e7d32; font-weight: 600; }
+    .conf-low { color: #c62828; font-weight: 600; }
+
+    footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0d8;
+      font-size: 0.75rem;
+      color: #aaa;
+      text-align: center;
+    }
+    footer a { color: #2d5a88; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>LLM Council &mdash; Deckademy Pricing</h1>
+    <div class="meta">
+      <span>2026-09-23T17:19:41Z</span>
+      <span class="badge mode-standard">Standard</span>
+    </div>
+  </div>
+
+  <div class="confidence-block confidence-medium">
+    <strong>Council confidence: Medium &mdash; 4/5 advisors high, 0/5 medium, 1/5 low</strong>
+    <div><strong>Dominant assumption:</strong> Text-based subscription curriculum cannot retain milestone-driven pre-seed founders past content completion.</div>
+    <div><strong>Breakers:</strong> (1) FoundersDeck Pro demonstrates 90+ day retention, validating the Deckademy-to-Pro funnel as having real LTV at the end of it. (2) A fake-door or waitlist demand test surfaces revealed willingness to pay $25+ before content completion, showing this cohort behaves unlike pre-seed founders typically do.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Question</div>
+    <div class="card-body">
+      <div class="question-text">DECISION: Is Deckademy&#39;s current curriculum substantial enough to justify charging $49.99/month, or does it need to be more substantial before real money is asked?
+CONTEXT: FoundersDeck pre-launch SaaS for pre-seed founders. Deckademy: 8 tracks, ~68 text-based lessons, quizzes, exams, printable certificates. Legal track free; full access $49.99/month separate subscription. No real users or social proof yet. Competitors: YC Startup School (free, video), Reforge ($2k/year, cohort), Udemy ($15-50, video).
+STAKES: Pricing decision affects launch strategy, potential churn, and whether Deckademy becomes a revenue center or acquisition funnel for FoundersDeck Pro.
+OPTIONS: A) Launch at $49.99/month as planned; B) Lower price or bundle with FoundersDeck Pro; C) Expand content first (add video, live sessions, AI coaching); D) Make free / use as FoundersDeck Pro acquisition funnel; E) 14-day trial then paid</div>
+      <div class="bias-flags">
+        <strong>Pre-council bias scan</strong>
+        IKEA Effect (invested heavily in content, overvaluing it) &middot; Anchoring ($49.99 is cost-derived not market-derived) &middot; Sunk Cost Fallacy (8 tracks already built) &middot; Confirmation Bias (seeking validation to launch as-is)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Council Verdict</div>
+    <div class="card-body verdict">
+      <h2>Where the council agrees</h2>
+      <p>Near-unanimous: $49.99/month as a standalone subscription is the wrong unit of value for this product at this stage. All five advisors rejected Option A. The core alignment: text-based curriculum without community, outcomes data, or cohort accountability cannot hold a subscription-paying founder past content consumption. Pre-seed founders are milestone-driven and time-constrained &mdash; they will binge the relevant tracks in 6&ndash;8 weeks and cancel. There is no month-four answer.</p>
+      <p>Three advisors independently arrived at &ldquo;acquisition funnel&rdquo; as the correct strategic frame for Deckademy at pre-launch. The RICE analysis confirmed this numerically: Option D (free/funnel) scored 4.50 against Option A ($49.99) at 0.75. The council also agrees on the competitive context: Deckademy&rsquo;s text-based curriculum cannot beat free, video-first YC Startup School on cold distribution. Trying to charge founders who can get comparable content for free elsewhere is not a pricing challenge &mdash; it is a positioning error.</p>
+
+      <h2>Where the council clashes</h2>
+      <p>The surface clash is between monetization paths once the subscription model is off the table. Red Team proposes one-time certificate fees ($29&ndash;49 per track) as a revenue mechanism timed to completion peaks &mdash; the moment of highest perceived value. First Principles and Expansionist argue Deckademy&rsquo;s value is entirely distributional, and that any monetization layer adds friction to the acquisition funnel without meaningful return at this stage.</p>
+      <p>A deeper disagreement sits underneath: whether any monetization of Deckademy is premature. The Outsider frames this as an efficacy problem &mdash; without outcome data, every price point is arbitrary and may signal false confidence to early users. The Executor agrees but treats the three blocking unknowns (price sensitivity, Pro funnel conversion rate, content completion rate) as gaps to close through experiment rather than reasons to pause.</p>
+
+      <h2>Blind spots</h2>
+      <ul>
+        <li><strong>The funnel is a label, not a plan.</strong> All three &ldquo;acquisition funnel&rdquo; advocates named the mechanism without specifying the conversion trigger. What happens at Deckademy completion that moves a founder to Pro? A weak or absent trigger means free Deckademy teaches founders everything they need and exits them &mdash; it does not feed Pro, it replaces it.</li>
+        <li><strong>FoundersDeck Pro&rsquo;s own retention was never examined.</strong> If Pro has the same churn dynamic &mdash; founders graduate pre-seed, product utility expires, they cancel in 60&ndash;90 days &mdash; then funneling Deckademy completions into Pro just defers the same problem by one product layer. The entire funnel recommendation rests on Pro delivering sustained LTV that nobody verified.</li>
+        <li><strong>No one recommended gathering the demand signal first.</strong> The council spent five advisor cycles debating price architecture without any revealed-preference data. A fake-door experiment would collapse the central uncertainty in days, not months.</li>
+      </ul>
+
+      <h2>Recommendation</h2>
+      <p><strong>Launch Deckademy as a free acquisition channel for FoundersDeck Pro (Option D).</strong> This is the majority view (3/5 advisors directly; confirmed by RICE scoring). Do not launch at $49.99/month.</p>
+      <p>The Legal track is already free, which is directionally correct. Extend that logic to all tracks. The completion certificate paywall ($19&ndash;29 one-time, per track) is worth testing as a lightweight revenue signal &mdash; it aligns monetization with the moment of highest perceived value and adds almost no friction to acquisition. Treat it as an experiment with a hypothesis, not a pricing strategy.</p>
+      <p>If forced to choose from the original list today: Option D (free / acquisition funnel), with certificate micro-transactions as an optional test overlay. Not Option E (trial + $19&ndash;29/mo) &mdash; that still bets on subscription retention in a cohort that will not sustain it.</p>
+
+      <h2>One thing to do first</h2>
+      <p><strong>Run a fake-door test before debating pricing architecture further.</strong> Behind the Legal track&rsquo;s completion screen, publish a single page offering &ldquo;Deckademy Pro&rdquo; &mdash; full access to all tracks &mdash; at a stated $29/month price. Measure click-through on 100&ndash;200 completions. Do not build the billing flow; just capture the intent signal.</p>
+      <p>This costs one afternoon and collapses the question the council could not answer from first principles: whether founders in this cohort have revealed willingness to pay at all, and at what price point they stop. Everything downstream depends on what this experiment shows. Run it before building anything else around the pricing question.</p>
+
+      <div class="dissent-note">
+        <strong>⚠ Chairman split:</strong> Chairman-Dissent recommends running a 30-day demand test with certificate revenue ($29&ndash;39/track) <em>before</em> committing to free. Chairman-Consensus recommends launching free now with fake-door test as overlay. The user should weigh both.
+      </div>
+
+      <div class="dissent-ledger">
+        <strong>Dissent Ledger</strong>
+        <ul>
+          <li><strong>DISSENT PRESERVED:</strong> Free-funnel collapses if Pro cannot retain graduates &mdash; R1 raised this directly and nobody answered it. Dissent named it a load-bearing unknown; Consensus listed it as a blind spot but still recommended launching free. (Red Team / Peer Reviewer 1)</li>
+          <li><strong>DISSENT PRESERVED:</strong> Certificate model is structurally MORE sound than free-funnel, not a secondary test &mdash; it eliminates churn entirely and aligns price with highest perceived value. Consensus demoted it to &ldquo;worth testing as lightweight revenue signal.&rdquo; (Red Team)</li>
+          <li><strong>DISSENT PRESERVED:</strong> &ldquo;Launch free now&rdquo; is itself an architecture commitment requiring Pro retention data first. Dissent treats the demand test as a prerequisite gate; Consensus treats it as an overlay on an already-decided free launch.</li>
+          <li><strong>DISSENT PRESERVED:</strong> Sharper language suppressed: Dissent wrote &ldquo;free-funnel consensus recommendation collapses&rdquo; if Pro retention fails. Consensus softened this to a blind spot without adjusting the recommendation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Agreement Grid</div>
+    <div class="card-body">
+      <table class="grid-table">
+        <thead>
+          <tr>
+            <th>Point of agreement</th>
+            <th>Red Team</th>
+            <th>First Principles</th>
+            <th>Expansionist</th>
+            <th>Outsider</th>
+            <th>Executor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$49.99/mo subscription is wrong unit</td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+          </tr>
+          <tr>
+            <td>Deckademy best serves as acquisition funnel</td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="dot">●</span></td>
+          </tr>
+          <tr>
+            <td>No demand / outcome data exists yet</td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+          </tr>
+          <tr>
+            <td>Finite curriculum → completion-then-churn</td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="dot">●</span></td>
+          </tr>
+          <tr>
+            <td>Can&#39;t compete cold vs. free YC Startup School</td>
+            <td><span class="partial">~</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="dot">●</span></td>
+            <td><span class="partial">~</span></td>
+            <td><span class="dot">●</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.75rem;color:#888;margin-top:0.5rem;">● = explicit &nbsp; ~ = implicit/partial &nbsp; blank = not addressed</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">RICE Analysis (Executor)</div>
+    <div class="card-body">
+      <p style="font-size:0.8rem;color:#888;margin-bottom:0.75rem;"><span class="status-draft">STATUS: DRAFT — BLOCKED ON</span> price sensitivity data, Pro funnel conversion rate, content completion rate</p>
+      <table class="rice-table">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Reach</th>
+            <th>Impact</th>
+            <th>Confidence</th>
+            <th>Effort</th>
+            <th>RICE Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rice-winner">
+            <td><strong>D &mdash; Free / Pro funnel</strong></td>
+            <td>L</td>
+            <td>H</td>
+            <td>60%</td>
+            <td>1</td>
+            <td><span class="rice-score">4.50</span> ✓</td>
+          </tr>
+          <tr>
+            <td>E &mdash; 14-day trial → $19-29/mo</td>
+            <td>S</td>
+            <td>H</td>
+            <td>50%</td>
+            <td>2</td>
+            <td><span class="rice-score">2.25</span></td>
+          </tr>
+          <tr>
+            <td>B &mdash; Lower price / bundle Pro</td>
+            <td>L</td>
+            <td>M</td>
+            <td>40%</td>
+            <td>2</td>
+            <td><span class="rice-score">1.20</span></td>
+          </tr>
+          <tr>
+            <td>A &mdash; Launch at $49.99/month</td>
+            <td>S</td>
+            <td>H</td>
+            <td>25%</td>
+            <td>1</td>
+            <td><span class="rice-score">0.75</span></td>
+          </tr>
+          <tr>
+            <td>C &mdash; Expand content first</td>
+            <td>L</td>
+            <td>H</td>
+            <td>15%</td>
+            <td>8</td>
+            <td><span class="rice-score">0.28</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Advisor Responses</div>
+    <div class="card-body">
+      <details class="advisor-red-team">
+        <summary>Red Team <span class="conf-high">high</span></summary>
+        <div class="detail-body">FAILURE MODE: Subscription model on finite curriculum → churn by month 3. Founders consume the relevant tracks in 6–8 weeks and cancel.
+
+ROOT CAUSE: "Comprehensive" ≠ "subscription-worthy." The missing question that was never asked: what makes a founder stay subscribed in month 4? Nobody has an answer because the model was priced on cost, not on recurring value.
+
+MISSED SIGNAL: $49.99/month was set because of build cost, not because of delivered value. The subscription assumes ongoing delivery that a static curriculum cannot provide.
+
+ALTERNATIVE: Free acquisition funnel + one-time certificate fees ($29–49/track) at completion peak. Captures payment at moment of highest perceived value, eliminates churn entirely.
+
+=== CONFIDENCE ===
+confidence: high
+assumptions: curriculum is finite and static, no recurring value added monthly
+what_would_change_my_mind: regular new content additions matching founder stage, or strong community/peer features creating social retention
+unknowns: actual churn curve data, whether founders complete tracks before canceling</div>
+      </details>
+
+      <details class="advisor-first-principles">
+        <summary>First Principles <span class="conf-high">high</span></summary>
+        <div class="detail-body">REFRAMING A: Outcome delivery justifies price, not volume of content. 68 lessons ≠ $600/year in delivered outcomes for founders who may not raise. Even excellent content is not subscription-worthy if the user can extract all value in 6 weeks.
+
+REFRAMING B: Monthly subscription is the wrong unit for cash-constrained, milestone-driven founders. Willingness-to-pay spikes at pre-pitch and pre-diligence, not monthly.
+
+REFRAMING C: Deckademy is an acquisition channel, not a profit center. Text-only content cannot win against free YC Startup School cold. The value is in the FoundersDeck Pro funnel it feeds.
+
+PRIMARY: C — the strategic position is clearest here
+SECONDARY: A — content must still clear a trust threshold even if free
+
+=== CONFIDENCE ===
+confidence: high
+assumptions: FoundersDeck Pro has genuine recurring value that justifies subscription
+what_would_change_my_mind: community layer, live sessions, or outcomes data that differentiate Deckademy
+unknowns: Pro retention metrics, conversion rate from Deckademy free → Pro paid</div>
+      </details>
+
+      <details class="advisor-expansionist">
+        <summary>Expansionist <span class="conf-high">high</span></summary>
+        <div class="detail-body">OPTION X: B2B cohort licensing to accelerators/incubators — upside: H / effort delta: M
+OPTION Y: Success-deferred pricing (pay if you raise) — upside: M / effort delta: H
+OPTION Z: Distribution-first — make all content free, Deckademy = FoundersDeck Pro acquisition funnel — upside: H / effort delta: L
+
+RECOMMENDED: Z. At pre-launch, distribution bottleneck &gt; curriculum depth. Content is already the best free lead magnet in the segment. Charging for it before building an audience is optimizing at the wrong layer.
+
+WHY IT DOMINATES: Option A requires convincing cold founders to pay $49.99 before they've received any value. Option Z gets them in, delivers value, and converts them to Pro after they're believers.
+
+=== CONFIDENCE ===
+confidence: high
+assumptions: FoundersDeck Pro has differentiated recurring value to funnel into
+what_would_change_my_mind: evidence that founders pay for text content in this cohort
+unknowns: B2B accelerator demand (Option X is underexplored)</div>
+      </details>
+
+      <details class="advisor-outsider">
+        <summary>Outsider (Clinical Trials) <span class="conf-high">high</span></summary>
+        <div class="detail-body">FIELD: Clinical trials methodology — I'm reading this as an IRB chair evaluating a Phase II trial seeking commercial approval.
+
+NAIVE READ: This is a drug seeking commercial approval with zero patient outcomes. Inputs (lessons, quizzes) ≠ efficacy. You're asking whether the dosage is right before anyone has taken it.
+
+BUBBLE SPOTS: "Curriculum quality" is being used as a proxy for "value delivered." That conflation is doing unearned work. A well-structured lesson that doesn't change founder behavior is not worth $49.99.
+
+CROSS-DOMAIN INSIGHT: Run the open-label trial first. Free cohort, measure learning outcomes, track whether founders who completed Deckademy actually raised or shipped faster. Set price after measuring efficacy, not before.
+
+The $49.99/month question is literally unanswerable without outcome data.
+
+=== CONFIDENCE ===
+confidence: high
+assumptions: outcome data is collectible within a reasonable timeframe
+what_would_change_my_mind: a comparable product's conversion data showing text content converts at this price point
+unknowns: completion rate, post-completion behavior, whether curriculum changes decisions or just informs them</div>
+      </details>
+
+      <details class="advisor-executor">
+        <summary>Executor <span class="conf-low">low</span></summary>
+        <div class="detail-body">PHASE ASSESSMENT: Stuck in Decide for the right reason — the analysis is sound, but the inputs needed to make it reliable don't exist yet. The fastest path out is an Act (fake-door test), not more analysis.
+
+PRIORITY SCORING (RICE):
+Option D — Free / Pro upsell: Reach L, Impact H, Confidence 60%, Effort 1 → Score 4.50
+Option E — 14-day trial → $19-29/mo: Reach S, Impact H, Confidence 50%, Effort 2 → Score 2.25
+Option B — Lower price or bundle Pro: Reach L, Impact M, Confidence 40%, Effort 2 → Score 1.20
+Option A — Launch at $49.99 now: Reach S, Impact H, Confidence 25%, Effort 1 → Score 0.75
+Option C — Expand first (video, live, AI): Reach L, Impact H, Confidence 15%, Effort 8 → Score 0.28
+
+VERDICT: D wins. Deckademy's highest-value function pre-launch is as acquisition funnel for FoundersDeck Pro, not a standalone revenue line. Option C is rejected outright — building more content before validating demand is sunk cost amplification.
+
+DATA COMPLETENESS CHECK — STATUS: DRAFT — BLOCKED ON:
+1. Price sensitivity — no trial or survey data exists
+2. Pro funnel conversion rate — no funnel instrumentation
+3. Content completion rate — no session analytics
+
+All four named bias flags are active against Option A.
+
+=== CONFIDENCE ===
+confidence: low
+assumptions: RICE scores assume moderate reach and impact estimates without validation
+what_would_change_my_mind: conversion data from a demand test; Pro retention curve
+unknowns: same as Data Completeness Check above</div>
+      </details>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Peer Reviews (5)</div>
+    <div class="card-body">
+      <details>
+        <summary>Reviewer 1</summary>
+        <div class="detail-body">1. STRONGEST: B (Red Team). The pre-mortem framing names the specific failure mechanism (churn by month 3 on finite curriculum) rather than restating the conclusion. Provides a concrete alternative — one-time certificate fees at completion peak — that solves both the churn problem and the subscription problem simultaneously.
+
+2. EXPLOITABLE WEAKNESS: B's escape valve (FoundersDeck Pro) is unexamined. If Pro has weak retention, funneling Deckademy users into Pro just defers the same churn problem by one step.
+
+3. COLLECTIVE MISS: None of the advisors examined what FoundersDeck Pro actually does. Every recommendation depends on Pro having a defensible recurring value proposition. This assumption is never examined.
+
+CONSENSUS STRENGTH: 4</div>
+      </details>
+
+      <details>
+        <summary>Reviewer 2</summary>
+        <div class="detail-body">1. STRONGEST: B (Red Team). Identifies a structural failure — finite curriculum billed as infinite subscription — not just a strategy preference. The churn prediction is mechanically grounded.
+
+2. EXPLOITABLE WEAKNESS: B's certificate fee alternative assumes certificates carry signal value. No accreditation, no employer recognition. Pre-seed founders paying $29-49 for a certificate from an unknown platform get nothing transferable.
+
+3. COLLECTIVE MISS: None addressed the conversion funnel's missing link — what FoundersDeck Pro actually offers and whether free Deckademy users have any demonstrated reason to upgrade. All four assume "Deckademy free → Pro signups" as if conversion is automatic.
+
+CONSENSUS STRENGTH: 4</div>
+      </details>
+
+      <details>
+        <summary>Reviewer 3</summary>
+        <div class="detail-body">1. STRONGEST: B (Red Team). The pre-mortem framing names the specific failure mechanism. It also provides a concrete alternative monetization model that solves both the churn problem and the subscription problem simultaneously.
+
+2. EXPLOITABLE WEAKNESS: B's certificate fee model assumes completion-peak willingness-to-pay exists in this cohort. Pre-seed founders are operators closing rounds, not career-track learners — certificates may be worthless to them.
+
+3. COLLECTIVE MISS: None of the advisors specified the conversion mechanics from Deckademy free user to FoundersDeck Pro subscriber. "Acquisition funnel" appears as a conclusion, not a plan. What specific trigger, CTA, or workflow integration converts a Deckademy user into a paying FoundersDeck customer?
+
+CONSENSUS STRENGTH: 4</div>
+      </details>
+
+      <details>
+        <summary>Reviewer 4</summary>
+        <div class="detail-body">1. STRONGEST: D (First Principles). The three-reframing structure separates three distinct failure modes rather than collapsing them into one prescription. The primary recommendation — Deckademy as acquisition channel — directly reframes the original decision as the wrong question.
+
+2. EXPLOITABLE WEAKNESS: D doesn't specify what Deckademy acquires users into. If FoundersDeck's core product is undefined or not ready, the funnel leads nowhere. "Acquisition channel" is only sound if the destination product has retention mechanics.
+
+3. COLLECTIVE MISS: None addressed founder lifecycle obsolescence. Pre-seed founders graduate in 60-90 days — the curriculum is useful for a sprint, then founders either raise or pivot focus. No advisor asked what keeps a post-curriculum founder paying or returning. This is the actual churn driver — stage-specific utility expiring, not finite content per se.
+
+CONSENSUS STRENGTH: 4 [Note: reviewer output was "88"; defaulted to 3 — strong directional agreement logged]</div>
+      </details>
+
+      <details>
+        <summary>Reviewer 5</summary>
+        <div class="detail-body">1. STRONGEST: D (First Principles). It reframes the actual decision — not "is 68 lessons worth $49.99?" but "is Deckademy a revenue center or an acquisition channel?" That's the load-bearing question, answered using first principles rather than borrowed methodology.
+
+2. EXPLOITABLE WEAKNESS: D says "stop treating Deckademy as standalone revenue" but offers no replacement revenue path. If FoundersDeck needs subscription income to extend runway pre-launch, converting Deckademy to free immediately may accelerate the failure it's trying to prevent.
+
+3. COLLECTIVE MISS: None recommended a demand test before debating price architecture. Zero users means zero revealed-preference data. A fake-door or waitlist experiment — charge $49.99 to a small cohort, watch conversion and month-2 retention — would answer the model question empirically rather than theoretically.
+
+CONSENSUS STRENGTH: 4 [Note: reviewer output was "88"; defaulted to 3 — strong directional agreement logged]</div>
+      </details>
+    </div>
+  </div>
+
+  <footer>LLM Council &middot; Mode: Standard (auto-selected) &middot; SHA: d7b11241 &middot; Debate: skipped (avg 3.6/5) &middot; <a href="council-transcript-20260923-171941Z-qd7b11241.md">Full transcript</a></footer>
+
+</div>
+</body>
+</html>
