@@ -20,7 +20,12 @@ export async function signIn(
     user = await store.findById(DEMO_USER_ID);
   } else {
     const found = await store.findByEmail(email);
-    if (!found || !store.verifyPassword(found, password)) {
+    if (!found) {
+      console.error("[auth] login failed: no user found for email", email);
+      return { ok: false, error: "Invalid email or password." };
+    }
+    if (!store.verifyPassword(found, password)) {
+      console.error("[auth] login failed: wrong password for", email);
       return { ok: false, error: "Invalid email or password." };
     }
     user = found;
