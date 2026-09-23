@@ -94,11 +94,9 @@ export const store = {
 
   async findByEmail(email: string): Promise<StoredUser | null> {
     if (email.toLowerCase() === DEMO_EMAIL.toLowerCase()) return DEMO_STORED_USER;
-    try {
-      return await prisma.user.findUnique({ where: { email } });
-    } catch {
-      return null;
-    }
+    // Let DB errors throw — login route catches them and returns 503,
+    // not "Invalid email or password" (which would be misleading).
+    return await prisma.user.findUnique({ where: { email } });
   },
 
   async findById(id: string): Promise<StoredUser | null> {
