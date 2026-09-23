@@ -21,7 +21,12 @@ export default function Navbar() {
   return (
     <header className="border-border/60 bg-background/80 sticky top-0 z-50 border-b backdrop-blur-md">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo />
+        <div className="flex items-center gap-2.5">
+          <Logo />
+          <span className="rounded-full border border-[#C9A441]/40 bg-[#C9A441]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#C9A441]">
+            Beta
+          </span>
+        </div>
 
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
@@ -40,7 +45,7 @@ export default function Navbar() {
             Log in
           </Link>
           <Link href="/signup" className={buttonVariants({ variant: "gradient", size: "sm" })}>
-            Get Started
+            Join the Beta
           </Link>
         </div>
 
@@ -81,7 +86,7 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className={cn(buttonVariants({ variant: "gradient" }), "w-full")}
             >
-              Get Started
+              Join the Beta
             </Link>
           </div>
         </div>

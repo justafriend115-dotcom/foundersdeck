@@ -29,6 +29,12 @@ export function Topbar({ user, onMenuClick }: { user: User; onMenuClick: () => v
         <h1 className="text-base font-bold tracking-tight text-foreground sm:text-lg">{title}</h1>
 
         <div className="ml-auto flex items-center gap-3">
+          <Badge
+            variant="secondary"
+            className="hidden border border-[#C9A441]/40 bg-[#C9A441]/10 text-[#C9A441] capitalize sm:inline-flex"
+          >
+            Founding Member
+          </Badge>
           <Badge variant="secondary" className="hidden capitalize sm:inline-flex">
             {user.plan} plan
           </Badge>

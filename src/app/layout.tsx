@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
+import { BetaBanner } from "@/components/beta-banner";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -78,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
+        <BetaBanner />
         {children}
         <Analytics />
       </body>
