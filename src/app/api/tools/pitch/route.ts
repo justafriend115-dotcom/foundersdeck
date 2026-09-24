@@ -84,6 +84,10 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  return NextResponse.json(
+    { ok: false, code: "coming_soon", error: "Pitch Deck Generator is coming soon." },
+    { status: 503 },
+  );
   const user = await requireUser();
   if (!user) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
