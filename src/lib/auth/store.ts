@@ -78,8 +78,10 @@ export const store = {
       const user = await prisma.user.create({
         data: { name, email, passwordHash: hashPassword(password) },
       });
+      console.log("[auth] createUser success for", email);
       return { ok: true, user: toPublicUser(user) };
     } catch (error) {
+      console.error("[auth] createUser error for", email, error);
       if (
         typeof error === "object" &&
         error !== null &&
