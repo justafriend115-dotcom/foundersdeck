@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Invalid payload." }, { status: 400 });
   }
 
-  const plan = normalizePlan(user.plan);
+  const plan = normalizePlan(user!.plan);
   const isFree = plan === "free";
   const limit = LIMITS[plan].pitchDeckCreations;
 
