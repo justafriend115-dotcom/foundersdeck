@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import type { DeckSlide } from "@/lib/ai/types";
 import { requireUser } from "@/lib/auth/server";
@@ -44,7 +44,7 @@ export async function GET() {
   return NextResponse.json({ ok: true, decks: decks.map(deckDto) });
 }
 
-export async function POST(_request: NextRequest) {
+export async function POST() {
   return NextResponse.json(
     { ok: false, code: "coming_soon", error: "Pitch Deck Generator is coming soon." },
     { status: 503 },
