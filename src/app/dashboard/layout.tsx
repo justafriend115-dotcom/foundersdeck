@@ -18,7 +18,17 @@ export default async function DashboardLayout({ children }: { children: React.Re
     redirect("/login");
   }
 
-  const hints = serverCompletionHints(user);
+  // Sanitize the user object to ensure absolute serializability.
+  // This prevents "Server Components render" crashes caused by
+  // non-serializable fields (functions, Maps, etc.) in the User object.
+  const sanitizedUser = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    businessPlanCompleted: user.businessPlanCompleted,
+  };
 
-  return <DashboardShell user={user} serverHints={hints}>{children}</DashboardShell>;
+  const hints = serverCompletionHints(sanitizedUser as any);
+
+  return <DashboardShell user={sanitizedUser as any} serverHints={hints}>{children}</DashboardShell>;
 }
