@@ -5,7 +5,17 @@ import { serverCompletionHints } from "@/lib/journey";
 export const metadata = { title: "Overview" };
 
 export default async function DashboardHomePage() {
-  const user = await getCurrentUser();
+  let user;
+  try {
+    user = await getCurrentUser();
+  } catch (e) {
+    console.error("Auth error in page:", e);
+    return (
+      <div className="flex h-full items-center justify-center">
+        <p className="text-muted-foreground">An authentication error occurred. Please try logging in again.</p>
+      </div>
+    );
+  }
 
   if (!user) {
     // In a real app, we might use redirect("/login") from next/navigation

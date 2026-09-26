@@ -14,7 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const user = await getCurrentUser();
+  let user;
+  try {
+    user = await getCurrentUser();
+  } catch (e) {
+    console.error("Auth error in layout:", e);
+    redirect("/login");
+  }
+
   if (!user) {
     redirect("/login");
   }
