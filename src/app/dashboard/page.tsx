@@ -27,10 +27,15 @@ export default async function DashboardHomePage() {
     );
   }
 
+  // Safety check for the function to prevent "l is not a function" production crash
+  const hints = typeof serverCompletionHints === 'function'
+    ? serverCompletionHints(user)
+    : {};
+
   return (
     <Overview
       name={user.name ?? "Founder"}
-      serverHints={serverCompletionHints(user)}
+      serverHints={hints}
     />
   );
 }
