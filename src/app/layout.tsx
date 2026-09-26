@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
-import { BetaBanner } from "@/components/beta-banner";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
 
 const inter = Inter({
   subsets: ["latin"],
