@@ -32,6 +32,7 @@ export function Overview({
   name: string;
   serverHints: CompletedMap;
 }) {
+  const [mounted, setMounted] = useState(false);
   const { profile, setProfile, completed: ctxCompleted, complete } = useJourneyContext();
   const [stats, setStats] = useState<{ pitchDecks: number | null; investors: number | null }>({
     pitchDecks: null,
@@ -39,6 +40,7 @@ export function Overview({
   });
 
   useEffect(() => {
+    setMounted(true);
     Promise.all([
       fetch("/api/tools/pitch").then((r) => (r.ok ? r.json() : null)),
       fetch("/api/tools/crm").then((r) => (r.ok ? r.json() : null)),
@@ -53,9 +55,14 @@ export function Overview({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!mounted) {
+    return <div className="min-h-screen w-full animate-pulse bg-muted/20" />;
+  }
+
   const firstName = name?.trim() ? name.split(" ")[0] : "Founder";
   const merged: CompletedMap = { ...serverHints, ...ctxCompleted };
   if (profile) merged.profile = true;
+
 
 
   const statCards = [
