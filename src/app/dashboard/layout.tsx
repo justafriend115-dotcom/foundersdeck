@@ -36,7 +36,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
     businessPlanCompleted: user.businessPlanCompleted,
   } as User;
 
-  const hints = serverCompletionHints(sanitizedUser);
+  const hints = typeof serverCompletionHints === 'function'
+    ? serverCompletionHints(sanitizedUser)
+    : {};
 
   return <DashboardShell user={sanitizedUser} serverHints={hints}>{children}</DashboardShell>;
 }
