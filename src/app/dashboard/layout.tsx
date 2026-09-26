@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { DashboardShell } from "@/components/dashboard/shell";
 import { getCurrentUser } from "@/lib/auth";
+import { serverCompletionHints } from "@/lib/journey";
 
 export const metadata: Metadata = {
   title: {
@@ -17,5 +18,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     redirect("/login");
   }
 
-  return <DashboardShell user={user}>{children}</DashboardShell>;
+  const hints = serverCompletionHints(user);
+
+  return <DashboardShell user={user} serverHints={hints}>{children}</DashboardShell>;
 }
