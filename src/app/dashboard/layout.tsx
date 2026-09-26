@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { DashboardShell } from "@/components/dashboard/shell";
 import { getCurrentUser } from "@/lib/auth";
 import { serverCompletionHints } from "@/lib/journey";
+import type { User } from "@/lib/auth/types";
 
 export const metadata: Metadata = {
   title: {
