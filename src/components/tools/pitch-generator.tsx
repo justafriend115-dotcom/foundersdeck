@@ -1,8 +1,10 @@
 "use client";
 
-import { Check, Copy, ImageIcon, Link2, Loader2, Printer, Sparkles, Trash2 } from "lucide-react";
+import { Check, Copy, ImageIcon, Loader2, Printer, Sparkles, Trash2 } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useJourneyContext } from "@/components/dashboard/journey";
 import { ToolHeader } from "@/components/tools/tool-header";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +33,7 @@ const emptyInput: PitchInput = {
 const FREE_REGEN_LIMIT = 3;
 
 export function PitchGenerator() {
+  const { complete } = useJourneyContext();
   const [input, setInput] = useState(emptyInput);
   const [decks, setDecks] = useState<DeckDto[] | null>(null);
   const [generating, setGenerating] = useState(false);
@@ -110,6 +113,7 @@ export function PitchGenerator() {
           title: json.deck.title,
           slides: json.deck.slides.length,
         });
+        complete("pitch");
         if (hasExistingDeck && current) {
           setDecks((prev) =>
             (prev ?? []).map((d) => (d.id === current.id ? (json.deck as DeckDto) : d)),
