@@ -172,7 +172,7 @@ const GOAL_JOURNEYS: Record<FounderGoal, StepId[]> = {
 };
 
 export function journeyForGoal(goal: FounderGoal | undefined): StepId[] {
-  return GOAL_JOURNEYS[goal ?? "raise"];
+  return GOAL_JOURNEYS[goal ?? "raise"] ?? GOAL_JOURNEYS["raise"];
 }
 
 /**

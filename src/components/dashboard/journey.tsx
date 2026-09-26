@@ -39,16 +39,17 @@ export function useJourneyContext(): JourneyContextValue {
  */
 export function JourneyProvider({
   user,
-  serverHints,
+  serverHints = {},
   children,
 }: {
   user: User;
-  serverHints: CompletedMap;
+  serverHints?: CompletedMap;
   children: ReactNode;
 }) {
-  const { profile, setProfile, completed, complete } = useJourney(user.id);
+  const { profile, setProfile, completed = {}, complete } = useJourney(user?.id ?? "");
   const merged: CompletedMap = { ...serverHints, ...completed };
   if (profile) merged.profile = true;
+
 
   const value: JourneyContextValue = {
     profile,

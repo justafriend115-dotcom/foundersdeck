@@ -53,9 +53,10 @@ export function Overview({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const firstName = name.split(" ")[0];
+  const firstName = name?.trim() ? name.split(" ")[0] : "Founder";
   const merged: CompletedMap = { ...serverHints, ...ctxCompleted };
   if (profile) merged.profile = true;
+
 
   const statCards = [
     { label: "Pitch decks generated", value: stats.pitchDecks, icon: Sparkles },
