@@ -13,6 +13,8 @@ import {
   ListChecks,
   Loader2,
   Lock,
+  Rocket,
+  ArrowRight,
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
