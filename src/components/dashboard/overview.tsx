@@ -69,8 +69,8 @@ export function Overview({
     : ["profile", "pitch", "gauntlet"];
 
   const nextStepId = Array.isArray(journey)
-    ? journey.find((id) => !merged[id as StepId])
-    : undefined;
+    ? journey.find((id) => !merged[id])
+    : null;
 
   const nextStep = nextStepId && JOURNEY_STEPS
     ? JOURNEY_STEPS[nextStepId as StepId]
@@ -144,7 +144,7 @@ export function Overview({
 
           {/* Persistent checklist (mobile/tablet — desktop shows it in the rail) */}
           <div className="mt-8 xl:hidden">
-            <ProgressChecklist goal={profile.goal} completed={merged} currentStep={nextStepId} />
+            <ProgressChecklist goal={profile.goal} completed={merged} currentStep={nextStepId as StepId} />
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-5">
