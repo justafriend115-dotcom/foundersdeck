@@ -77,6 +77,8 @@ model AcademyProgress {
   completedLessons  String    @default("[]")
   examScore         Int       @default(0)
   examPassed        Boolean   @default(false)
+  mockExamScore     Int       @default(0)
+  mockExamPassed    Boolean   @default(false)
   quizLockedUntil   DateTime?
   examLockedUntil   DateTime?
   updatedAt         DateTime  @updatedAt

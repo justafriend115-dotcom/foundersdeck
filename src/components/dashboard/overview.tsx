@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 
 import { NextActionCard, NextSteps, useJourneyContext } from "@/components/dashboard/journey";
 import { ProgressChecklist } from "@/components/dashboard/progress-checklist";
-import { WelcomeScreen } from "@/components/dashboard/welcome-screen";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -33,7 +32,7 @@ export function Overview({
   serverHints: CompletedMap;
 }) {
   const [mounted, setMounted] = useState(false);
-  const { profile, setProfile, completed: ctxCompleted, complete } = useJourneyContext();
+  const { profile, completed: ctxCompleted, complete } = useJourneyContext();
   const [stats, setStats] = useState<{ pitchDecks: number | null; investors: number | null }>({
     pitchDecks: null,
     investors: null,
@@ -69,7 +68,7 @@ export function Overview({
     : ["profile", "pitch", "gauntlet"];
 
   const nextStepId = Array.isArray(journey)
-    ? journey.find((id) => !merged[id])
+    ? journey.find((id) => !merged[id as StepId])
     : null;
 
   const nextStep = nextStepId && JOURNEY_STEPS
@@ -86,32 +85,21 @@ export function Overview({
     { label: "Journey steps done", value: Object.keys(merged).filter((k) => merged[k as StepId]).length, icon: ListChecks },
   ];
 
-
-  /* One clear next action: first incomplete step in the founder's journey. */
-  const journey = journeyForGoal(profile?.goal);
-  const nextStepId = journey.find((id) => !merged[id]);
-  const nextStep = nextStepId ? JOURNEY_STEPS[nextStepId] : null;
-  const chained = nextStepId ? getNextSteps(nextStepId, profile, merged).slice(0, 3) : [];
-
   return (
-    <div>
-      {!profile ? (
-        <WelcomeScreen onComplete={setProfile} />
-      ) : (
-        <>
-          <div className="flex flex-wrap items-end justify-between gap-4">
+    <>
+      <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 className="text-3xl font-extrabold tracking-tight text-foreground">
                 Welcome back, {firstName}
               </h2>
               <p className="mt-2 text-muted-foreground">
-                {profile.goal === "raise"
+                {profile?.goal === "raise"
                   ? "You're building toward a raise — here's the single best move right now."
                   : "Here's your one clear next step today."}
               </p>
             </div>
             <Badge variant="secondary" className="capitalize">
-              {profile.stage.replace("-", " ")} · {profile.goal}
+              {profile?.stage?.replace("-", " ")} · {profile?.goal}
             </Badge>
           </div>
 
@@ -150,7 +138,7 @@ export function Overview({
 
           {/* Persistent checklist (mobile/tablet — desktop shows it in the rail) */}
           <div className="mt-8 xl:hidden">
-            <ProgressChecklist goal={profile.goal} completed={merged} currentStep={nextStepId} />
+            {profile && <ProgressChecklist goal={profile.goal} completed={merged} currentStep={nextStepId as StepId} />}
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-5">
@@ -200,8 +188,6 @@ export function Overview({
             </Card>
           </div>
         </>
-      )}
-    </div>
   );
 }
 
