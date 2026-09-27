@@ -70,7 +70,7 @@ export function Overview({
 
   const nextStepId = Array.isArray(journey)
     ? journey.find((id) => !merged[id as StepId])
-    : null;
+    : undefined;
 
   const nextStep = nextStepId && JOURNEY_STEPS
     ? JOURNEY_STEPS[nextStepId as StepId]
