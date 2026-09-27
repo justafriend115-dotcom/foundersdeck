@@ -41,6 +41,32 @@ function useCountdown(target: Date | null): string | null {
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
+function ApplicationCard({
+  lessonId,
+}: {
+  lessonId: string;
+}) {
+  const mapping = LESSON_TOOL_MAPPING[lessonId];
+  if (!mapping) return null;
+
+  return (
+    <div className="mt-6 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card to-card p-6 shadow-sm">
+      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary">
+        <Rocket className="size-3.5" />
+        Apply this now
+      </div>
+      <p className="mt-2 text-sm font-medium text-foreground">{mapping.label}</p>
+      <Link
+        href={mapping.href}
+        className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-xs font-bold text-primary-foreground transition-colors hover:opacity-90"
+      >
+        {mapping.cta}
+        <ArrowRight className="size-3" />
+      </Link>
+    </div>
+  );
+}
+
 function LockCard({
   title,
   message,
@@ -338,6 +364,8 @@ i === lessonIndex
                 ))}
               </ul>
             </div>
+
+            <ApplicationCard lessonId={lesson.id} />
 
             <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
               <button
