@@ -87,11 +87,6 @@ export function Overview({
   ];
 
 
-  return (
-    <div>
-      {!profile ? (
-        <WelcomeScreen onComplete={setProfile} />
-      ) : (
         <>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
