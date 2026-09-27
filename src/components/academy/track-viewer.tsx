@@ -128,9 +128,11 @@ export function TrackViewer({
   const [examAnswers, setExamAnswers] = useState(() => track.exam.map(() => -1));
   const [submitting, setSubmitting] = useState(false);
   const [marking, setMarking] = useState(false);
+  const [isMockExam, setIsMockExam] = useState(false);
   const [quizLockedUntil, setQuizLockedUntil] = useState<Date | null>(
     initialQuizLockedUntil ? new Date(initialQuizLockedUntil) : null,
   );
+
   const [examLockedUntil, setExamLockedUntil] = useState<Date | null>(
     initialExamLockedUntil ? new Date(initialExamLockedUntil) : null,
   );
@@ -178,7 +180,11 @@ export function TrackViewer({
       const res = await fetch(`/api/academy/${kind}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ trackId: track.id, answers }),
+        body: JSON.stringify({
+          trackId: track.id,
+          answers,
+          isMock: kind === "exam" ? isMockExam : false
+        }),
       });
       const json = await res.json();
       if (json.ok) {
@@ -209,6 +215,7 @@ export function TrackViewer({
       setSubmitting(false);
     }
   }
+
 
   const questions = mode === "quiz" ? track.quiz : track.exam;
   const answers = mode === "quiz" ? quizAnswers : examAnswers;
@@ -243,7 +250,15 @@ export function TrackViewer({
           return (
             <button
               key={m}
-              onClick={() => setMode(m)}
+              onClick={() => {
+                if (m === "exam") {
+                  // Default to mock exam if not already passed
+                  // Note: passed logic for the track overall might be different,
+                  // we'll handle the mock/final switch in the exam view itself
+                  setIsMockExam(true);
+                }
+                setMode(m);
+              }}
               className={cn(
                 "flex flex-1 items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                 mode === m
@@ -501,10 +516,37 @@ i === lessonIndex
 
       {mode === "exam" && (
         <div className="mt-6 space-y-5">
+          <div className="flex items-center justify-between rounded-2xl border border-primary/20 bg-primary/5 p-4">
+            <div className="flex items-center gap-3">
+              <div className={cn(
+                "flex size-10 items-center justify-center rounded-full",
+                isMockExam ? "bg-slate-200 text-slate-600" : "bg-primary text-primary-foreground"
+              )}>
+                <GraduationCap className="size-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-foreground">
+                  {isMockExam ? "Mock Exam" : "Final Certification Exam"}
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  {isMockExam
+                    ? "Pass the mock to unlock the final exam. No penalty for failure."
+                    : "Final certification. Failure results in a tiered lockout penalty."}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsMockExam(!isMockExam)}
+              className="rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium transition-colors hover:bg-muted"
+            >
+              Switch to {isMockExam ? "Final" : "Mock"}
+            </button>
+          </div>
+
           {!canExam && (
             <LockCard
               title="Pass the quiz first"
-              message="Complete every lesson and pass the track quiz (80% or higher) to unlock the final exam."
+              message="Complete every lesson and pass the track quiz (80% or higher) to unlock the exam."
               cta={
                 <button
                   onClick={() => setMode("quiz")}
