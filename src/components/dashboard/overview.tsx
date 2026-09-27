@@ -63,13 +63,29 @@ export function Overview({
   const merged: CompletedMap = { ...serverHints, ...ctxCompleted };
   if (profile) merged.profile = true;
 
+  /* Safe journey resolution */
+  const journey = (typeof journeyForGoal === 'function')
+    ? journeyForGoal(profile?.goal)
+    : ["profile", "pitch", "gauntlet"];
 
+  const nextStepId = Array.isArray(journey)
+    ? journey.find((id) => !merged[id])
+    : null;
+
+  const nextStep = nextStepId && JOURNEY_STEPS
+    ? JOURNEY_STEPS[nextStepId as StepId]
+    : null;
+
+  const chained = (nextStepId && typeof getNextSteps === 'function')
+    ? getNextSteps(nextStepId as StepId, profile, merged).slice(0, 3)
+    : [];
 
   const statCards = [
     { label: "Pitch decks generated", value: stats.pitchDecks, icon: Sparkles },
     { label: "Investors in pipeline", value: stats.investors, icon: Handshake },
     { label: "Journey steps done", value: Object.keys(merged).filter((k) => merged[k as StepId]).length, icon: ListChecks },
   ];
+
 
   /* One clear next action: first incomplete step in the founder's journey. */
   const journey = journeyForGoal(profile?.goal);
