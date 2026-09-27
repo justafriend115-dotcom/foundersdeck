@@ -87,12 +87,6 @@ export function Overview({
   ];
 
 
-  /* One clear next action: first incomplete step in the founder's journey. */
-  const journey = journeyForGoal(profile?.goal);
-  const nextStepId = journey.find((id) => !merged[id]);
-  const nextStep = nextStepId ? JOURNEY_STEPS[nextStepId] : null;
-  const chained = nextStepId ? getNextSteps(nextStepId, profile, merged).slice(0, 3) : [];
-
   return (
     <div>
       {!profile ? (
