@@ -12,7 +12,7 @@ export type GenerationTool =
 const PROVIDER_COSTS = {
   openai: { input: 0.00015, output: 0.0006 },   // gpt-4o-mini
   anthropic: { input: 0.0008, output: 0.004 },  // claude-3-5-haiku
-  mock: { input: 0, output: 0 },
+  groq: { input: 0, output: 0 },  mock: { input: 0, output: 0 },
 };
 
 const HOURLY_LIMIT = Number(process.env.HOURLY_GEN_LIMIT ?? "10");
