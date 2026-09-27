@@ -69,7 +69,7 @@ export function Overview({
     : ["profile", "pitch", "gauntlet"];
 
   const nextStepId = Array.isArray(journey)
-    ? journey.find((id) => !merged[id as any])
+    ? journey.find((id) => !merged[id as StepId])
     : null;
 
   const nextStep = nextStepId && JOURNEY_STEPS
