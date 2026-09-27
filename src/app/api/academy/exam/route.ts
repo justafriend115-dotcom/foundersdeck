@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import {
-  EXAM_COOLDOWN_MS,
   EXAM_PASS_SCORE,
   getTrack,
 } from "@/lib/academy/curriculum";
@@ -18,6 +17,12 @@ function parseCompleted(json: string): string[] {
   }
 }
 
+function calculateCooldown(score: number): number {
+  if (score <= 40) return 4 * 24 * 60 * 60 * 1000; // 4 days
+  if (score <= 60) return 2 * 24 * 60 * 60 * 1000; // 2 days
+  return 1 * 24 * 60 * 60 * 1000; // 1 day
+}
+
 export async function POST(request: NextRequest) {
   const user = await getCurrentUser();
   if (!user) {
@@ -27,9 +32,11 @@ export async function POST(request: NextRequest) {
   const body = (await readJsonBody(request, 128 * 1024)) as {
     trackId?: string;
     answers?: number[];
+    isMock?: boolean;
   } | null;
   const trackId = String(body?.trackId ?? "");
   const answers = Array.isArray(body?.answers) ? body.answers : [];
+  const isMock = body?.isMock ?? false;
 
   const track = getTrack(trackId);
   if (!track) {
@@ -59,13 +66,13 @@ export async function POST(request: NextRequest) {
   const allLessonsDone = track.lessons.every((l) => completed.includes(l.id));
   if (!allLessonsDone && !progress.passed) {
     return NextResponse.json(
-      { ok: false, error: "Complete all lessons and pass the quiz before the final exam." },
+      { ok: false, error: "Complete all lessons and pass the quiz before the exam." },
       { status: 403 },
     );
   }
   if (!progress.passed) {
     return NextResponse.json(
-      { ok: false, error: "Pass the track quiz before taking the final exam." },
+      { ok: false, error: "Pass the track quiz before taking the exam." },
       { status: 403 },
     );
   }
@@ -76,10 +83,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        error: "You failed the exam recently. Try again after the cooldown.",
+        error: "Your exam is locked. Study more and try again later.",
         lockedUntil: lockedUntil.toISOString(),
       },
       { status: 429 },
+    );
+  }
+
+  // Mock Exam Gate: If this is the final exam, you must have passed the mock exam.
+  if (!isMock && !progress.mockExamPassed) {
+    return NextResponse.json(
+      { ok: false, error: "You must pass the Mock Exam before attempting the Final Exam." },
+      { status: 403 },
     );
   }
 
@@ -90,6 +105,28 @@ export async function POST(request: NextRequest) {
   const score = Math.round((correct / track.exam.length) * 100);
   const passed = score >= EXAM_PASS_SCORE;
 
+  const cooldownMs = passed ? 0 : calculateCooldown(score);
+  const lockDate = passed ? null : new Date(now.getTime() + cooldownMs);
+
+  if (isMock) {
+    const updated = await prisma.academyProgress.update({
+      where: { id: progress.id },
+      data: {
+        mockExamScore: score,
+        mockExamPassed: passed,
+      },
+    });
+    return NextResponse.json({
+      ok: true,
+      score,
+      passed,
+      bestScore: updated.mockExamScore,
+      correct,
+      total: track.exam.length,
+      lockedUntil: lockDate?.toISOString() ?? null,
+    });
+  }
+
   const bestExamScore = Math.max(progress.examScore, score);
 
   const updated = await prisma.academyProgress.update({
@@ -97,7 +134,7 @@ export async function POST(request: NextRequest) {
     data: {
       examScore: bestExamScore,
       examPassed: progress.examPassed || passed,
-      examLockedUntil: passed ? null : new Date(now.getTime() + EXAM_COOLDOWN_MS),
+      examLockedUntil: lockDate,
     },
   });
 
@@ -108,6 +145,6 @@ export async function POST(request: NextRequest) {
     bestScore: updated.examScore,
     correct,
     total: track.exam.length,
-    lockedUntil: passed ? null : new Date(now.getTime() + EXAM_COOLDOWN_MS).toISOString(),
+    lockedUntil: lockDate?.toISOString() ?? null,
   });
 }
