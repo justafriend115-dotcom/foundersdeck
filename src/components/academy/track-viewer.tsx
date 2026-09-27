@@ -21,6 +21,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { LESSON_TOOL_MAPPING } from "@/lib/academy/tool-mapping";
 import type { AcademyTrack } from "@/lib/academy/curriculum";
 import { EXAM_PASS_SCORE, PASS_SCORE } from "@/lib/academy/curriculum";
 
