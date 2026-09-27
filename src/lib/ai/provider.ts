@@ -1,4 +1,4 @@
-export type AiProvider = "openai" | "anthropic" | "mock";
+export type AiProvider = "openai" | "anthropic" | "groq" | "mock";
 
 export interface AiResult {
   text: string | null;
@@ -8,10 +8,14 @@ export interface AiResult {
 
 const OPENAI_MODEL = process.env.AI_MODEL_OPENAI ?? "gpt-4o-mini";
 const ANTHROPIC_MODEL = process.env.AI_MODEL_ANTHROPIC ?? "claude-3-5-haiku-latest";
+const GROQ_MODEL = process.env.AI_MODEL_GROQ ?? "llama-3.3-70b-versatile";
 
 export function getProviderInfo(): { provider: AiProvider; model: string | null } {
   if (process.env.OPENAI_API_KEY) {
     return { provider: "openai", model: OPENAI_MODEL };
+  }
+  if (process.env.GROQ_API_KEY) {
+    return { provider: "groq", model: GROQ_MODEL };
   }
   if (process.env.ANTHROPIC_API_KEY) {
     return { provider: "anthropic", model: ANTHROPIC_MODEL };
@@ -48,6 +52,39 @@ async function callOpenAI(
       },
       body: JSON.stringify({
         model: OPENAI_MODEL,
+        temperature: 0.7,
+        max_tokens: maxTokens,
+        messages: [
+          { role: "system", content: system },
+          { role: "user", content: prompt },
+        ],
+      }),
+    },
+    45000,
+  );
+  if (!response.ok) return { text: null, inputTokens: 0, outputTokens: 0 };
+  const json = await response.json().catch(() => null);
+  const text = json?.choices?.[0]?.message?.content?.trim() || null;
+  const inputTokens = json?.usage?.prompt_tokens ?? 0;
+  const outputTokens = json?.usage?.completion_tokens ?? 0;
+  return { text, inputTokens, outputTokens };
+}
+
+async function callGroq(
+  system: string,
+  prompt: string,
+  maxTokens: number,
+): Promise<AiResult> {
+  const response = await fetchWithTimeout(
+    "https://api.groq.com/openai/v1/chat/completions",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
         temperature: 0.7,
         max_tokens: maxTokens,
         messages: [
@@ -106,6 +143,7 @@ export async function generateAiTextWithUsage(
   const { provider } = getProviderInfo();
   try {
     if (provider === "openai") return await callOpenAI(system, prompt, maxTokens);
+    if (provider === "groq") return await callGroq(system, prompt, maxTokens);
     if (provider === "anthropic") return await callAnthropic(system, prompt, maxTokens);
     return { text: null, inputTokens: 0, outputTokens: 0 };
   } catch {
