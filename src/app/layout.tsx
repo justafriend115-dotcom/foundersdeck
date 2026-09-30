@@ -69,6 +69,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { VersionPoller } from "@/components/version-poller";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -80,6 +82,7 @@ export default function RootLayout({
         {/* <BetaBanner /> */}
         {children}
         {/* <Analytics /> */}
+        <VersionPoller intervalMs={30000} />
       </body>
     </html>
   );
